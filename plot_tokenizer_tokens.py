@@ -210,14 +210,22 @@ fig.update_layout(
 fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(128, 128, 128, 0.2)')
 fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(128, 128, 128, 0.2)')
 
+
+output_dir = "./data/"
+# Ensure the output directory exists
+import os
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+
+
 # Save as HTML for interactivity
-fig.write_html('../data/sentence_embeddings_pca.html')
+fig.write_html('./data/sentence_embeddings_pca.html')
 
 # Save as image
-fig.write_image('../data/sentence_embeddings_pca.png')
+fig.write_image('./data/sentence_embeddings_pca.png')
 
 # Show the plot
-fig.show()
+#fig.show()
 
 print("\nAnalysis complete. Visualization saved to '../data/sentence_embeddings_pca.png' and '../data/sentence_embeddings_pca.html'")
 # %%
