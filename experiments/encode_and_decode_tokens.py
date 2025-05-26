@@ -70,8 +70,10 @@ decoder = text_to_text_pipeline.model.decoder
 
 def get_vocab_id(token: str) -> int:
     tokens = tokenizer_encoder(token)
-    if len(tokens) != 3:
+    if len(tokens) > 3:
         raise RuntimeError("Multiple tokens found for token: " + token)
+    if len(tokens) == 2:
+        raise RuntimeError("Empty token found for token: " + token)
     return tokens[1].item()
 
 
@@ -95,7 +97,7 @@ encoder_output
 
 
 # Create initial token sequence with start token
-start_tokens = torch.tensor([[BOS_IDX]]).to(DEVICE)
+start_tokens = torch.tensor([[EOS_IDX, ENG_LANG_TOKEN_IDX]]).to(DEVICE)
 
 decoder_output = decoder.decode(
     seqs=start_tokens,
@@ -123,7 +125,7 @@ print(f"Token for index {house_idx}: {token}")
 get_token_from_id(greedy_token)
 # %%
 
-seqs = torch.tensor([[ENG_LANG_TOKEN_IDX, BOS_IDX]]).to(DEVICE)
+seqs = torch.tensor([[EOS_IDX, ENG_LANG_TOKEN_IDX]]).to(DEVICE)
 
 for i in range(10):
     decoder_output = decoder.decode(
