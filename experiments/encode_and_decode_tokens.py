@@ -81,7 +81,15 @@ house_idx = get_vocab_id("house")
 
 # %% --- Test with a simple example ---
 encoder_output = encoder.forward(SequenceBatch(
-    torch.tensor([[ENG_LANG_TOKEN_IDX, get_vocab_id("dog"), PAD_IDX, PAD_IDX, EOS_IDX]]).to(DEVICE), None)
+    torch.tensor([[
+        ENG_LANG_TOKEN_IDX, 
+        get_vocab_id("I"), 
+        get_vocab_id("am"), 
+        get_vocab_id("a"), 
+        get_vocab_id("happy"), 
+        get_vocab_id("dog"), 
+        EOS_IDX,
+    ]]).to(DEVICE), None)
 )
 encoder_output
 
@@ -115,7 +123,7 @@ print(f"Token for index {house_idx}: {token}")
 get_token_from_id(greedy_token)
 # %%
 
-seqs = torch.tensor([[ENG_LANG_TOKEN_IDX]]).to(DEVICE)
+seqs = torch.tensor([[ENG_LANG_TOKEN_IDX, BOS_IDX]]).to(DEVICE)
 
 for i in range(10):
     decoder_output = decoder.decode(
@@ -125,8 +133,10 @@ for i in range(10):
         encoder_output=encoder_output.sentence_embeddings.unsqueeze(1),
         encoder_padding_mask=None
     )
-    greedy_token = decoder.project(decoder_output[0], decoder_padding_mask=None).logits.argmax()
-    seqs = torch.cat([seqs, greedy_token.unsqueeze(0).unsqueeze(0)], dim=1)
+    greedy_token = decoder.project(decoder_output[0], decoder_padding_mask=None).logits[:, -1, :].argmax(dim=-1)
+    seqs = torch.cat([seqs, greedy_token.unsqueeze(0)], dim=1)
     print(seqs)
     print([get_token_from_id(token_id) for token_id in seqs[0]])
+    if greedy_token[-1] == EOS_IDX:
+        break
 # %%
