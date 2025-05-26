@@ -6,7 +6,34 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 from tqdm import tqdm
+import warnings
+from pathlib import Path
+from typing import Iterable, List, Optional, Sequence, Union
 
+import torch
+from fairseq2.data import Collater
+from fairseq2.data.data_pipeline import read_sequence
+from fairseq2.data.text import TextTokenizer, read_text
+from fairseq2.generation import (
+    BeamSearchSeq2SeqGenerator,
+    Sampler,
+    SamplingSeq2SeqGenerator,
+    Seq2SeqGenerator,
+    SequenceToTextConverter,
+    TextTranslator,
+)
+from fairseq2.typing import CPU, DataType, Device
+
+from sonar.inference_pipelines.utils import add_progress_bar, extract_sequence_batch
+from sonar.models.encoder_model import SonarEncoderModel
+from sonar.models.sonar_text import (
+    load_sonar_text_decoder_model,
+    load_sonar_text_encoder_model,
+    load_sonar_tokenizer,
+)
+from sonar.models.sonar_translation import SonarEncoderDecoderModel
+from sonar.models.sonar_translation.model import DummyEncoderModel
+from sonar.nn.conditional_decoder_model import ConditionalTransformerDecoderModel
 # SONAR and fairseq2 imports
 from sonar.models.sonar_text import load_sonar_tokenizer
 from sonar.models.encoder_model import SonarEncoderModel # For type hinting
@@ -196,7 +223,7 @@ all_token_sequences = []
 all_labels = []
 all_positions = []
 for word_str in words_to_test:
-    for i in range(1, MAX_SEQ_LEN - 1, 2):
+    for i in range(1, MAX_SEQ_LEN - 1, 4):
         token_ids = torch.full((MAX_SEQ_LEN,), UNK_IDX, dtype=torch.long, device= DEVICE)
         token_ids[0] = 256047
         token_ids[-1] = EOS_IDX
@@ -210,7 +237,7 @@ for word_str in words_to_test:
 all_token_sequences = torch.stack(all_token_sequences).to(DEVICE)
 all_positions = torch.tensor(all_positions, dtype=torch.long, device=DEVICE)#%% Get word embeddings
 #%%
-INFERENCE_BATCH_SIZE = 1
+INFERENCE_BATCH_SIZE = 16
 sentence_embeddings_list = [] # Storing sentence embeddings (previously word_embeddings)
 last_token_embeddings_list = []    # Storing specific token hidden states (previously token_embeddings)
 first_token_embeddings_list = [] # Storing first token hidden states (if needed)
@@ -546,14 +573,112 @@ print(f"Shape of example initial embeds: {example_initial_embeds.shape}")
 
 # Print the specific token's last hidden state
 # %% Load decoder
-from sonar.models.sonar_text import load_sonar_text_decoder_model
-decoder = load_sonar_text_decoder_model("text_sonar_basic_decoder", device=DEVICE)
+class EmbeddingToTokenModelPipeline(torch.nn.Module):
+    model: SonarEncoderDecoderModel
+    tokenizer: TextTokenizer
+    device: Device
+    def __init__(
+        self,
+        decoder: Union[str, ConditionalTransformerDecoderModel],
+        tokenizer: Union[str, TextTokenizer],
+        device: Device = CPU,
+        dtype: Optional[DataType] = None,
+    ) -> None:
+        """
+        Args:
+            decoder (Union[str, ConditionalTransformerDecoderModel]): either card name or model object
+            tokenizer (Union[str, TextTokenizer]): either card name or tokenizer object
+            device (device, optional): Defaults to CPU.
+            dtype (DataType, optional): The data type of the model parameters and buffers.
+
+        """
+        super().__init__()
+        if isinstance(decoder, str):
+            self.decoder = load_sonar_text_decoder_model(
+                decoder, device=device, dtype=dtype, progress=False
+            )
+        else:
+            self.decoder = decoder.to(device=device, dtype=dtype)
+        if isinstance(tokenizer, str):
+            tokenizer = load_sonar_tokenizer(tokenizer, progress=False)
+        else:
+            tokenizer = tokenizer
+            
+        encoder = DummyEncoderModel(self.decoder.model_dim).eval().to(DEVICE)  # type: ignore
+
+        self.device = device
+
+        self.model = SonarEncoderDecoderModel(encoder, self.decoder).eval()  # type: ignore
+
+    @torch.inference_mode()
+    def predict(
+        self,
+        input_embeddings: torch.Tensor,              # Shape: [batch_size, seq_len, hidden_dim]
+        prompt_token_ids: torch.Tensor,              # e.g., torch.tensor([[ENG_LANG_ID1], [ENG_LANG_ID2]])
+                                                     # Shape: [batch_size, prompt_len]
+        max_new_tokens: int = 50,                    # Max new tokens to generate after prompt
+        sampler: Optional[Sampler] = None,
+        generator_kwargs: Optional[dict] = None,
+        batch_size: int = 16,
+        progress_bar: bool = False,
+
+    ) -> List[List[int]]: # Returns a list (for batch) of lists of token IDs (top hypothesis)
+        """
+        Generates sequences of token IDs from input embeddings.
+
+        :param input_embeddings:
+            The embeddings to use as encoder output. Shape: (N, S_enc, M)
+        :param input_padding_masks:
+            The padding mask for ``input_embeddings``. Shape: (N, S_enc)
+        :param prompt_token_ids:
+            The initial token(s) to seed the decoder. Shape: (N, S_prm)
+            (e.g., target language ID).
+        :param max_new_tokens:
+            Maximum number of new tokens to generate after the prompt.
+        :param sampler:
+            If provided, uses SamplingSeq2SeqGenerator. Otherwise, BeamSearch.
+        :param generator_kwargs:
+            Additional keyword arguments for the chosen Seq2SeqGenerator
+            (e.g., beam_size, len_penalty for BeamSearch).
+
+        :returns:
+            A list where each element is a list of token IDs representing the
+            top generated sequence for the corresponding input embedding.
+            Includes prompt tokens if generator's echo_prompt=True (default for BeamSearch in fairseq2).
+        """
+
+        if sampler is not None:
+            generator: Seq2SeqGenerator = SamplingSeq2SeqGenerator(
+                self.model, sampler, **generator_kwargs
+            )
+        else:
+            # Default to BeamSearch if no sampler provided
+            generator = BeamSearchSeq2SeqGenerator(self.model, **generator_kwargs)
+
+        # The generator's __call__ for BeamSearchSeq2SeqGenerator is:
+        # (self, source_seqs, source_padding_mask, prompt_seqs, prompt_padding_mask)
+        output_gen = generator(
+            source_seqs=input_embeddings.to(self.device),             # Our embeddings act as "source_seqs" for DummyEncoder
+            source_padding_mask=None,
+            prompt_seqs=prompt_token_ids.to(self.device),
+            prompt_padding_mask=None
+        )
+
+        return output_gen.hypotheses
 
 #%%
-with torch.inference_mode():
-    decoder.decode(
-        example_last_hidden_states.unsqueeze(0),
-        padding_mask=example_padding_mask
+vec2text = EmbeddingToTokenModelPipeline(
+    decoder="text_sonar_basic_decoder",
+    tokenizer="text_sonar_basic_encoder",  # Using the same tokenizer for simplicity
+    device=DEVICE
+)
+#%%
+with torch.no_grad():
+    vec2text.predict(
+        input_embeddings=example_sentence_embedding.unsqueeze(0),  # Add batch dimension
+        prompt_token_ids=torch.tensor([[ENG_LANG_TOKEN_IDX]], device=DEVICE),  # Use the language ID as prompt
+        max_new_tokens=50,  # Generate up to 50 new tokens
+        sampler=None,  # Use default BeamSearch
+        generator_kwargs={"echo_prompt": True}  # Include the prompt in the output
     )
-
 # %%
