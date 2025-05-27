@@ -214,7 +214,42 @@ all_random_sentence_embeddings = np.concatenate(all_random_sentence_embeddings, 
 print(f"Shape of all grammatical sentence embeddings: {all_grammatical_sentence_embeddings.shape}")
 print(f"Shape of all random sentence embeddings: {all_random_sentence_embeddings.shape}")
 # %%
+from sklearn.decomposition import PCA
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import os
+import torch
 
+labels_grammatical = ['grammatical'] * all_grammatical_sentence_embeddings.shape[0]
+labels_random = ['random'] * all_random_sentence_embeddings.shape[0]
+
+combined_lables = labels_grammatical + labels_random
+
+combined_raw_embeddings = np.concatenate((all_grammatical_sentence_embeddings, all_random_sentence_embeddings), axis=0)
+
+print(f"Shape of combined raw embeddings for PCA: {combined_raw_embeddings.shape}")
+
+#%% Perform PCA
+
+operator = PCA(n_components=3, random_state=RANDOM_STATE)
+
+reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+
+eigenvectors = operator.components_
+
+df = {
+    'PCA1': reduced_embeddings[:, 0],
+    'PCA2': reduced_embeddings[:, 1],
+    'PCA3': reduced_embeddings[:, 2],
+    'label': combined_lables
+}
+
+fig_interactive = px.scatter_3d(df, x='PCA1', y='PCA2', z='PCA3', color='label',
+                                title='PCA of Sentence Embeddings',
+                                labels={'PCA1': 'PCA Component 1', 'PCA2': 'PCA Component 2', 'PCA3': 'PCA Component 3'},
+                                color_discrete_sequence=['blue', 'red'])
+#%%
 grammar_embeddings, grammar_eigenvectors = perform_dimensionality_reduction(
     embeddings=all_grammatical_sentence_embeddings,
     method="pca",
@@ -230,28 +265,7 @@ random_embeddings, random_eigenvectors = perform_dimensionality_reduction(
 )
 # %%
 
-grammar_df = create_plot_dataframe(
-    reduced_embeddings=grammar_embeddings,
-    all_labels=["Grammatical"] * grammar_embeddings.shape[0],
-    all_positions=None,
-    words_for_df=grammatical_sentences
-)
-
-random_df = create_plot_dataframe(
-    reduced_embeddings=random_embeddings,
-    all_labels=["Random"] * random_embeddings.shape[0],
-    all_positions=None,
-    words_for_df=["Random Sentence"] * random_embeddings.shape[0]
-)
+df_grammar = create_plot_dataframe()
 # %%
 
-plot_dimensionality_reduction_results(
-    df_plot = grammar_df,
-    words_in_plot = grammatical_sentences,
-    output_dir=OUTPUT_DIR,
-    base_plot_name="Grammaticality_Comparison_PCA",
-    reduction_method_label="PCA",
-    interactive_text_column=None, # No text labels for PCA plot
-    title="Grammaticality Comparison - PCA"
-)
 # %%
