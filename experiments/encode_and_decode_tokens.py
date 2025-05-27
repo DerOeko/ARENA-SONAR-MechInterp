@@ -370,4 +370,385 @@ for i, seq in enumerate(decoded_sequences):
     print(f"Original:    {seq['Original']}")
     print(f"Transformed: {seq['Transformed']}")
 
+
+# %%
+encoder_decoder_spanish_to_spanish = SonarEncoderDecoder(
+    device="cuda", decoder_language="spa_Latn"
+)
+# Decode the transformed embeddings back to text
+decoded_sequences = []
+for i in range(0, len(all_embeddings), 2):
+    # Get original and transformed embeddings
+    orig_emb = all_embeddings[i]
+    trans_emb = all_embeddings[i + 1]
+
+    # Decode both embeddings
+    orig_decoded = encoder_decoder_spanish_to_spanish.decode(orig_emb.unsqueeze(0))
+    trans_decoded = encoder_decoder_spanish_to_spanish.decode(trans_emb.unsqueeze(0))
+
+    # Convert token IDs to strings
+    orig_tokens = encoder_decoder_spanish_to_spanish.token_ids_to_list_str(
+        orig_decoded[0]
+    )
+    trans_tokens = encoder_decoder_spanish_to_spanish.token_ids_to_list_str(
+        trans_decoded[0]
+    )
+
+    # Add to list
+    decoded_sequences.append({"Original": orig_tokens, "Transformed": trans_tokens})
+
+# Print decoded sequences
+print("\nDecoded Sequences:")
+print("-" * 50)
+for i, seq in enumerate(decoded_sequences):
+    print(f"\nSequence pair {i + 1}:")
+    print(f"Original:    {seq['Original']}")
+    print(f"Transformed: {seq['Transformed']}")
+# %%
+# sequence_embeddings = {}
+# for sequence in [
+#     "thewolf",
+#     "germanshepherd",
+#     "goldenretriever",
+#     "thefox",
+# ]:
+#     sentence_embeddings, encoded_seqs = encoder_decoder.encode(
+#         torch.cat(
+#             [
+#                 encoder_decoder.list_str_to_token_ids_batch([sequence]),
+#             ]
+#         )
+#     )
+#     sequence_embeddings[sequence] = {
+#         "sequence_embeddings": sentence_embeddings,
+#         "decoded": encoder_decoder.token_ids_to_list_str_batch(
+#             encoder_decoder.decode(sentence_embeddings.unsqueeze(0))
+#         ),
+#     }
+# sequence_embeddings
+# # %%
+# # Apply transformation to each sequence
+# print("\nApplying dog->cat transformation vector to sequences:")
+# print("-" * 50)
+# for sequence, data in sequence_embeddings.items():
+#     # Get original embedding
+#     orig_embedding = data["sequence_embeddings"]
+
+#     # Apply transformation
+#     transformed_embedding = orig_embedding + dog_to_cat
+
+#     # Decode both original and transformed
+#     orig_decoded = encoder_decoder.token_ids_to_list_str_batch(
+#         encoder_decoder.decode(orig_embedding.unsqueeze(0))
+#     )
+#     trans_decoded = encoder_decoder.token_ids_to_list_str_batch(
+#         encoder_decoder.decode(transformed_embedding.unsqueeze(0))
+#     )
+
+#     # print(f"\nOriginal sequence: {sequence}")
+#     print(f"Original decoded:  {orig_decoded}")
+#     print(f"Transformed decoded: {trans_decoded}")
+
+# # %%
+sequence_embeddings = {}
+for sequence in [
+    ("cat", "cat"),
+    ("dog", "dog"),
+    ("cat", "dog"),
+    ("dog", "cat"),
+]:
+    sentence_embeddings, encoded_seqs = encoder_decoder.encode(
+        torch.cat(
+            [
+                encoder_decoder.list_str_to_token_ids_batch([sequence]),
+            ]
+        )
+    )
+    sequence_embeddings[sequence] = {
+        "sequence_embeddings": sentence_embeddings,
+        "decoded": encoder_decoder.token_ids_to_list_str_batch(
+            encoder_decoder.decode(sentence_embeddings.unsqueeze(0))
+        ),
+    }
+sequence_embeddings
+# # %%
+dog_dog_to_cat_cat = (
+    sequence_embeddings[("cat", "cat")]["sequence_embeddings"]
+    - sequence_embeddings[("dog", "dog")]["sequence_embeddings"]
+)
+cat_dog_to_cat_cat = (
+    sequence_embeddings[("cat", "cat")]["sequence_embeddings"]
+    - sequence_embeddings[("cat", "dog")]["sequence_embeddings"]
+)
+dog_cat_to_cat_cat = (
+    sequence_embeddings[("cat", "cat")]["sequence_embeddings"]
+    - sequence_embeddings[("dog", "cat")]["sequence_embeddings"]
+)
+dog_dog_to_cat_dog = (
+    sequence_embeddings[("cat", "dog")]["sequence_embeddings"]
+    - sequence_embeddings[("dog", "dog")]["sequence_embeddings"]
+)
+dog_dog_to_dog_cat = (
+    sequence_embeddings[("dog", "cat")]["sequence_embeddings"]
+    - sequence_embeddings[("dog", "dog")]["sequence_embeddings"]
+)
+dog_cat_to_cat_dog = (
+    sequence_embeddings[("cat", "dog")]["sequence_embeddings"]
+    - sequence_embeddings[("dog", "cat")]["sequence_embeddings"]
+)
+cat_dog_to_dog_cat = (
+    sequence_embeddings[("dog", "cat")]["sequence_embeddings"]
+    - sequence_embeddings[("cat", "dog")]["sequence_embeddings"]
+)
+
+
+# %%
+
+# Stack all vectors and perform PCA
+all_vectors = torch.stack(
+    [
+        dog_dog_to_cat_cat,
+        cat_dog_to_cat_cat,
+        dog_cat_to_cat_cat,
+        dog_dog_to_cat_dog,
+        dog_dog_to_dog_cat,
+        dog_cat_to_cat_dog,
+        cat_dog_to_dog_cat,
+    ]
+)
+
+# Reshape to 2D before PCA
+all_vectors = all_vectors.view(all_vectors.size(0), -1)
+
+import numpy as np
+import plotly.graph_objects as go
+from sklearn.decomposition import PCA
+
+# Perform PCA
+pca = PCA(n_components=3)
+vectors_3d = pca.fit_transform(all_vectors.cpu().detach().numpy())
+
+# Create figure
+fig = go.Figure()
+
+# Plot each vector as an arrow
+vector_names = [
+    "dog,dog→cat,cat",
+    "cat,dog→cat,cat",
+    "dog,cat→cat,cat",
+    "dog,dog→cat,dog",
+    "dog,dog→dog,cat",
+    "dog,cat→cat,dog",
+    "cat,dog→dog,cat",
+]
+
+colors = ["red", "blue", "green", "purple", "orange", "cyan", "magenta"]
+
+for i, (vector, name, color) in enumerate(zip(vectors_3d, vector_names, colors)):
+    # Add arrow
+    fig.add_trace(
+        go.Scatter3d(
+            x=[0, vector[0]],
+            y=[0, vector[1]],
+            z=[0, vector[2]],
+            mode="lines+text",
+            line=dict(color=color, width=5),
+            text=["", name],
+            textposition="top center",
+            name=name,
+            showlegend=True,
+        )
+    )
+
+# Update layout
+fig.update_layout(
+    scene=dict(
+        xaxis_title="PC1",
+        yaxis_title="PC2",
+        zaxis_title="PC3",
+        camera=dict(
+            up=dict(x=0, y=0, z=1),
+            center=dict(x=0, y=0, z=0),
+            eye=dict(x=1.5, y=1.5, z=1.5),
+        ),
+    ),
+    showlegend=True,
+    title="PCA Visualization of Token Transformation Vectors",
+)
+
+fig.show()
+
+
+# %%
+# Create figure for positions
+fig = go.Figure()
+
+# Get embeddings for all combinations of cat and dog
+sequences = [
+    ("cat", "cat"),
+    ("cat", "dog"),
+    ("dog", "cat"),
+    ("dog", "dog"),
+    ("cat",),
+    ("dog",),
+]
+
+positions = []
+for seq in sequences:
+    sentence_embeddings, _ = encoder_decoder.encode(
+        torch.cat([encoder_decoder.list_str_to_token_ids_batch([seq])])
+    )
+    positions.append(sentence_embeddings.cpu().detach().numpy())
+
+# Convert to numpy array and apply PCA
+positions_array = np.vstack(positions)
+pca = PCA(n_components=3)
+positions_3d = pca.fit_transform(positions_array)
+
+# Plot each position
+colors = ["red", "blue", "green", "purple", "orange", "cyan"]
+
+for i, (pos, seq, color) in enumerate(zip(positions_3d, sequences, colors)):
+    # Add point
+    name = ",".join(seq)
+    fig.add_trace(
+        go.Scatter3d(
+            x=[pos[0]],
+            y=[pos[1]],
+            z=[pos[2]],
+            mode="markers+text",
+            marker=dict(size=10, color=color),
+            text=[name],
+            textposition="top center",
+            name=name,
+            showlegend=True,
+        )
+    )
+
+# Update layout
+fig.update_layout(
+    scene=dict(
+        xaxis_title="PC1",
+        yaxis_title="PC2",
+        zaxis_title="PC3",
+        camera=dict(
+            up=dict(x=0, y=0, z=1),
+            center=dict(x=0, y=0, z=0),
+            eye=dict(x=1.5, y=1.5, z=1.5),
+        ),
+    ),
+    showlegend=True,
+    title="PCA Visualization of Token Position Embeddings",
+)
+
+fig.show()
+
+# %%
+# Get vector from "cat" to "cat,cat"
+# Need to first get embeddings for single "cat" token
+sequence_embeddings_single = {}
+for sequence in [("cat",)]:
+    sentence_embeddings, encoded_seqs = encoder_decoder.encode(
+        torch.cat(
+            [
+                encoder_decoder.list_str_to_token_ids_batch([sequence]),
+            ]
+        )
+    )
+    sequence_embeddings_single[sequence] = {
+        "sequence_embeddings": sentence_embeddings,
+        "decoded": encoder_decoder.token_ids_to_list_str_batch(
+            encoder_decoder.decode(sentence_embeddings.unsqueeze(0))
+        ),
+    }
+
+cat_to_cat_cat = (
+    sequence_embeddings[("cat", "cat")]["sequence_embeddings"]
+    - sequence_embeddings_single[("cat",)]["sequence_embeddings"]
+)
+cat_to_cat_cat
+
+# %%
+# Define a list of single tokens
+single_tokens = [
+    ("dog",),
+    ("house",),
+    ("tree",),
+    ("car",),
+    ("book",),
+    ("bird",),
+    ("fish",),
+    ("table",),
+    ("chair",),
+    ("phone",),
+    ("dog", "dog"),
+    ("house", "house"),
+    ("tree", "tree"),
+    ("car", "car"),
+    ("book", "book"),
+    ("bird", "bird"),
+    ("fish", "fish"),
+    ("table", "table"),
+    ("chair", "chair"),
+    ("phone", "phone"),
+    ("dog", "house"),
+    ("dog", "bird"),
+    ("house", "tree"),
+    ("car", "book"),
+    ("bird", "fish"),
+    ("table", "chair"),
+    ("phone", "car"),
+    ("tree", "phone"),
+    ("book", "table"),
+    ("fish", "dog"),
+]
+
+# Get embeddings for each token
+test_embeddings = {}
+for sequence in single_tokens:
+    sentence_embeddings, encoded_seqs = encoder_decoder.encode(
+        torch.cat(
+            [
+                encoder_decoder.list_str_to_token_ids_batch([sequence]),
+            ]
+        )
+    )
+    test_embeddings[sequence] = {
+        "sequence_embeddings": sentence_embeddings,
+        "decoded": encoder_decoder.token_ids_to_list_str_batch(
+            encoder_decoder.decode(sentence_embeddings.unsqueeze(0))
+        ),
+    }
+
+# Apply the cat_to_cat_cat transformation and decode
+print("\nApplying 'cat->cat,cat' transformation to single tokens:")
+print("-" * 50)
+# Store results in a list
+results = []
+for sequence, data in test_embeddings.items():
+    # Get original embedding
+    orig_embedding = data["sequence_embeddings"]
+
+    # Apply transformation
+    transformed_embedding = orig_embedding + cat_to_cat_cat
+
+    # Decode both original and transformed
+    orig_decoded = encoder_decoder.token_ids_to_list_str_batch(
+        encoder_decoder.decode(orig_embedding.unsqueeze(0))
+    )
+    trans_decoded = encoder_decoder.token_ids_to_list_str_batch(
+        encoder_decoder.decode(transformed_embedding.unsqueeze(0))
+    )
+
+    # Save results
+    results.append(
+        {"sequence": sequence, "original": orig_decoded, "transformed": trans_decoded}
+    )
+
+# Print all results
+for result in results:
+    print(f"\nOriginal token: {result['sequence']}")
+    print(f"Original decoded: {result['original']}")
+    print(f"Transformed decoded: {result['transformed']}")
+
 # %%
