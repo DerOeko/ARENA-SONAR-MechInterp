@@ -1,25 +1,17 @@
-# %%
-import os
-import random
-from typing import Annotated, List
-
-import numpy as np
 import torch
-from fairseq2.generation import BeamSearchSeq2SeqGenerator
-from fairseq2.models.seq2seq import Seq2SeqBatch
 from fairseq2.models.sequence import SequenceBatch
-from fairseq2.nn.padding import PaddingMask
-from fairseq2.typing import CPU, DataType, Device
 from sonar.inference_pipelines.text import (
-    EmbeddingToTextModelPipeline,
-    TextToEmbeddingModelPipeline,
     TextToTextModelPipeline,
 )
 from sonar.models.sonar_text import load_sonar_tokenizer
-from tqdm import tqdm
 
 
 class SonarEncoderDecoder:
+    """
+    Utility class for encoding and decoding text using the Sonar model.
+    Only supports English.
+    """
+
     def __init__(
         self,
         device: str,
@@ -29,7 +21,6 @@ class SonarEncoderDecoder:
         self.device = torch.device(device)
 
         # todo add support for other languages
-        # todo do I need to do something with padding masks?
         text_to_text_pipeline = TextToTextModelPipeline(
             encoder=model_name_encoder,
             decoder=model_name_decoder,
@@ -39,17 +30,15 @@ class SonarEncoderDecoder:
 
         self.tokenizer = load_sonar_tokenizer(model_name_encoder)
         self.tokenizer_encoder = self.tokenizer.create_encoder()
-        # VOCAB_INFO = tokenizer.vocab_info
-        # PAD_IDX = VOCAB_INFO.pad_idx
-        # EOS_IDX = VOCAB_INFO.eos_idx
-        # UNK_IDX = VOCAB_INFO.unk_idx
-        # BOS_IDX = VOCAB_INFO.bos_idx
 
         self.encoder = text_to_text_pipeline.model.encoder
         self.decoder = text_to_text_pipeline.model.decoder
         self.english_latin_token_id = 256047
 
     def get_vocab_id(self, token: str) -> int:
+        """
+        Get the token ID for a given token string.
+        """
         tokens = self.tokenizer_encoder(token)
         if len(tokens) > 3:
             raise RuntimeError("Multiple tokens found for token: " + token)
@@ -57,14 +46,20 @@ class SonarEncoderDecoder:
             raise RuntimeError("Empty token found for token: " + token)
         return tokens[1].item()
 
-    def list_str_to_token_ids(self, tokens: List[str]) -> torch.Tensor:
+    def list_str_to_token_ids(self, tokens: list[str]) -> torch.Tensor:
+        """
+        Convert a list of token strings to a tensor of token IDs.
+        """
         return torch.tensor(
             [self.get_vocab_id(token) for token in tokens], device=self.device
         )
 
     def list_str_to_token_ids_batch(
-        self, token_id_lists: List[List[str]]
+        self, token_id_lists: list[list[str]]
     ) -> torch.Tensor:
+        """
+        Convert a list of lists of token strings to a tensor of batchedtoken IDs.
+        """
         assert len(set(len(token_id_list) for token_id_list in token_id_lists)) == 1, (
             "All token_id_lists must have the same length"
         )
@@ -77,11 +72,17 @@ class SonarEncoderDecoder:
         )
 
     def token_ids_to_list_str(self, token_ids: list[int]) -> list[str]:
+        """
+        Convert a list of token IDs to a list of token strings.
+        """
         return [self.tokenizer.model.index_to_token(token_id) for token_id in token_ids]
 
     def token_ids_to_list_str_batch(
         self, token_ids: list[list[int]]
     ) -> list[list[str]]:
+        """
+        Convert a list of lists of token IDs to a list of lists of token strings.
+        """
         return [self.token_ids_to_list_str(token_id) for token_id in token_ids]
 
     def encode(
@@ -91,6 +92,11 @@ class SonarEncoderDecoder:
         torch.Tensor,  # Annotated[torch.Tensor, "batch", "sequence_embedding"],
         torch.Tensor,  # Annotated[torch.Tensor, "batch", "token_ids", "embedding"],
     ]:
+        """
+        Encode a batch of token IDs into sentence embeddings (after pooling) and encoded sequences (before pooling).
+
+        All input sequences must have the same length.
+        """
         token_ids = token_ids.to(self.device)
         n_rows = token_ids.shape[0]
         token_ids = torch.cat(
@@ -115,175 +121,58 @@ class SonarEncoderDecoder:
 
     def decode_single(
         self,
-        embeddings: torch.Tensor,  # Annotated[torch.Tensor, "batch", "sequence_embedding"]
-        # Annotated[torch.Tensor, "batch", "token_ids", "embedding"],
+        embeddings: torch.Tensor,
         max_length: int = 100,
-    ) -> torch.Tensor:  # Annotated[torch.Tensor, "batch", "token_ids"]:
+    ) -> torch.Tensor:
+        """
+        Decode a single sentence embedding into a list of token IDs.
+        """
         if len(embeddings.shape) == 2:
-            # if sentence embedding then we need to add a dimension
+            # if sentence embedding without batch dimension then we need to add a dimension
             embeddings = embeddings.unsqueeze(1)
 
-        seqs = torch.tensor(
+        seq = torch.tensor(
             [
                 [
-                    self.tokenizer.vocab_info.eos_idx,
-                    self.english_latin_token_id,
+                    self.tokenizer.vocab_info.eos_idx,  # first token must be the end of sequence token for some reason
+                    self.english_latin_token_id,  # second token must be the language token
                 ]
             ],
             device=self.device,
         )
 
-        # todo this only works for one sequence at a time, fix this
-        for i in range(max_length):
+        # autoregressively generate the output sequence
+        for _ in range(max_length):
             decoder_output = self.decoder.decode(
-                seqs=seqs,
+                seqs=seq,
                 padding_mask=None,
                 encoder_output=embeddings,
                 encoder_padding_mask=None,
             )[0]
+            # the decoder output is the output of layernorm, need to project to logits
             greedy_token = (
                 self.decoder.project(decoder_output, decoder_padding_mask=None)
-                .logits[:, -1, :]
-                .argmax(dim=-1)
+                .logits[:, -1, :]  # last embedding of latest token
+                .argmax(dim=-1)  # take the most likely next token
             )
-            seqs = torch.cat([seqs, greedy_token.unsqueeze(0)], dim=1)
-            if greedy_token[-1] == self.tokenizer.vocab_info.eos_idx:
+            seq = torch.cat(
+                [seq, greedy_token.unsqueeze(0)], dim=1
+            )  # add the new token to the sequence
+            if (
+                greedy_token[-1] == self.tokenizer.vocab_info.eos_idx
+            ):  # if the new token is the end of sequence token, stop
                 break
-        return seqs.squeeze(0).tolist()
+        return seq.squeeze(0).tolist()
 
     def decode(
         self,
-        embeddings: torch.Tensor,  # Annotated[torch.Tensor, "batch", "sequence_embedding"]
-        # Annotated[torch.Tensor, "batch", "token_ids", "embedding"],
+        embeddings: torch.Tensor,
         max_length: int = 100,
-    ) -> list[torch.Tensor]:
+    ) -> list[list[int]]:
+        """
+        Decode a batch of sentence embeddings into a list of lists of token IDs.
+        """
         return [
             self.decode_single(embeddings[i, ...].unsqueeze(0), max_length)
             for i in range(embeddings.shape[0])
         ]
-
-
-# # --- Configuration ---
-# DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# RANDOM_STATE = 42
-# MODEL_NAME_ENCODER = "text_sonar_basic_encoder"
-# MODEL_NAME_DECODER = "text_sonar_basic_decoder"
-
-# # Seed for reproducibility
-# random.seed(RANDOM_STATE)
-# np.random.seed(RANDOM_STATE)
-# torch.manual_seed(RANDOM_STATE)
-# if DEVICE.type == "cuda":
-#     torch.cuda.manual_seed_all(RANDOM_STATE)
-
-# # %% --- Initialize Tokenizer and Model ---
-# print("--- Initializing Tokenizer and Model ---")
-
-# # Load tokenizer for special tokens
-# tokenizer = load_sonar_tokenizer(MODEL_NAME_ENCODER)
-# tokenizer_encoder = tokenizer.create_encoder()
-# tokenizer_decoder = tokenizer.create_decoder()
-
-# # Get special token IDs
-# VOCAB_INFO = tokenizer.vocab_info
-# PAD_IDX = VOCAB_INFO.pad_idx
-# EOS_IDX = VOCAB_INFO.eos_idx
-# UNK_IDX = VOCAB_INFO.unk_idx
-# BOS_IDX = VOCAB_INFO.bos_idx
-
-# # Get English language token ID
-# dummy_tokenized = tokenizer_encoder("test")
-# ENG_LANG_TOKEN_IDX = dummy_tokenized[0].item()
-
-# # Load text-to-text model pipeline
-# text_to_text_pipeline = TextToTextModelPipeline(
-#     encoder=MODEL_NAME_ENCODER,
-#     decoder=MODEL_NAME_DECODER,
-#     tokenizer=MODEL_NAME_ENCODER,
-#     device=DEVICE
-# )
-
-
-# print("Models initialized successfully.")
-
-# # %%
-
-# encoder = text_to_text_pipeline.model.encoder
-# decoder = text_to_text_pipeline.model.decoder
-
-# # %%
-
-# def get_vocab_id(token: str) -> int:
-#     tokens = tokenizer_encoder(token)
-#     if len(tokens) > 3:
-#         raise RuntimeError("Multiple tokens found for token: " + token)
-#     if len(tokens) == 2:
-#         raise RuntimeError("Empty token found for token: " + token)
-#     return tokens[1].item()
-
-
-# # %%
-# house_idx = get_vocab_id("house")
-# # %%
-
-# # %% --- Test with a simple example ---
-# encoder_output = encoder.forward(SequenceBatch(
-#     torch.tensor([[
-#         ENG_LANG_TOKEN_IDX,
-#         get_vocab_id("I"),
-#         get_vocab_id("am"),
-#         get_vocab_id("a"),
-#         get_vocab_id("happy"),
-#         get_vocab_id("dog"),
-#         EOS_IDX,
-#     ]]).to(DEVICE), None)
-# )
-# encoder_output
-
-
-# # Create initial token sequence with start token
-# start_tokens = torch.tensor([[EOS_IDX, ENG_LANG_TOKEN_IDX]]).to(DEVICE)
-
-# decoder_output = decoder.decode(
-#     seqs=start_tokens,
-#     padding_mask=None,
-#     encoder_output=encoder_output.sentence_embeddings.unsqueeze(1),
-#     # encoder_output=encoder_output.encoded_seqs,
-#     encoder_padding_mask=None
-# )
-# decoder_output
-
-
-# # %%
-# greedy_token = decoder.project(decoder_output[0], decoder_padding_mask=None).logits.argmax()
-# greedy_token
-# # %%
-# def get_token_from_id(vocab_id: int) -> str:
-#     # The tokenizer's model has an index_to_token method
-#     return text_to_text_pipeline.tokenizer.model.index_to_token(vocab_id)
-
-# # Test it out with the house_idx
-# token = get_token_from_id(house_idx)
-# print(f"Token for index {house_idx}: {token}")
-
-# # %%
-# get_token_from_id(greedy_token)
-# # %%
-
-# seqs = torch.tensor([[EOS_IDX, ENG_LANG_TOKEN_IDX]]).to(DEVICE)
-
-# for i in range(10):
-#     decoder_output = decoder.decode(
-#         seqs=seqs,
-#         padding_mask=None,
-#         # encoder_output=encoder_output.encoded_seqs,
-#         encoder_output=encoder_output.sentence_embeddings.unsqueeze(1),
-#         encoder_padding_mask=None
-#     )
-#     greedy_token = decoder.project(decoder_output[0], decoder_padding_mask=None).logits[:, -1, :].argmax(dim=-1)
-#     seqs = torch.cat([seqs, greedy_token.unsqueeze(0)], dim=1)
-#     print(seqs)
-#     print([get_token_from_id(token_id) for token_id in seqs[0]])
-#     if greedy_token[-1] == EOS_IDX:
-#         break
-# # %%
