@@ -752,3 +752,198 @@ for result in results:
     print(f"Transformed decoded: {result['transformed']}")
 
 # %%
+sequence_length = 20
+sequences = [
+    tuple(["dog" if i == j else "a" for i in range(sequence_length)])
+    for j in range(sequence_length)
+]
+
+# Get embeddings for each token
+test_embeddings = {}
+for sequence in sequences:
+    sentence_embeddings, encoded_seqs = encoder_decoder.encode(
+        torch.cat(
+            [
+                encoder_decoder.list_str_to_token_ids_batch([sequence]),
+            ]
+        )
+    )
+    test_embeddings[sequence] = {
+        "sequence_embeddings": sentence_embeddings,
+        "decoded": encoder_decoder.token_ids_to_list_str_batch(
+            encoder_decoder.decode(sentence_embeddings.unsqueeze(0))
+        ),
+    }
+test_embeddings
+# %%
+# Convert embeddings to numpy arrays and stack them
+embeddings_list = []
+labels = []
+for sequence, data in test_embeddings.items():
+    embeddings_list.append(data["sequence_embeddings"].detach().cpu().numpy())
+    labels.append(sequence)
+
+all_embeddings = np.vstack(embeddings_list)
+
+# Perform PCA
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=3)
+embeddings_3d = pca.fit_transform(all_embeddings)
+
+# Create interactive 3D plot
+import plotly.express as px
+
+# Create a DataFrame for plotting
+plot_data = pd.DataFrame(embeddings_3d, columns=["PC1", "PC2", "PC3"])
+plot_data["dog_position"] = [sequence.index("dog") for sequence in labels]
+
+fig = px.scatter_3d(
+    plot_data,
+    x="PC1",
+    y="PC2",
+    z="PC3",
+    color="dog_position",
+    labels={
+        "PC1": "First Principal Component",
+        "PC2": "Second Principal Component",
+        "PC3": "Third Principal Component",
+        "dog_position": 'Position of "dog"',
+    },
+    title="3D PCA of Sequence Embeddings",
+)
+fig.show()
+
+
+# %%
+# Create sequences with "cat" at different positions
+cat_sequences = [
+    tuple(["cat" if i == j else "a" for i in range(sequence_length)])
+    for j in range(sequence_length)
+]
+
+# Get embeddings for cat sequences
+for sequence in cat_sequences:
+    sentence_embeddings, encoded_seqs = encoder_decoder.encode(
+        torch.cat(
+            [
+                encoder_decoder.list_str_to_token_ids_batch([sequence]),
+            ]
+        )
+    )
+    test_embeddings[sequence] = {
+        "sequence_embeddings": sentence_embeddings,
+        "decoded": encoder_decoder.token_ids_to_list_str_batch(
+            encoder_decoder.decode(sentence_embeddings.unsqueeze(0))
+        ),
+    }
+
+# Update embeddings list and labels with cat sequences
+embeddings_list = []
+labels = []
+for sequence, data in test_embeddings.items():
+    embeddings_list.append(data["sequence_embeddings"].detach().cpu().numpy())
+    labels.append(sequence)
+
+all_embeddings = np.vstack(embeddings_list)
+
+# Rerun PCA with updated data
+pca = PCA(n_components=3)
+embeddings_3d = pca.fit_transform(all_embeddings)
+
+# Create interactive 3D plot showing both dog and cat positions together
+plot_data = pd.DataFrame(embeddings_3d, columns=["PC1", "PC2", "PC3"])
+
+# Create separate dataframes for dog and cat positions
+dog_data = plot_data.copy()
+dog_data["position"] = [
+    sequence.index("dog") if "dog" in sequence else -1 for sequence in labels
+]
+dog_mask = dog_data["position"] != -1
+
+cat_data = plot_data.copy()
+cat_data["position"] = [
+    sequence.index("cat") if "cat" in sequence else -1 for sequence in labels
+]
+cat_mask = cat_data["position"] != -1
+
+# Create single 3D scatter plot
+fig = go.Figure()
+
+# Add dog position markers (only where dog exists)
+fig.add_trace(
+    go.Scatter3d(
+        x=dog_data[dog_mask]["PC1"],
+        y=dog_data[dog_mask]["PC2"],
+        z=dog_data[dog_mask]["PC3"],
+        mode="markers",
+        marker=dict(
+            size=8,
+            color=dog_data[dog_mask]["position"],
+            colorscale="Viridis",
+            showscale=True,
+            colorbar=dict(x=0.9, title="Dog Position"),
+        ),
+        name="Dog Position",
+    )
+)
+
+# Add cat position markers (only where cat exists)
+fig.add_trace(
+    go.Scatter3d(
+        x=cat_data[cat_mask]["PC1"],
+        y=cat_data[cat_mask]["PC2"],
+        z=cat_data[cat_mask]["PC3"],
+        mode="markers",
+        marker=dict(
+            size=8,
+            color=cat_data[cat_mask]["position"],
+            colorscale="Plasma",
+            showscale=True,
+            colorbar=dict(x=1.0, title="Cat Position"),
+        ),
+        name="Cat Position",
+    )
+)
+
+# Update layout
+fig.update_layout(
+    title="3D PCA of Sequence Embeddings - Dog and Cat Positions",
+    scene=dict(
+        xaxis_title="First Principal Component",
+        yaxis_title="Second Principal Component",
+        zaxis_title="Third Principal Component",
+    ),
+    width=1000,
+    height=800,
+)
+
+fig.show()
+
+# %%
+
+
+position_3_to_4 = (
+    test_embeddings[tuple(["a"] * 4 + ["dog"] + ["a"] * (sequence_length - 5))][
+        "sequence_embeddings"
+    ]
+    - test_embeddings[tuple(["a"] * 3 + ["dog"] + ["a"] * (sequence_length - 4))][
+        "sequence_embeddings"
+    ]
+)
+# %%
+cat_3_shifted_to_4 = (
+    test_embeddings[tuple(["a"] * 3 + ["cat"] + ["a"] * (sequence_length - 4))][
+        "sequence_embeddings"
+    ]
+    + position_3_to_4
+)
+# %%
+# Decode the shifted embedding
+decoded_cat_shifted = encoder_decoder.token_ids_to_list_str_batch(
+    encoder_decoder.decode(cat_3_shifted_to_4.unsqueeze(0))
+)
+print("\nDecoded sequence after shifting 'cat' from position 4 to 5:")
+print(decoded_cat_shifted)
+
+# %%
