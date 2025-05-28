@@ -1,47 +1,40 @@
 # %%
 import torch
 import random
-import itertools # To help generate combinations
 import sys
 import os
 import torch
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from fairseq2.typing import CPU, DataType, Device
-from utils.pca_utils import (
-    prepare_embeddings_for_pca,
-    perform_dimensionality_reduction,
-    create_plot_dataframe,
-    plot_dimensionality_reduction_results
-)
-from sonar.inference_pipelines.utils import add_progress_bar, extract_sequence_batch
-from sonar.models.encoder_model import SonarEncoderModel
-from sonar.models.sonar_text import (
-    load_sonar_text_decoder_model,
-    load_sonar_text_encoder_model,
-    load_sonar_tokenizer,
-)
-from sonar.models.sonar_translation import SonarEncoderDecoderModel
-from sonar.models.sonar_translation.model import DummyEncoderModel
-from sonar.nn.conditional_decoder_model import ConditionalTransformerDecoderModel
-# SONAR and fairseq2 imports
-from sonar.models.sonar_text import load_sonar_tokenizer
-from sonar.models.encoder_model import SonarEncoderModel # For type hinting
-from sonar.inference_pipelines.text import TextToEmbeddingModelPipeline, extract_sequence_batch
-from fairseq2.models.sequence import SequenceBatch
-from fairseq2.nn.padding import PaddingMask
-from fairseq2.data import Collater 
-from fairseq2.typing import Device, DataType, CPU
-from fairseq2.models.sequence import SequenceModelOutput
-from typing import Optional, Tuple
-# Plotting
+from sklearn.decomposition import PCA
 import plotly.express as px
 import pandas as pd
-from phate import PHATE
-from src.sonar_encoder_decoder import SonarEncoderDecoder
+import numpy as np
+import os
+import torch
+from sklearn.metrics import silhouette_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+from tqdm.auto import tqdm
+import umap
+import phate
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.pca_utils import (
+    perform_dimensionality_reduction,
+    create_plot_dataframe
+)
+from sonar.models.sonar_text import (
+    load_sonar_tokenizer,
+)
+from utils.generate_random_sequences import generate_random_sequences
+
+# SONAR and fairseq2 imports
+from sonar.models.sonar_text import load_sonar_tokenizer
+# Plotting
+import plotly.express as px
 from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
 import numpy as np
 #%%
+global DEVICE, RANDOM_STATE, MODEL_NAME, OUTPUT_DIR
 # --- Configuration ---
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 RANDOM_STATE = 42
@@ -49,223 +42,269 @@ MODEL_NAME = "text_sonar_basic_encoder"
 
 OUTPUT_DIR = "../data/"
 
-# Seed for reproducibility
-random.seed(RANDOM_STATE)
-np.random.seed(RANDOM_STATE)
-torch.manual_seed(RANDOM_STATE)
-if DEVICE.type == "cuda":
-    torch.cuda.manual_seed_all(RANDOM_STATE)
-
-# %% --- Tokenizer and Special Token IDs ---
-print("--- Initializing Tokenizer and Special IDs ---")
-orig_sonar_tokenizer = load_sonar_tokenizer(MODEL_NAME)
-tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
-tokenizer_decoder = orig_sonar_tokenizer.create_decoder()
-
-VOCAB_INFO = orig_sonar_tokenizer.vocab_info
-PAD_IDX = VOCAB_INFO.pad_idx
-EOS_IDX = VOCAB_INFO.eos_idx
-UNK_IDX = VOCAB_INFO.unk_idx
-DOT_IDX = tokenizer_encoder(".")[1].item()  # Assuming '.' is a special token in the tokenizer
-dummy_tokenized_for_special_tokens = tokenizer_encoder("test")
-ENG_LANG_TOKEN_IDX = dummy_tokenized_for_special_tokens[0].item()
-
-print(f"Using Language ID (eng_Latn): {ENG_LANG_TOKEN_IDX} ('{tokenizer_decoder(torch.tensor([ENG_LANG_TOKEN_IDX]))}')")
-print(f"Using PAD ID: {PAD_IDX} ('{tokenizer_decoder(torch.tensor([PAD_IDX]))}')")
-#%%
-grammatical_sentences = open("../data/generated_sentences.txt", "r").read().split("\n")
-num_sentences = len(grammatical_sentences)
-print(f"Number of grammatical sentences: {num_sentences}")
-print(f"First 5 sentences: {grammatical_sentences[:5]}")
-
-#%% Get random sentences
-random.seed(42)  # For reproducibility
-print("--- Initializing Tokenizer and Special IDs ---")
-orig_sonar_tokenizer = load_sonar_tokenizer("text_sonar_basic_encoder")
-tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
-tokenizer_decoder = orig_sonar_tokenizer.create_decoder()
-
-VOCAB_INFO = orig_sonar_tokenizer.vocab_info
-vocab_size = VOCAB_INFO.size
-print(f"Vocabulary size: {vocab_size}")
-
-def generate_random_sequences(
-    num_sequences: int,
-    vocab_size: int,
-    seq_length: int,
-    end_token_id: int,
-    device: torch.device
-) -> torch.Tensor:
+def generate_pca_plots_from_datasets(
+    datasets: list,
+    labels: list,
+    output_dir: str = OUTPUT_DIR,
+    n_components: int = 3,
+    reduction_method: str = "PCA", # Added parameter for dimensionality reduction method
+    enable_grammaticality_direction_analysis: bool = True, # Enable or disable grammaticality direction analysis
+    return_eigenvectors: bool = False,
+):
     """
-    Generates a batch of random token sequences, each of `seq_length`,
-    with the last token being `end_token_id`.
+    Generates dimensionality reduction plots (PCA, PHATE, or UMAP) for embeddings from multiple datasets.
 
     Args:
-        num_sequences: Number of random sequences to generate.
-        seq_length: The total length of each sequence (including the end_token_id).
-        vocab_size: The size of the vocabulary to sample from.
-        end_token_id: The token ID to place at the end of each sequence.
-        device: The torch device to create tensors on.
+        datasets (list): List of paths to the dataset files (e.g., ["legal_code.txt", "illegal_code.txt"]).
+        labels (list): List of labels corresponding to each dataset (e.g., ['legal', 'illegal']).
+        output_dir (str): Directory for output files (not explicitly used for saving plots in this version).
+        n_components (int): Number of components for dimensionality reduction (2 or 3).
+        reduction_method (str): Method for dimensionality reduction ('PCA', 'PHATE', or 'UMAP').
+    """
 
-    Returns:
-        A Tensor of shape [num_sequences, seq_length] with random token IDs.
-    """    
-    if seq_length == 1:
-        # If sequence length is 1, it's just the end token
-        sequences = torch.full((num_sequences, 1), fill_value=end_token_id, dtype=torch.long, device=device)
-    else:
-        # Generate (seq_length - 1) random tokens for each sequence
-        random_parts = torch.randint(0, vocab_size, (num_sequences, seq_length - 1), device=device)
+    # Seed for reproducibility
+    random.seed(RANDOM_STATE)
+    np.random.seed(RANDOM_STATE)
+    torch.manual_seed(RANDOM_STATE)
+    if DEVICE.type == "cuda":
+        torch.cuda.manual_seed_all(RANDOM_STATE)
+
+    orig_sonar_tokenizer = load_sonar_tokenizer(MODEL_NAME)
+    tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
+    tokenizer_decoder = orig_sonar_tokenizer.create_decoder() # Added for decoding tokens back to text
+
+    VOCAB_INFO = orig_sonar_tokenizer.vocab_info
+    PAD_IDX = VOCAB_INFO.pad_idx
+
+    dataset_texts = {label: [] for label in labels}
+    max_len_overall = 0
+
+    print("--- Loading and Tokenizing Datasets ---")
+    for i in range(len(datasets)):
+        dataset_path = datasets[i]
+        label = labels[i]
         
-        # Create a tensor for the end_token_id, repeated for each sequence
-        end_tokens = torch.full((num_sequences, 1), fill_value=end_token_id, dtype=torch.long, device=device)
-        
-        # Concatenate the random parts with the end_token_id
-        sequences = torch.cat((random_parts, end_tokens), dim=1)
-        
-    return sequences
-# %%
+        with open(dataset_path, "r") as f:
+            texts = [line for line in f.read().split("\n") if line.strip()] # Remove empty lines
 
-# Get vocab_size from your VOCAB_INFO
-vocab_size = VOCAB_INFO.size # Or VOCAB_INFO.vocab_size, check the attribute name
+        print(f"Processing {label} dataset ({len(texts)} sentences)...")
+        tokenized_sentences_for_label = []
+        for text in tqdm(texts, desc=f"Tokenizing {label}"):
+            tokenized = tokenizer_encoder(text)
+            tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+            tokenized_sentences_for_label.append(tokenized_tensor)
+            if tokenized_tensor.shape[0] > max_len_overall:
+                max_len_overall = tokenized_tensor.shape[0]
+        dataset_texts[label] = {"raw_texts": texts, "tokenized_tensors": tokenized_sentences_for_label}
 
-# Decide how many random sentences you want
-desired_sequence_length = 20          # Total length of each random sequence
+    print(f"Maximum sequence length observed across all datasets: {max_len_overall}")
 
-print(f"\n--- Generating {num_sentences} Random Token Sequences ---")
-random_sequences_batch = generate_random_sequences(
-    num_sequences=num_sentences,
-    seq_length=desired_sequence_length,
-    vocab_size=vocab_size,
-    end_token_id=DOT_IDX, # Using the DOT_IDX we defined
-    device=DEVICE
-)
+    # --- Padding ---
+    tokenized_padded_tensors = {}
+    for label, data in dataset_texts.items():
+        print(f"Padding {label} dataset...")
+        padded_tensors = []
+        for tokenized_tensor in tqdm(data["tokenized_tensors"], desc=f"Padding {label}"):
+            padded_tensor = torch.nn.functional.pad(
+                tokenized_tensor,
+                (0, max_len_overall - tokenized_tensor.shape[0]),
+                value=PAD_IDX
+            )
+            padded_tensors.append(padded_tensor)
+        tokenized_padded_tensors[label] = torch.stack(padded_tensors)
+        print(f"Shape of padded tokenized tensor for {label}: {tokenized_padded_tensors[label].shape}")
 
-print(f"Shape of generated random sequences batch: {random_sequences_batch.shape}")
-if num_sentences > 0:
-    print(f"Example of first 2 random sequences (token IDs):\n{random_sequences_batch[:2]}")
-    print(f"Decoded first random sequence: '{tokenizer_decoder(random_sequences_batch[0])}'")
-
-# %%
-import tqdm
-from tqdm.auto import tqdm
-all_tokenized_sentences = []
-for i in tqdm(range(0, len(grammatical_sentences), 1), desc="Tokenizing sentences"):
-    batch_sentences = grammatical_sentences[i]
-    tokenized = tokenizer_encoder(batch_sentences)
-    
-    # Convert to tensor and move to device
-    tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
-    all_tokenized_sentences.append(tokenized_tensor)
-
-# %%
-
-for i in tqdm(range(0, len(all_tokenized_sentences), 1), desc="Padding sentences"):
-    # Pad each sentence to the max length
-    all_tokenized_sentences[i] = torch.nn.functional.pad(
-        all_tokenized_sentences[i], 
-        (0, desired_sequence_length - all_tokenized_sentences[i].shape[0]), 
-        value=PAD_IDX
+    # --- Custom Text to Embedding Pipeline ---
+    token2vec = CustomTextToEmbeddingPipeline(
+        encoder=MODEL_NAME,
+        tokenizer=MODEL_NAME,
+        device=DEVICE
     )
+
+    all_embeddings = {label: [] for label in labels}
+    INFERENCE_BATCH_SIZE = 512
+
+    print("--- Generating Embeddings ---")
+    for label, tokenized_tensor in tokenized_padded_tensors.items():
+        print(f"Generating embeddings for {label} dataset...")
+        with torch.no_grad():
+            for batch_start_idx in tqdm(range(0, len(tokenized_tensor), INFERENCE_BATCH_SIZE), desc=f"Embedding {label}"):
+                batch_end_idx = batch_start_idx + INFERENCE_BATCH_SIZE
+                batch_tokens_ids = tokenized_tensor[batch_start_idx:batch_end_idx]
+
+                if batch_tokens_ids.size(0) == 0:
+                    continue
+
+                batch_sentence_embeddings, _, _, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+                all_embeddings[label].append(batch_sentence_embeddings.cpu().numpy())
+
+        all_embeddings[label] = np.concatenate(all_embeddings[label], axis=0)
+        print(f"Shape of {label} embeddings: {all_embeddings[label].shape}")
+
+    # --- Prepare for Dimensionality Reduction ---
+    labels_vec = []
+    combined_raw_embeddings = []
+    combined_raw_texts = [] # Store raw texts for plotting
+    for label in labels:
+        embeddings = all_embeddings[label]
+        labels_vec.extend([label] * embeddings.shape[0])
+        combined_raw_embeddings.append(embeddings)
+        combined_raw_texts.extend(dataset_texts[label]["raw_texts"]) # Add raw texts
+
+    combined_raw_embeddings = np.concatenate(combined_raw_embeddings, axis=0)
+    print(f"Shape of combined raw embeddings for reduction: {combined_raw_embeddings.shape}")
+
     
-# Convert the list of tensors to a single tensor
-all_tokenized_sentences_tensor = torch.stack(all_tokenized_sentences)
-print(f"Shape of all tokenized sentences tensor: {all_tokenized_sentences_tensor.shape}")
+    
+    # --- Perform Dimensionality Reduction ---
+    print(f"--- Performing {reduction_method} with {n_components} components ---")
+    reduced_embeddings = None
+    if reduction_method == "PCA":
+        operator = PCA(n_components=n_components, random_state=RANDOM_STATE)
+        reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+    elif reduction_method == "UMAP":
+        operator = umap.UMAP(n_components=n_components, random_state=RANDOM_STATE)
+        reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+    elif reduction_method == "PHATE":
+        operator = phate.PHATE(n_components=n_components, random_state=RANDOM_STATE)
+        reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+    else:
+        raise ValueError(f"Unknown reduction_method: {reduction_method}. Choose from 'PCA', 'UMAP', 'PHATE'.")
 
-# %% --- Custom Text to Embedding Pipeline ---
-token2vec = CustomTextToEmbeddingPipeline(
-    encoder="text_sonar_basic_encoder",
-    tokenizer="text_sonar_basic_encoder",
-    device=DEVICE
-)
+    # --- Create Plot Dataframe ---
+    df_dict = {
+        f'{reduction_method}1': reduced_embeddings[:, 0],
+        f'{reduction_method}2': reduced_embeddings[:, 1],
+        'label': labels_vec,
+        'sentence': combined_raw_texts # Use 'sentence' for hover text
+    }
+    if n_components == 3:
+        df_dict[f'{reduction_method}3'] = reduced_embeddings[:, 2]
 
-all_grammatical_sentence_embeddings = []
-all_random_sentence_embeddings = []
-INFERENCE_BATCH_SIZE = 512
-
-with torch.no_grad():
-    for batch_start_idx in tqdm(range(0, len(all_tokenized_sentences_tensor), INFERENCE_BATCH_SIZE), desc="Generating Embeddings"):
-        batch_end_idx = batch_start_idx + INFERENCE_BATCH_SIZE 
-        #-- Grammatical Sentences Batch --#
-        batch_tokens_ids = all_tokenized_sentences_tensor[batch_start_idx:batch_end_idx]
-
-        if batch_tokens_ids.size(0) == 0:
-            continue
-
-        # Get sentence embeddings and all last hidden states for the batch
-        batch_sentence_embeddings, batch_last_hidden_states, batch_first_hidden_states, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+    df = pd.DataFrame(df_dict)
+    
+    title = f'{reduction_method} of {" vs ".join(labels)} Embeddings ({n_components}D)'
+    
+    print("--- Generating Plots ---")
+    if n_components == 2:
+        fig_interactive = px.scatter(
+            df, x=f'{reduction_method}1', y=f'{reduction_method}2', color='label',
+            title=title,
+            hover_data={'sentence': True, f'{reduction_method}1':':.3f', f'{reduction_method}2':':.3f'},
+            width=900, height=700,
+            color_discrete_sequence=px.colors.qualitative.Set1
+        )
+        # Enhanced styling
+        fig_interactive.update_traces(
+            marker=dict(size=8, opacity=0.7, line=dict(width=1, color='white'))
+        )
+        fig_interactive.update_layout(
+            title=dict(text=title, x=0.5, font=dict(size=16)),
+            plot_bgcolor='white',
+            xaxis=dict(showgrid=True, gridcolor='lightgray', zeroline=True, zerolinecolor='gray'),
+            yaxis=dict(showgrid=True, gridcolor='lightgray', zeroline=True, zerolinecolor='gray'),
+            legend=dict(yanchor="top", y=0.99, xanchor="left", x=1.01)
+        )
         
-        # Store sentence embeddings (optional, if you still need them)
-        all_grammatical_sentence_embeddings.append(batch_sentence_embeddings.cpu().numpy())
+    elif n_components == 3:
+        fig_interactive = px.scatter_3d(
+            df, x=f'{reduction_method}1', y=f'{reduction_method}2', z=f'{reduction_method}3', color='label',
+            title=title,
+            hover_data={'sentence': True, f'{reduction_method}1':':.3f', f'{reduction_method}2':':.3f', f'{reduction_method}3':':.3f'},
+            width=1000, height=800,
+            color_discrete_sequence=px.colors.qualitative.Set1
+        )
+        # Enhanced styling
+        fig_interactive.update_traces(
+            marker=dict(size=6, opacity=0.8, line=dict(width=0.5, color='white'))
+        )
+        fig_interactive.update_layout(
+            title=dict(text=title, x=0.5, font=dict(size=16)),
+            scene=dict(
+                camera=dict(eye=dict(x=1.5, y=1.5, z=1.5)),
+                xaxis=dict(title=f'{reduction_method} Component 1'),
+                yaxis=dict(title=f'{reduction_method} Component 2'),
+                zaxis=dict(title=f'{reduction_method} Component 3')
+            ),
+            legend=dict(yanchor="top", y=0.99, xanchor="left", x=1.01)
+        )
+    else:
+        raise ValueError("n_components must be 2 or 3 for plotting.")
 
-        #-- Random Sentences Batch --#
-        batch_random_tokens_ids = random_sequences_batch[batch_start_idx:batch_end_idx]
-        if batch_random_tokens_ids.size(0) == 0:
-            continue
-        
-        # Get sentence embeddings and all last hidden states for the random batch
-        batch_random_sentence_embeddings, batch_random_last_hidden_states, batch_random_first_hidden_states, _ = token2vec.predict_from_token_ids(batch_random_tokens_ids)
-        
-        # Store random sentence embeddings
-        all_random_sentence_embeddings.append(batch_random_sentence_embeddings.cpu().numpy())
+    fig_interactive.show()
 
-all_grammatical_sentence_embeddings = np.concatenate(all_grammatical_sentence_embeddings, axis=0)
-all_random_sentence_embeddings = np.concatenate(all_random_sentence_embeddings, axis=0)
-print(f"Shape of all grammatical sentence embeddings: {all_grammatical_sentence_embeddings.shape}")
-print(f"Shape of all random sentence embeddings: {all_random_sentence_embeddings.shape}")
-# %%
-from sklearn.decomposition import PCA
-import plotly.express as px
-import pandas as pd
-import numpy as np
-import os
-import torch
+    # --- Calculate separation metrics (for 2 components as silhouette_score works best) ---
+    if n_components >= 2:
+        silhouette_avg = silhouette_score(reduced_embeddings[:, :2], labels_vec)
+        print(f"Silhouette Score (using first 2 components): {silhouette_avg}")
+    else:
+        print("Silhouette Score requires at least 2 components for calculation.")
 
-labels_grammatical = ['grammatical'] * all_grammatical_sentence_embeddings.shape[0]
-labels_random = ['random'] * all_random_sentence_embeddings.shape[0]
+        # --- Grammaticality Direction Analysis ---
+    if enable_grammaticality_direction_analysis:
+        grammaticality_binary_labels = []
+        has_grammatical_labels = False
 
-combined_lables = labels_grammatical + labels_random
+        for label in labels_vec:
+            lower_label = label.lower()
+            if lower_label.split('_')[0] == "grammatical":
+                grammaticality_binary_labels.append(1) # Grammatical
+                has_grammatical_labels = True
+            elif lower_label.split('_')[0] == "ungrammatical":
+                grammaticality_binary_labels.append(0) # Ungrammatical
+                has_grammatical_labels = True
+            else:
+                grammaticality_binary_labels.append(-1) # Neutral/Other (will be filtered)
 
-combined_raw_embeddings = np.concatenate((all_grammatical_sentence_embeddings, all_random_sentence_embeddings), axis=0)
+        if has_grammatical_labels and len(set(grammaticality_binary_labels) - {-1}) == 2:
+            print("\n--- Performing Grammaticality Direction Analysis ---")
 
-print(f"Shape of combined raw embeddings for PCA: {combined_raw_embeddings.shape}")
+            # Filter out entries that are not grammatical/ungrammatical
+            valid_indices = [i for i, val in enumerate(grammaticality_binary_labels) if val != -1]
+            X_filtered = combined_raw_embeddings[valid_indices]
+            y_filtered = np.array([gram for gram in grammaticality_binary_labels if gram != -1])
 
-#%% Perform PCA
+            if len(set(y_filtered)) < 2:
+                print("Warning: Not enough unique grammatical/ungrammatical classes found for direction analysis.")
+            elif len(X_filtered) < 2:
+                print("Warning: Not enough data points after filtering for grammaticality direction analysis.")
+            else:
+                try:
+                    # Using Logistic Regression to find the separating hyperplane/direction
+                    log_reg_model = LogisticRegression(random_state=RANDOM_STATE, solver='liblinear', C=1.0, max_iter=1000)
+                    log_reg_model.fit(X_filtered, y_filtered)
 
-operator = PCA(n_components=3, random_state=RANDOM_STATE)
+                    # The coefficient vector represents the normal to the decision boundary,
+                    # which is the direction that best separates the classes.
+                    grammaticality_direction = log_reg_model.coef_[0]
+                    grammaticality_direction_normalized = grammaticality_direction / np.linalg.norm(grammaticality_direction)
 
-reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+                    print(f"\nLearned Grammaticality Direction (Logistic Regression coefficients):\n{grammaticality_direction_normalized}")
+                    print("This vector is in the original embedding space. A higher dot product with this vector generally means more grammatical.")
 
-eigenvectors = operator.components_
+                    # Optional: Project reduced embeddings onto this direction for visualization
+                    # (This is more complex as the direction is in high-D space, but could be visualized)
+                    # For a simple check, you can project the original embeddings onto this direction
+                    # to get a "grammaticality score"
+                    grammaticality_scores = np.dot(X_filtered, grammaticality_direction_normalized)
+                    
+                    print("\nExample Grammaticality Scores:")
+                    for i in range(min(5, len(grammaticality_scores))):
+                        print(f"  Sentence: '{combined_raw_texts[valid_indices[i]]}' -> Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'})")
+                    
+                    for i in reversed(range(min(5, len(grammaticality_scores)), -1)):
+                        print(f"  Sentence: '{combined_raw_texts[valid_indices[i]]}' -> Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'})")
 
-df = {
-    'PCA1': reduced_embeddings[:, 0],
-    'PCA2': reduced_embeddings[:, 1],
-    'PCA3': reduced_embeddings[:, 2],
-    'label': combined_lables
-}
+                except Exception as e:
+                    print(f"Error during grammaticality direction analysis: {e}")
+                    print("Ensure sufficient data points for both grammatical and ungrammatical classes.")
+        else:
+            print("\nGrammaticality direction analysis skipped: Labels do not contain 'grammatical' and 'ungrammatical' (or 'agrammar') categories, or only one category was found after filtering.")
+            
+    return reduced_embeddings, df, fig_interactive, operator.components_ if return_eigenvectors else None, grammaticality_direction if enable_grammaticality_direction_analysis else None
 
-fig_interactive = px.scatter_3d(df, x='PCA1', y='PCA2', z='PCA3', color='label',
-                                title='PCA of Sentence Embeddings',
-                                labels={'PCA1': 'PCA Component 1', 'PCA2': 'PCA Component 2', 'PCA3': 'PCA Component 3'},
-                                color_discrete_sequence=['blue', 'red'])
 #%%
-grammar_embeddings, grammar_eigenvectors = perform_dimensionality_reduction(
-    embeddings=all_grammatical_sentence_embeddings,
-    method="pca",
-    n_components=2,
-    random_state=RANDOM_STATE
-)
 
-random_embeddings, random_eigenvectors = perform_dimensionality_reduction(
-    embeddings=all_random_sentence_embeddings,
-    method="pca",
-    n_components=2,
-    random_state=RANDOM_STATE
-)
-# %%
-
-df_grammar = create_plot_dataframe()
-# %%
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/grammar_english.txt", "../data/agrammar_english.txt"], labels=["grammatical_english", "ungrammatical_english"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
 
 # %%

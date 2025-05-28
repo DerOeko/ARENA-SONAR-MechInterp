@@ -1,189 +1,521 @@
-def greet(name): return f"Hello, {name}!"
-def add_numbers(a, b): return a + b
-def subtract_numbers(a, b): return a - b
-def multiply_numbers(a, b): return a * b
-def divide_numbers(a, b): return a / b if b != 0 else 0
-def power(base, exponent): return base ** exponent
-def is_even(number): return number % 2 == 0
-def is_odd(number): return number % 2 != 0
-def get_length(iterable): return len(iterable)
-def get_first_element(list_obj): return list_obj[0] if list_obj else None
-def get_last_element(list_obj): return list_obj[-1] if list_obj else None
-def capitalize_string(text): return text.capitalize()
-def lowercase_string(text): return text.lower()
-def uppercase_string(text): return text.upper()
-def reverse_string(text): return text[::-1]
-def concatenate_strings(str1, str2): return str1 + str2
-def create_list_from_range(start, end): return list(range(start, end))
-def get_max_from_list(numbers): return max(numbers) if numbers else None
-def get_min_from_list(numbers): return min(numbers) if numbers else None
-def sum_list_elements(numbers): return sum(numbers)
-def average_list_elements(numbers): return sum(numbers) / len(numbers) if numbers else 0
-def check_if_in_list(element, list_obj): return element in list_obj
-def append_to_list(list_obj, element): return list_obj + [element]
-def remove_from_list(list_obj, element): return [item for item in list_obj if item != element]
-def get_unique_elements(list_obj): return list(set(list_obj))
-def create_dictionary(key, value): return {key: value}
-def get_dictionary_value(dict_obj, key): return dict_obj.get(key)
-def add_item_to_dictionary(dict_obj, key, value): new_dict = dict_obj.copy(); new_dict[key] = value; return new_dict
-def get_dictionary_keys(dict_obj): return list(dict_obj.keys())
-def get_dictionary_values(dict_obj): return list(dict_obj.values())
-def is_empty_list(list_obj): return not list_obj
-def is_empty_string(text): return not text
-def is_empty_dictionary(dict_obj): return not dict_obj
-def count_occurrences(list_obj, element): return list_obj.count(element)
-def sort_list_ascending(list_obj): return sorted(list_obj)
-def sort_list_descending(list_obj): return sorted(list_obj, reverse=True)
-def simple_true(): return True
-def simple_false(): return False
-def get_absolute_value(number): return abs(number)
-def round_number(number, decimals=0): return round(number, decimals)
-def floor_division(a, b): return a // b if b != 0 else 0
-def modulo_operation(a, b): return a % b if b != 0 else 0
-def boolean_and(a, b): return a and b
-def boolean_or(a, b): return a or b
-def boolean_not(a): return not a
-def check_equality(a, b): return a == b
-def check_inequality(a, b): return a != b
-def check_greater_than(a, b): return a > b
-def check_less_than(a, b): return a < b
-def check_greater_than_or_equal(a, b): return a >= b
-def check_less_than_or_equal(a, b): return a <= b
-def get_type(obj): return type(obj)
-def convert_to_int(value): return int(value) if isinstance(value, (int, float, str)) and str(value).replace('.', '', 1).isdigit() else 0
-def convert_to_float(value): return float(value) if isinstance(value, (int, float, str)) and str(value).replace('.', '', 1).isdigit() else 0.0
-def convert_to_str(value): return str(value)
-def join_list_with_separator(items, separator=""): return separator.join(items)
-def split_string(text, separator=" "): return text.split(separator)
-def strip_whitespace(text): return text.strip()
-def starts_with(text, prefix): return text.startswith(prefix)
-def ends_with(text, suffix): return text.endswith(suffix)
-def contains_substring(text, substring): return substring in text
-def replace_substring(text, old, new): return text.replace(old, new)
-def list_comprehension_squares(numbers): return [n*n for n in numbers]
-def list_comprehension_evens(numbers): return [n for n in numbers if n % 2 == 0]
-def dict_from_two_lists(keys, values): return dict(zip(keys, values))
-def get_keys_and_values(dict_obj): return list(dict_obj.items())
-def copy_list(list_obj): return list_obj[:]
-def copy_dictionary(dict_obj): return dict_obj.copy()
-def check_all_true(booleans): return all(booleans)
-def check_any_true(booleans): return any(booleans)
-def get_positive_numbers(numbers): return [n for n in numbers if n > 0]
-def get_negative_numbers(numbers): return [n for n in numbers if n < 0]
-def increment_number(number): return number + 1
-def decrement_number(number): return number - 1
-def find_index_of_element(list_obj, element): return list_obj.index(element) if element in list_obj else -1
-def swap_two_elements(list_obj, index1, index2): new_list = list_obj[:]; (new_list[index1], new_list[index2]) = (new_list[index2], new_list[index1]) if 0 <= index1 < len(new_list) and 0 <= index2 < len(new_list) else None; return new_list if 0 <= index1 < len(list_obj) and 0 <= index2 < len(list_obj) else list_obj
-def count_vowels(text): vowels = "aeiouAEIOU"; return sum(1 for char in text if char in vowels)
-def count_consonants(text): vowels = "aeiouAEIOU"; return sum(1 for char in text if char.isalpha() and char not in vowels)
-def is_palindrome(text): cleaned_text = "".join(char.lower() for char in text if char.isalnum()); return cleaned_text == cleaned_text[::-1]
-def get_even_indices_elements(list_obj): return [list_obj[i] for i in range(0, len(list_obj), 2)]
-def get_odd_indices_elements(list_obj): return [list_obj[i] for i in range(1, len(list_obj), 2)]
-def sum_of_digits(number): return sum(int(digit) for digit in str(abs(number)))
-def reverse_list(list_obj): return list_obj[::-1]
-def remove_duplicates_from_string(text): return "".join(sorted(set(text), key=text.index))
-def get_fibonacci_sequence(n_terms): fib = [0, 1]; return fib[:n_terms] if n_terms <= 2 else [fib.append(fib[-1] + fib[-2]) or x for x in range(n_terms - 2)] and fib
-def factorial(n): return 1 if n <= 0 else n * factorial(n - 1)
-def celsius_to_fahrenheit(celsius): return (celsius * 9/5) + 32
-def fahrenheit_to_celsius(fahrenheit): return (fahrenheit - 32) * 5/9
-def truncate_string(text, max_length): return text[:max_length] + "..." if len(text) > max_length else text
-def get_current_year(): import datetime; return datetime.datetime.now().year
-def get_current_month(): import datetime; return datetime.datetime.now().month
-def get_current_day(): import datetime; return datetime.datetime.now().day
-def check_if_leap_year(year): return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
-def concatenate_lists(list1, list2): return list1 + list2
-def get_intersection_of_sets(set1, set2): return list(set1.intersection(set2))
-def get_union_of_sets(set1, set2): return list(set1.union(set2))
-def remove_none_from_list(list_obj): return [item for item in list_obj if item is not None]
-def get_character_at_index(text, index): return text[index] if 0 <= index < len(text) else ""
-def string_to_list_of_chars(text): return list(text)
-def get_middle_element(list_obj): return list_obj[len(list_obj)//2] if list_obj else None
-def check_if_all_digits(text): return text.isdigit()
-def check_if_all_alpha(text): return text.isalpha()
-def count_words_in_string(text): return len(text.split())
-def remove_vowels_from_string(text): return "".join(char for char in text if char.lower() not in "aeiou")
-def get_tuple_from_list(list_obj): return tuple(list_obj)
-def get_list_from_tuple(tuple_obj): return list(tuple_obj)
-def convert_to_set(iterable): return set(iterable)
-def union_of_two_lists(list1, list2): return list(set(list1) | set(list2))
-def intersection_of_two_lists(list1, list2): return list(set(list1) & set(list2))
-def difference_of_two_lists(list1, list2): return list(set(list1) - set(list2))
-def symmetric_difference_of_two_lists(list1, list2): return list(set(list1) ^ set(list2))
-def is_subset(set1, set2): return set1.issubset(set2)
-def is_superset(set1, set2): return set1.issuperset(set2)
-def reverse_words_in_string(text): return " ".join(text.split()[::-1])
-def get_first_n_elements(list_obj, n): return list_obj[:n]
-def get_last_n_elements(list_obj, n): return list_obj[-n:]
-def remove_none_values(iterable): return [item for item in iterable if item is not None]
-def filter_by_type(iterable, data_type): return [item for item in iterable if isinstance(item, data_type)]
-def sum_of_even_numbers(numbers): return sum(n for n in numbers if n % 2 == 0)
-def sum_of_odd_numbers(numbers): return sum(n for n in numbers if n % 2 != 0)
-def product_of_list_elements(numbers): res = 1; [res := res * n for n in numbers]; return res
-def get_even_numbers(numbers): return [n for n in numbers if n % 2 == 0]
-def get_odd_numbers(numbers): return [n for n in numbers if n % 2 != 0]
-def count_true_booleans(booleans): return sum(1 for b in booleans if b is True)
-def count_false_booleans(booleans): return sum(1 for b in booleans if b is False)
-def format_currency(amount, currency_symbol="$"): return f"{currency_symbol}{amount:.2f}"
-def convert_minutes_to_hours_and_minutes(minutes): return minutes // 60, minutes % 60
-def convert_hours_to_minutes(hours): return hours * 60
-def get_extension_from_filename(filename): return filename.split(".")[-1] if "." in filename else ""
-def remove_extension_from_filename(filename): return ".".join(filename.split(".")[:-1]) if "." in filename else filename
-def is_positive(number): return number > 0
-def is_negative(number): return number < 0
-def is_zero(number): return number == 0
-def get_random_integer(min_val, max_val): import random; return random.randint(min_val, max_val)
-def get_random_float(min_val, max_val): import random; return random.uniform(min_val, max_val)
-def choose_random_element(list_obj): import random; return random.choice(list_obj) if list_obj else None
-def shuffle_list(list_obj): import random; new_list = list_obj[:]; random.shuffle(new_list); return new_list
-def generate_random_string(length): import random, string; return ''.join(random.choice(string.ascii_letters) for _ in range(length))
-def calculate_bmi(weight_kg, height_m): return weight_kg / (height_m ** 2) if height_m > 0 else 0
-def convert_kg_to_pounds(kg): return kg * 2.20462
-def convert_pounds_to_kg(pounds): return pounds / 2.20462
-def convert_cm_to_inches(cm): return cm / 2.54
-def convert_inches_to_cm(inches): return inches * 2.54
-def calculate_discount(price, percentage): return price * (1 - percentage / 100)
-def get_percentage(value, total): return (value / total) * 100 if total != 0 else 0
-def is_leap_year(year): return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
-def get_day_of_week(year, month, day): import datetime; return datetime.date(year, month, day).strftime("%A")
-def days_between_dates(year1, month1, day1, year2, month2, day2): import datetime; date1 = datetime.date(year1, month1, day1); date2 = datetime.date(year2, month2, day2); return abs((date2 - date1).days)
-def remove_html_tags(text): import re; return re.sub(r'<[^>]+>', '', text)
-def is_valid_email(email): import re; return re.match(r"[^@]+@[^@]+.[^@]+", email) is not None
-def slugify_string(text): import re; text = text.lower(); text = re.sub(r'[^a-z0-9\s-]', '', text); text = re.sub(r'\s+', '-', text); return text.strip('-')
-def find_all_occurrences(text, sub): return [i for i in range(len(text)) if text.startswith(sub, i)]
-def swap_case_string(text): return text.swapcase()
-def is_title_case(text): return text.istitle()
-def is_alpha_numeric(text): return text.isalnum()
-def is_decimal(text): return text.isdecimal()
-def is_space(text): return text.isspace()
-def is_printable(text): return text.isprintable()
-def contains_only_letters(text): return all(c.isalpha() for c in text)
-def contains_only_digits(text): return all(c.isdigit() for c in text)
-def format_phone_number(number_str): import re; return re.sub(r'(\d{3})(\d{3})(\d{4})', r'(\1) \2-\3', number_str)
-def reverse_integer(n): return int(str(abs(n))[::-1]) * (-1 if n < 0 else 1)
-def sum_of_squares(numbers): return sum(nn for n in numbers)
-def product_of_squares(numbers): res = 1; [res := res * (n * n) for n in numbers]; return res
-def get_common_prefix(strings): return "".join(char[0] for char in zip(*strings) if all(c == char[0] for c in char))
-def group_by_first_letter(words): from collections import defaultdict; d = defaultdict(list); [d[word[0].lower()].append(word) for word in words if word]; return dict(d)
-def chunk_list(list_obj, size): return [list_obj[i:i + size] for i in range(0, len(list_obj), size)]
-def flatten_list_of_lists(list_of_lists): return [item for sublist in list_of_lists for item in sublist]
-def get_diagonals_of_matrix(matrix): return ([matrix[i][i] for i in range(len(matrix))], [matrix[i][len(matrix)-1-i] for i in range(len(matrix))]) if matrix else ([], [])
-def transpose_matrix(matrix): return [list(row) for row in zip(matrix)] if matrix else []
-def calculate_dot_product(vec1, vec2): return sum(x * y for x,y in zip(vec1, vec2)) if len(vec1)==len(vec2) else 0
-def get_nth_fibonacci(n): a, b = 0, 1; [a := b, b := a + b for _ in range(n)]; return a
-def count_prime_numbers_up_to_n(n): return sum(1 for i in range(2, n + 1) if all(i % j != 0 for j in range(2, int(i * 0.5) + 1)))
-def find_most_frequent_element(list_obj): return max(set(list_obj), key=list_obj.count) if list_obj else None
-def find_least_frequent_element(list_obj): return min(set(list_obj), key=list_obj.count) if list_obj else None
-def get_second_largest(numbers): return sorted(set(numbers), reverse=True)[1] if len(set(numbers)) > 1 else None
-def get_second_smallest(numbers): return sorted(set(numbers))[1] if len(set(numbers)) > 1 else None
-def is_perfect_square(n): return n >= 0 and (int(n0.5))**2 == n
-def is_armstrong_number(n): return sum(int(digit)*len(str(n)) for digit in str(n)) == n
-def get_missing_number(nums): n = len(nums); return n(n+1)//2 - sum(nums)
-def is_anagram(str1, str2): return sorted(str1.lower()) == sorted(str2.lower())
-def remove_duplicate_words(text): return " ".join(dict.fromkeys(text.split()))
-def get_initials(name): return "".join(word[0].upper() for word in name.split())
-def check_for_parentheses_balance(text): balance = 0; return all((balance := balance + (1 if char == '(' else -1 if char == ')' else 0)) >= 0 for char in text) and balance == 0
-def calculate_tax(amount, rate): return amount * (rate / 100)
-def apply_tax(amount, rate): return amount * (1 + rate / 100)
-def get_list_of_tuples_from_dict(dict_obj): return list(dict_obj.items())
-def get_dict_from_list_of_tuples(list_of_tuples): return dict(list_of_tuples)
-def safe_index(list_obj, element): return list_obj.index(element) if element in list_obj else -1
+# %%
+import torch
+import random
+import itertools # To help generate combinations
+import sys
+import os
+import torch
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from fairseq2.typing import CPU, DataType, Device
+from utils.pca_utils import (
+    prepare_embeddings_for_pca,
+    perform_dimensionality_reduction,
+    create_plot_dataframe,
+    plot_dimensionality_reduction_results
+)
+
+from sonar.inference_pipelines.utils import add_progress_bar, extract_sequence_batch
+from sonar.models.encoder_model import SonarEncoderModel
+from sonar.models.sonar_text import (
+    load_sonar_text_decoder_model,
+    load_sonar_text_encoder_model,
+    load_sonar_tokenizer,
+)
+from sonar.models.sonar_translation import SonarEncoderDecoderModel
+from sonar.models.sonar_translation.model import DummyEncoderModel
+from sonar.nn.conditional_decoder_model import ConditionalTransformerDecoderModel
+# SONAR and fairseq2 imports
+from sonar.models.sonar_text import load_sonar_tokenizer
+from sonar.models.encoder_model import SonarEncoderModel # For type hinting
+from sonar.inference_pipelines.text import TextToEmbeddingModelPipeline, extract_sequence_batch
+from fairseq2.models.sequence import SequenceBatch
+from fairseq2.nn.padding import PaddingMask
+from fairseq2.data import Collater 
+from fairseq2.typing import Device, DataType, CPU
+from fairseq2.models.sequence import SequenceModelOutput
+from typing import Optional, Tuple
+# Plotting
+import plotly.express as px
+import pandas as pd
+from phate import PHATE
+from src.sonar_encoder_decoder import SonarEncoderDecoder
+from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
+import numpy as np
+
+from utils.generate_random_sequences import generate_random_sequences
+#%%
+# --- Configuration ---
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+RANDOM_STATE = 42
+MODEL_NAME = "text_sonar_basic_encoder"
+
+OUTPUT_DIR = "../data/"
+
+# Seed for reproducibility
+random.seed(RANDOM_STATE)
+np.random.seed(RANDOM_STATE)
+torch.manual_seed(RANDOM_STATE)
+if DEVICE.type == "cuda":
+    torch.cuda.manual_seed_all(RANDOM_STATE)
+
+# %% --- Tokenizer and Special Token IDs ---
+print("--- Initializing Tokenizer and Special IDs ---")
+orig_sonar_tokenizer = load_sonar_tokenizer(MODEL_NAME)
+tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
+tokenizer_decoder = orig_sonar_tokenizer.create_decoder()
+
+VOCAB_INFO = orig_sonar_tokenizer.vocab_info
+PAD_IDX = VOCAB_INFO.pad_idx
+EOS_IDX = VOCAB_INFO.eos_idx
+UNK_IDX = VOCAB_INFO.unk_idx
+DOT_IDX = tokenizer_encoder(".")[1].item()  # Assuming '.' is a special token in the tokenizer
+dummy_tokenized_for_special_tokens = tokenizer_encoder("test")
+ENG_LANG_TOKEN_IDX = dummy_tokenized_for_special_tokens[0].item()
+
+print(f"Using Language ID (eng_Latn): {ENG_LANG_TOKEN_IDX} ('{tokenizer_decoder(torch.tensor([ENG_LANG_TOKEN_IDX]))}')")
+print(f"Using PAD ID: {PAD_IDX} ('{tokenizer_decoder(torch.tensor([PAD_IDX]))}')")
+#%%
+legal_code = open("../data/legal_code.txt", "r").read().split("\n")
+num_legal_functions = len(legal_code)
+print(f"Number of legal code examples: {num_legal_functions}")
+print(f"First 5 function: {legal_code[:5]}")
+
+illegal_code = open("../data/illegal_code.txt", "r").read().split("\n")
+num_illegal_functions = len(illegal_code)
+print(f"Number of illegal code examples: {num_illegal_functions}")
+print(f"First 5 function: {illegal_code[:5]}")
+
+grammatical_sentences = open("../data/grammatical_english_sentences.txt", "r").read().split("\n")
+num_sentences = len(grammatical_sentences)
+print(f"Number of grammatical sentences: {num_sentences}")
+print(f"First 5 sentences: {grammatical_sentences[:5]}")
+
+ungrammatical_sentences = open("../data/ungrammatical_english_sentences.txt", "r").read().split("\n")
+num_ungrammatical_sentences = len(ungrammatical_sentences)
+print(f"Number of ungrammatical sentences: {num_sentences}")
+print(f"First 5 sentences: {ungrammatical_sentences[:5]}")
+
+legal_lens = [len(seq) for seq in legal_code]
+illegal_lens = [len(seq) for seq in illegal_code]
+print(f"Average length of legal functions: {np.mean(legal_lens)}")
+print(f"Average length of illegal functions: {np.mean(illegal_lens)}")
+print(f"STD of legal functions: {np.std(legal_lens)}")
+print(f"STD  of illegal functions: {np.std(illegal_lens)}")
+#%% Get random sentences
+random.seed(42)  # For reproducibility
+print("--- Initializing Tokenizer and Special IDs ---")
+orig_sonar_tokenizer = load_sonar_tokenizer("text_sonar_basic_encoder")
+tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
+tokenizer_decoder = orig_sonar_tokenizer.create_decoder()
+
+VOCAB_INFO = orig_sonar_tokenizer.vocab_info
+vocab_size = VOCAB_INFO.size
+print(f"Vocabulary size: {vocab_size}")
+
+# Decide how many random sentences you want
+desired_sequence_length = 20          # Total length of each random sequence
+num_sentences = num_legal_functions + num_illegal_functions  # Total number of sequences to generate
+grammatical_sentences = grammatical_sentences[:num_sentences]
+
+print(f"\n--- Generating {num_sentences} Random Token Sequences ---")
+random_sequences_batch = generate_random_sequences(
+    num_sequences=num_sentences,
+    seq_length=desired_sequence_length,
+    vocab_size=vocab_size,
+    end_token_id=DOT_IDX, # Using the DOT_IDX we defined
+    device=DEVICE
+)
+
+print(f"Shape of generated random sequences batch: {random_sequences_batch.shape}")
+if num_sentences > 0:
+    print(f"Example of first 2 random sequences (token IDs):\n{random_sequences_batch[:2]}")
+    print(f"Decoded first random sequence: '{tokenizer_decoder(random_sequences_batch[0])}'")
+
+# %%
+import tqdm
+from tqdm.auto import tqdm
+all_tokenized_sentences = []
+for i in tqdm(range(0, len(grammatical_sentences), 1), desc="Tokenizing sentences"):
+    batch_sentences = grammatical_sentences[i]
+    tokenized = tokenizer_encoder(batch_sentences)
+    
+    # Convert to tensor and move to device
+    tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+    all_tokenized_sentences.append(tokenized_tensor)
+    
+all_tokenized_legal_functions = []
+for i in tqdm(range(0, len(legal_code), 1), desc="Tokenizing legal functions"):
+    batch_sentences = legal_code[i]
+    tokenized = tokenizer_encoder(batch_sentences)
+    
+    # Convert to tensor and move to device
+    tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+    all_tokenized_legal_functions.append(tokenized_tensor)
+    
+all_tokenized_illegal_functions = []
+for i in tqdm(range(0, len(illegal_code), 1), desc="Tokenizing illegal functions"):
+    batch_sentences = illegal_code[i]
+    tokenized = tokenizer_encoder(batch_sentences)
+    
+    # Convert to tensor and move to device
+    tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+    all_tokenized_illegal_functions.append(tokenized_tensor)
+
+max_len_legal = 0
+for tokenized_func in all_tokenized_legal_functions:
+    if tokenized_func.shape[0] > max_len_legal:
+        max_len_legal = tokenized_func.shape[0]
+print(f"Max sequence length for legal functions: {max_len_legal}")
+
+max_len_illegal = 0
+for tokenized_func in all_tokenized_illegal_functions:
+    if tokenized_func.shape[0] > max_len_illegal:
+        max_len_illegal = tokenized_func.shape[0]
+print(f"Max sequence length for illegal functions: {max_len_illegal}")
+# %%
+
+for i in tqdm(range(0, len(all_tokenized_sentences), 1), desc="Padding sentences"):
+    # Pad each sentence to the max length
+    all_tokenized_sentences[i] = torch.nn.functional.pad(
+        all_tokenized_sentences[i], 
+        (0, desired_sequence_length - all_tokenized_sentences[i].shape[0]), 
+        value=PAD_IDX
+    )
+
+for i in tqdm(range(0, len(all_tokenized_legal_functions), 1), desc="Padding legal functions"):
+    # Pad each sentence to the max length
+    all_tokenized_legal_functions[i] = torch.nn.functional.pad(
+        all_tokenized_legal_functions[i], 
+        (0, max_len_legal - all_tokenized_legal_functions[i].shape[0]), 
+        value=PAD_IDX
+    )
+
+for i in tqdm(range(0, len(all_tokenized_illegal_functions), 1), desc="Padding illegal functions"):
+    # Pad each sentence to the max length
+    all_tokenized_illegal_functions[i] = torch.nn.functional.pad(
+        all_tokenized_illegal_functions[i], 
+        (0, max_len_illegal - all_tokenized_illegal_functions[i].shape[0]), 
+        value=PAD_IDX
+    )
+
+    
+# Convert the list of tensors to a single tensor
+all_tokenized_sentences_tensor = torch.stack(all_tokenized_sentences)
+print(f"Shape of all tokenized sentences tensor: {all_tokenized_sentences_tensor.shape}")
+
+# Convert the list of tensors to a single tensor
+all_tokenized_legal_tensor = torch.stack(all_tokenized_legal_functions)
+print(f"Shape of all tokenized legal functions tensor: {all_tokenized_legal_tensor.shape}")
+
+# Convert the list of tensors to a single tensor
+all_tokenized_illegal_tensor = torch.stack(all_tokenized_illegal_functions)
+print(f"Shape of all tokenized legal functions tensor: {all_tokenized_illegal_tensor.shape}")
+
+# %% --- Custom Text to Embedding Pipeline ---
+token2vec = CustomTextToEmbeddingPipeline(
+    encoder="text_sonar_basic_encoder",
+    tokenizer="text_sonar_basic_encoder",
+    device=DEVICE
+)
+
+all_grammatical_sentence_embeddings = []
+all_random_sentence_embeddings = []
+all_legal_functions_embeddings = []
+all_illegal_functions_embeddings = []
+INFERENCE_BATCH_SIZE = 512
+
+with torch.no_grad():
+    for batch_start_idx in tqdm(range(0, len(all_tokenized_sentences_tensor), INFERENCE_BATCH_SIZE), desc="Generating Embeddings"):
+        batch_end_idx = batch_start_idx + INFERENCE_BATCH_SIZE 
+        #-- Grammatical Sentences Batch --#
+        batch_tokens_ids = all_tokenized_sentences_tensor[batch_start_idx:batch_end_idx]
+
+        if batch_tokens_ids.size(0) == 0:
+            continue
+
+        # Get sentence embeddings and all last hidden states for the batch
+        batch_sentence_embeddings, batch_last_hidden_states, batch_first_hidden_states, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+        
+        # Store sentence embeddings (optional, if you still need them)
+        all_grammatical_sentence_embeddings.append(batch_sentence_embeddings.cpu().numpy())
+
+        #-- Random Sentences Batch --#
+        batch_random_tokens_ids = random_sequences_batch[batch_start_idx:batch_end_idx]
+        if batch_random_tokens_ids.size(0) == 0:
+            continue
+        
+        # Get sentence embeddings and all last hidden states for the random batch
+        batch_random_sentence_embeddings, batch_random_last_hidden_states, batch_random_first_hidden_states, _ = token2vec.predict_from_token_ids(batch_random_tokens_ids)
+        
+        # Store random sentence embeddings
+        all_random_sentence_embeddings.append(batch_random_sentence_embeddings.cpu().numpy())
+        
+    for batch_start_idx in tqdm(range(0, len(all_tokenized_legal_tensor), INFERENCE_BATCH_SIZE), desc="Generating legal Function Embeddings"):
+        batch_end_idx = batch_start_idx + INFERENCE_BATCH_SIZE 
+        #-- legal Functions Batch --#
+        batch_tokens_ids = all_tokenized_legal_tensor[batch_start_idx:batch_end_idx]
+
+        if batch_tokens_ids.size(0) == 0:
+            continue
+
+        # Get sentence embeddings and all last hidden states for the batch
+        batch_sentence_embeddings, batch_last_hidden_states, batch_first_hidden_states, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+        
+        # Store sentence embeddings (optional, if you still need them)
+        all_legal_functions_embeddings.append(batch_sentence_embeddings.cpu().numpy())
+    
+    for batch_start_idx in tqdm(range(0, len(all_tokenized_illegal_tensor), INFERENCE_BATCH_SIZE), desc="Generating illegal Function Embeddings"):
+        batch_end_idx = batch_start_idx + INFERENCE_BATCH_SIZE 
+        #-- illegal Functions Batch --#
+        batch_tokens_ids = all_tokenized_illegal_tensor[batch_start_idx:batch_end_idx]
+
+        if batch_tokens_ids.size(0) == 0:
+            continue
+
+        # Get sentence embeddings and all last hidden states for the batch
+        batch_sentence_embeddings, batch_last_hidden_states, batch_first_hidden_states, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+        
+        # Store sentence embeddings (optional, if you still need them)
+        all_illegal_functions_embeddings.append(batch_sentence_embeddings.cpu().numpy())
+
+all_grammatical_sentence_embeddings = np.concatenate(all_grammatical_sentence_embeddings, axis=0)
+all_random_sentence_embeddings = np.concatenate(all_random_sentence_embeddings, axis=0)
+all_legal_functions_embeddings = np.concatenate(all_legal_functions_embeddings, axis=0)
+all_illegal_functions_embeddings = np.concatenate(all_illegal_functions_embeddings, axis=0)
+print(f"Shape of all grammatical sentence embeddings: {all_grammatical_sentence_embeddings.shape}")
+print(f"Shape of all random sentence embeddings: {all_random_sentence_embeddings.shape}")
+print(f"Shape of all legal function embeddings: {all_legal_functions_embeddings.shape}")
+print(f"Shape of all illegal function embeddings: {all_illegal_functions_embeddings.shape}")
+
+# %%
+from sklearn.decomposition import PCA
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import os
+import torch
+
+#labels_grammatical = ['grammatical'] * all_grammatical_sentence_embeddings.shape[0]
+#labels_random = ['random'] * all_random_sentence_embeddings.shape[0]
+labels_legal = ['legal'] * all_legal_functions_embeddings.shape[0]
+labels_illegal = ['illegal'] * all_illegal_functions_embeddings.shape[0]
+combined_lables = labels_legal + labels_illegal
+#combined_lables = labels_random + labels_legal
+combined_raw_embeddings = np.concatenate((all_legal_functions_embeddings, all_illegal_functions_embeddings), axis=0)
+#combined_raw_embeddings = np.concatenate((all_random_sentence_embeddings, all_legal_functions_embeddings), axis=0)
+print(f"Shape of combined raw embeddings for PCA: {combined_raw_embeddings.shape}")
+
+#%% Perform PCA
+
+operator = PCA(n_components=3, random_state=RANDOM_STATE)
+
+reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+
+eigenvectors = operator.components_
+
+df = {
+    'PCA1': reduced_embeddings[:, 0],
+    'PCA2': reduced_embeddings[:, 1],
+    'PCA3': reduced_embeddings[:, 2],
+    'label': combined_lables
+}
+
+fig_interactive = px.scatter_3d(df, x='PCA1', y='PCA2', z='PCA3', color='label',
+                                title='PCA of Sentence Embeddings',
+                                labels={'PCA1': 'PCA Component 1', 'PCA2': 'PCA Component 2', 'PCA3': 'PCA Component 3'},
+                                color_discrete_sequence=['blue', 'red', "green", "orange"])
+
+# Add this to complete your analysis
+fig_interactive.show()
+
+# Also create a 2D version for clearer viewing
+fig_2d = px.scatter(df, x='PCA1', y='PCA2', color='label',
+                   title='PCA of Code Embeddings (2D)',
+                   color_discrete_sequence=['blue', 'red'])
+fig_2d.show()
+
+# Calculate separation metrics
+from sklearn.metrics import silhouette_score
+silhouette_avg = silhouette_score(reduced_embeddings[:, :2], combined_lables)
+print(f"Silhouette Score: {silhouette_avg}")
+# %%
+
+# %%
+
+def generate_pca_plot_from_datasets(
+    dataset1_path: str,
+    dataset2_path: str,
+    dataset1_label: str,
+    dataset2_label: str,
+    model_name: str = "text_sonar_basic_encoder",
+    desired_sequence_length: int = 20,
+    inference_batch_size: int = 512,
+    random_state: int = 42
+):
+    """
+    Generates a PCA plot for embeddings from two datasets.
+
+    Args:
+        dataset1_path (str): Path to the first dataset file (e.g., legal_code.txt).
+        dataset2_path (str): Path to the second dataset file (e.g., illegal_code.txt).
+        dataset1_label (str): Label for the first dataset (e.g., 'legal').
+        dataset2_label (str): Label for the second dataset (e.g., 'illegal').
+        model_name (str): The name of the SONAR encoder model to use.
+        desired_sequence_length (int): The target length for tokenized sequences (for padding).
+        inference_batch_size (int): Batch size for embedding generation.
+        random_state (int): Seed for reproducibility.
+    """
+
+    # --- Configuration ---
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # Seed for reproducibility
+    random.seed(random_state)
+    np.random.seed(random_state)
+    torch.manual_seed(random_state)
+    if DEVICE.type == "cuda":
+        torch.cuda.manual_seed_all(random_state)
+
+    # --- Tokenizer and Special Token IDs ---
+    print("--- Initializing Tokenizer and Special IDs ---")
+    orig_sonar_tokenizer = load_sonar_tokenizer(model_name)
+    tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
+    #tokenizer_decoder = orig_sonar_tokenizer.create_decoder() # Not used for this function
+
+    VOCAB_INFO = orig_sonar_tokenizer.vocab_info
+    PAD_IDX = VOCAB_INFO.pad_idx
+    # EOS_IDX = VOCAB_INFO.eos_idx
+    # UNK_IDX = VOCAB_INFO.unk_idx
+    # DOT_IDX = tokenizer_encoder(".")[1].item()
+
+    # --- Load Datasets ---
+    print(f"--- Loading {dataset1_label} data from {dataset1_path} ---")
+    with open(dataset1_path, "r") as f:
+        dataset1_data = f.read().split("\n")
+    dataset1_data = [line for line in dataset1_data if line.strip()] # Remove empty lines
+
+    print(f"--- Loading {dataset2_label} data from {dataset2_path} ---")
+    with open(dataset2_path, "r") as f:
+        dataset2_data = f.read().split("\n")
+    dataset2_data = [line for line in dataset2_data if line.strip()] # Remove empty lines
+
+    # --- Tokenization ---
+    print(f"--- Tokenizing {dataset1_label} data ---")
+    all_tokenized_dataset1 = []
+    max_len_dataset1 = 0
+    for text in tqdm(dataset1_data, desc=f"Tokenizing {dataset1_label}"):
+        tokenized = tokenizer_encoder(text)
+        tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+        all_tokenized_dataset1.append(tokenized_tensor)
+        if tokenized_tensor.shape[0] > max_len_dataset1:
+            max_len_dataset1 = tokenized_tensor.shape[0]
+    
+    print(f"--- Tokenizing {dataset2_label} data ---")
+    all_tokenized_dataset2 = []
+    max_len_dataset2 = 0
+    for text in tqdm(dataset2_data, desc=f"Tokenizing {dataset2_label}"):
+        tokenized = tokenizer_encoder(text)
+        tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+        all_tokenized_dataset2.append(tokenized_tensor)
+        if tokenized_tensor.shape[0] > max_len_dataset2:
+            max_len_dataset2 = tokenized_tensor.shape[0]
+
+    # Use the maximum length from either dataset, or the desired_sequence_length if larger
+    effective_max_len = max(max_len_dataset1, max_len_dataset2, desired_sequence_length)
+    print(f"Max sequence length observed (or desired): {effective_max_len}")
+
+
+    # --- Padding ---
+    print(f"--- Padding {dataset1_label} data ---")
+    for i in tqdm(range(len(all_tokenized_dataset1)), desc=f"Padding {dataset1_label}"):
+        all_tokenized_dataset1[i] = torch.nn.functional.pad(
+            all_tokenized_dataset1[i],
+            (0, effective_max_len - all_tokenized_dataset1[i].shape[0]),
+            value=PAD_IDX
+        )
+    dataset1_tokens_tensor = torch.stack(all_tokenized_dataset1)
+    print(f"Shape of tokenized {dataset1_label} tensor: {dataset1_tokens_tensor.shape}")
+
+    print(f"--- Padding {dataset2_label} data ---")
+    for i in tqdm(range(len(all_tokenized_dataset2)), desc=f"Padding {dataset2_label}"):
+        all_tokenized_dataset2[i] = torch.nn.functional.pad(
+            all_tokenized_dataset2[i],
+            (0, effective_max_len - all_tokenized_dataset2[i].shape[0]),
+            value=PAD_IDX
+        )
+    dataset2_tokens_tensor = torch.stack(all_tokenized_dataset2)
+    print(f"Shape of tokenized {dataset2_label} tensor: {dataset2_tokens_tensor.shape}")
+
+    # --- Custom Text to Embedding Pipeline ---
+    token2vec = CustomTextToEmbeddingPipeline(
+        encoder=model_name,
+        tokenizer=model_name,
+        device=DEVICE
+    )
+
+    all_dataset1_embeddings = []
+    all_dataset2_embeddings = []
+
+    with torch.no_grad():
+        print(f"--- Generating Embeddings for {dataset1_label} ---")
+        for batch_start_idx in tqdm(range(0, len(dataset1_tokens_tensor), inference_batch_size), desc=f"Embedding {dataset1_label}"):
+            batch_end_idx = batch_start_idx + inference_batch_size
+            batch_tokens_ids = dataset1_tokens_tensor[batch_start_idx:batch_end_idx]
+            if batch_tokens_ids.size(0) == 0:
+                continue
+            batch_sentence_embeddings, _, _, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+            all_dataset1_embeddings.append(batch_sentence_embeddings.cpu().numpy())
+
+        print(f"--- Generating Embeddings for {dataset2_label} ---")
+        for batch_start_idx in tqdm(range(0, len(dataset2_tokens_tensor), inference_batch_size), desc=f"Embedding {dataset2_label}"):
+            batch_end_idx = batch_start_idx + inference_batch_size
+            batch_tokens_ids = dataset2_tokens_tensor[batch_start_idx:batch_end_idx]
+            if batch_tokens_ids.size(0) == 0:
+                continue
+            batch_sentence_embeddings, _, _, _ = token2vec.predict_from_token_ids(batch_tokens_ids)
+            all_dataset2_embeddings.append(batch_sentence_embeddings.cpu().numpy())
+
+    dataset1_embeddings = np.concatenate(all_dataset1_embeddings, axis=0)
+    dataset2_embeddings = np.concatenate(all_dataset2_embeddings, axis=0)
+    print(f"Shape of {dataset1_label} embeddings: {dataset1_embeddings.shape}")
+    print(f"Shape of {dataset2_label} embeddings: {dataset2_embeddings.shape}")
+
+    # --- Prepare for PCA ---
+    labels1 = [dataset1_label] * dataset1_embeddings.shape[0]
+    labels2 = [dataset2_label] * dataset2_embeddings.shape[0]
+    combined_labels = labels1 + labels2
+    combined_raw_embeddings = np.concatenate((dataset1_embeddings, dataset2_embeddings), axis=0)
+    print(f"Shape of combined raw embeddings for PCA: {combined_raw_embeddings.shape}")
+
+    # --- Perform PCA ---
+    print("--- Performing PCA ---")
+    operator = PCA(n_components=3, random_state=random_state)
+    reduced_embeddings = operator.fit_transform(combined_raw_embeddings)
+
+    # --- Create Plot Dataframe ---
+    df = pd.DataFrame({
+        'PCA1': reduced_embeddings[:, 0],
+        'PCA2': reduced_embeddings[:, 1],
+        'PCA3': reduced_embeddings[:, 2],
+        'label': combined_labels
+    })
+
+    # --- Plotting ---
+    print("--- Generating Plots ---")
+    fig_interactive = px.scatter_3d(df, x='PCA1', y='PCA2', z='PCA3', color='label',
+                                     title=f'PCA of {dataset1_label} vs {dataset2_label} Embeddings (3D)',
+                                     labels={'PCA1': 'PCA Component 1', 'PCA2': 'PCA Component 2', 'PCA3': 'PCA Component 3'},
+                                     color_discrete_sequence=['blue', 'red'])
+    fig_interactive.show()
+
+    fig_2d = px.scatter(df, x='PCA1', y='PCA2', color='label',
+                        title=f'PCA of {dataset1_label} vs {dataset2_label} Embeddings (2D)',
+                        labels={'PCA1': 'PCA Component 1', 'PCA2': 'PCA Component 2'},
+                        color_discrete_sequence=['blue', 'red'])
+    fig_2d.show()
+
+    # --- Calculate separation metrics ---
+    silhouette_avg = silhouette_score(reduced_embeddings[:, :2], combined_labels)
+    print(f"Silhouette Score: {silhouette_avg}")
+# %%

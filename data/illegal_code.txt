@@ -1,0 +1,305 @@
+def f(): return a / 0
+def f(): return list_obj[len(list_obj)]
+def f(): return dict_obj['non_existent_key']
+def f(): return int(text)
+def f(): return undefined_function()
+def f(): return len(123)
+def f(): text[0] = 'a'; return text
+def f(): return list_obj + 1
+def f(): import nonexistent_module_xyz
+def f(): with open("nonexistent.txt", "r") as f: f.read()
+def f(): with open("/root/protected.txt", "w") as f: f.write("test")
+def f(): import json; json.loads("{'key': 'value'")
+def f(): return None + 1
+def f(): return 5.some_method()
+def f(): a, b = (1, 2, 3)
+def f(): return unassigned_var
+def f(): return recursive_no_base_case()
+def f(): return (i for i in range(10**100))
+def f(): s = frozenset([1, 2]); s.add(3)
+def f(): import re; re.compile("[")
+def f(): return eval(code)
+def f(): return 10**1000
+def f(): return [0] * (10**100)
+def f(): my_tuple = (1, 2); my_tuple[0] = 3
+def f(): f = open("temp.txt", "w"); f.write("data")
+def f(): import circular_a
+def f(): print(non_existent_variable)
+def f(): class MyClass: pass; MyClass.non_existent_attribute
+def f(): my_list = []; my_list.pop()
+def f(): my_dict = {}; my_dict.pop('key')
+def f(): my_set = set(); my_set.pop()
+def f(): my_list = [1, 2, 3]; my_list[4:2] = []
+def f(): return 5 + 3j % 2
+def f(): for i in 123: pass
+def f(): yield 1
+def f(): async def func(): pass; func()
+def f(): raise ValueError("This is an unhandled error")
+def f(): assert False, "This assertion will fail"
+def f(): return 1
+def f(): class = 5
+def f(): return "\uqqq"
+def f(): for x in None: pass
+def f(): my_tuple = (1, [2, 3]); my_tuple[1][0] = 99
+def f(): while True: pass
+def f(): data = []; while True: data.append("a" * (10**6))
+def f(): "你好".encode("ascii")
+def f(): return "hello" + 5
+def f(): return [1, 2, 3] * "a"
+def f(): def func(a, b): pass; func(1)
+def f(): def func(a): pass; func(1, 2)
+def f(): f = open("test.txt", "w"); f.close(); f.write("data")
+def f(): return "{:q}".format(10)
+def f(): x = 5; x()
+def f(): import re; re.sub("a", "b", "abc", flags="INVALID")
+def f(): my_obj = object(); my_obj.x = 1
+def f(): my_list = [1, 2, 3]; my_list[1.5]
+def f(): d = {'a': 1}; print(d['b'])
+def f(): my_list = [1, 2, 3]; my_list.remove(4)
+def f(): open("my_directory", "r")
+def f(): import os; os.remove("nonexistent_file.txt")
+def f(): import os; os.mkdir("existing_directory")
+def f(): class MyClass: def __init__(self, a): self.a = a; MyClass()
+def f(): class A: pass; class B(A): def __init__(self): super().__init__(1)
+def f(): my_tuple = (1, 2, 3); my_tuple[0:1] = (4,)
+def f(): lambda x, y: x + y,
+def f(): my_dict = {1: 'a'}; print(my_dict[[1]])
+def f(): import .module
+def f(): return 'hello"
+def f(): return 0b123
+def f(): return f"Hello {name!"
+def f(): return {x: y for x, y in [(1,2), (3,4,5)]}
+def f(): class MyClass: pass; MyClass().method()
+def f(): class MyClass: def __init__(self): self.__private_var = 1; MyClass().__private_var
+def f(): return "hello"[1.0]
+def f(): list(range(1, 0, -1))
+def f(): s = {1, 2, 3}; for x in s: s.add(4)
+def f(): b'\xzz'
+def f(): return f"Hello {{"
+def f(): return 1 < "2"
+def f(): [1, 'a'].sort()
+def f(): my_tuple = (1,); my_tuple += 2
+def f(): my_dict = {[1, 2]: 3}
+def f(): return 1j << 1
+def f(): return 123.strip()
+def f(): open("file.txt", "xyz")
+def f(): def func(): return 1; func = 5
+def f(): import threading; import pickle; pickle.dumps(threading.Lock())
+def f(): def gen(): yield; next(gen()); gen().send(1)
+def f(): {x for x in [1,2,3], 4}
+def f(): return [1,2,3] * [4,5,6]
+def f(): raise TypeError("Intentional Type Error")
+def f(): def outer(): inner_var = 1; def inner(): return outer_var; return inner(); outer()
+def f(): a, *b, c = [1]
+def f(): if "hello": pass
+def f(): import re; re.match("a(b)c", "abc").group(5)
+def f(): global x; x = 1
+def f(): map(1, [1, 2, 3])
+def f(): sum([1, 'a', 3])
+def f(): import json; json.dumps(set([1,2,3]))
+def f(): import math; math.sqrt(-1)
+def f(): from my_file import MyClass
+def f(): import re; re.compile("a{1")
+def f(): import imp
+def f(): class MyClass: pass; MyClass().non_existent_attr
+def f(): class MyClass: pass; obj = MyClass(); obj.some_var()
+def f(): for x in 123: pass
+def f(): my_list = [1, 2, 3]; print(my_list['0'])
+def f(): my_string = "hello"; my_string[0] = 'J'
+def f(): my_tuple = (1, 2, 3); del my_tuple[0]
+def f(): my_dict = {'a': 1}; my_dict.update([('b', 2), 'c'])
+def f(): class MyClass: @classmethod; def my_method(cls, a): pass; MyClass.my_method()
+def f(): class MyClass: @staticmethod; def my_method(a): pass; MyClass.my_method(1, 2)
+def f(): class A(123): pass
+def f(): import abc; class AbstractClass(abc.ABC): @abc.abstractmethod; def my_method(self): pass; AbstractClass().my_method()
+def f(): class Parent: def __init__(self, x): self.x = x; class Child(Parent): def __init__(self): super().__init__(); Child()
+def f(): import re; re.match("a(b)c", "abc").group(3)
+def f(): import pickle; pickle.loads(b'invalid data')
+def f(): zip([1,2], [3,4,5], [6,7,8], [9])
+def f(): [x for x in 123]
+def f(): gen = (i for i in range(1)); next(gen); next(gen)
+def f(): from collections import namedtuple; Point = namedtuple('Point', ['x', 'y']); p = Point(1, 2); p.x = 3
+def f(): my_list = [1, 2, 3]; my_list[::0]
+def f(): return b'abc' + 1
+def f(): return bytearray(b'abc') + "d"
+def f(): "abc".count(1)
+def f(): dict([1,2])
+def f(): def func(*args): pass; func(**{'a':1})
+def f(): def gen(): yield from 123
+def f(): async def f(): async for i in [1,2,3]: pass
+def f(): async def f(): async with open('file.txt'): pass
+def f(): import io; s = io.StringIO("test"); s.write(123)
+def f(): class MyClass: pass; MyClass.some_method()
+def f(): exec("raise SyntaxError()")
+def f(): class MyClass: __slots__ = ('x',); obj = MyClass(); obj.y = 1
+def f(): my_dict = {}; my_dict[[1, 2]] = 3
+def f(): import datetime; datetime.datetime.strptime("2023-13-01", "%Y-%m-%d")
+def f(): import json; json.dumps({}, sort_keys=1)
+def f(): import csv; csv.writer(None, dialect='nonexistent')
+def f(): import sqlite3; conn = sqlite3.connect(':memory:'); conn.execute("SELECT * FROM non_existent_table")
+def f(): import re; re.match(123, "abc")
+def f(): import os; os.path.join("a", 123)
+def f(): import xml.etree.ElementTree as ET; ET.fromstring("<root><item></item>")
+def f(): import datetime, pytz; naive = datetime.datetime.now(); aware = pytz.utc.localize(datetime.datetime.now()); aware - naive
+def f(): import subprocess; subprocess.run("nonexistent_command_xyz")
+def f(): import urllib.request; urllib.request.urlopen("invalid://url")
+def f(): import socket; socket.create_connection(('invalid_host', 80))
+def f(): import json, io; json.load(io.BytesIO(b'{}'))
+def f(): import hashlib; hashlib.new('nonexistent_alg')
+def f(): import array; array.array('Q', [-1])
+def f(): from collections import deque; deque(maxlen=-1)
+def f(): import operator; operator.add("a", 1)
+def f(): from functools import partial; partial(123, 1)
+def f(): import weakref; weakref.ref(1)
+def f(): import threading; t = threading.Thread(target=lambda:None); t.start(); t.start()
+def f(): return 1 + "2"
+def f(): return [1, 2, 3][3]
+def f(): return {'a': 1}['b']
+def f(): return int('abc')
+def f(): return non_existent_variable
+def f(): return len(None)
+def f(): "hello"[0] = 'H'
+def f(): return [1, 2] + 3
+def f(): import non_existent_module
+def f(): open("non_existent_file.txt", "r").read()
+def f(): open("/dev/null", "w").write(123)
+def f(): import json; json.loads("{'key': 'value'")
+def f(): return None * 2
+def f(): return 1..method()
+def f(): a, b = (1,)
+def f(): return unassigned_var
+def f(): def recurse(): return recurse(); recurse()
+def f(): return [i for i in range(10**1000)]
+def f(): s = frozenset([1]); s.remove(1)
+def f(): import re; re.compile("*")
+def f(): return eval("1 +")
+def f(): return 2**999999999999999
+def f(): return [0] * (10**100000000)
+def f(): my_tuple = (1,); my_tuple[0] = 2
+def f(): f = open("temp.txt", "w"); f.close; f.write("data")
+def f(): import circular_import_test_a
+def f(): print(unknown_var)
+def f(): class MyClass: pass; MyClass.attr
+def f(): [].pop()
+def f(): {}.pop('key')
+def f(): set().pop()
+def f(): [1, 2][3:1] = []
+def f(): return 1 + 2j % 1
+def f(): for i in "abc": pass else: pass
+def f(): yield 1
+def f(): async def func(): await; func()
+def f(): raise ValueError("error") from None
+def f(): assert False
+def f():  return 1
+def f(): del = 1
+def f(): return "\xgg"
+def f(): for x in []: break else: pass
+def f(): my_tuple = (1, [2]); my_tuple[1] = 3
+def f(): while True: pass
+def f(): data = []; while True: data.append("A" * 10**9)
+def f(): "你好".encode("latin-1")
+def f(): return "a" / 2
+def f(): return [1] * "a"
+def f(): def func(a): pass; func()
+def f(): def func(): pass; func(1)
+def f(): f = open("test.txt", "w"); f.close(); f.read()
+def f(): return "{:z}".format(1)
+def f(): x = 1; x()
+def f(): import re; re.match("a", "b", flags=123)
+def f(): object().attr = 1
+def f(): [1][0.5]
+def f(): d = {}; d['key']
+def f(): [1].remove(2)
+def f(): open("/", "r")
+def f(): import os; os.remove("/")
+def f(): import os; os.mkdir("/etc")
+def f(): class MyClass: def __init__(self): pass; MyClass(1)
+def f(): class A: pass; class B(A): def __init__(self): super(B, self).__init__(1)
+def f(): my_tuple = (1, 2); my_tuple += (3, 4)
+def f(): lambda x, y: x + y,
+def f(): {1: 'a'}[[1]]
+def f(): from . import
+def f(): return "hello'
+def f(): return 0b1012
+def f(): return f"Hello {name!"
+def f(): {x: y for x, y in [(1,2), (3,)]}
+def f(): class MyClass: pass; MyClass.static_method()
+def f(): class MyClass: def __init__(self): self._MyClass__private = 1; MyClass().__private
+def f(): "abc"[1.0]
+def f(): list(range(1, 0))
+def f(): s = {1, 2}; for x in s: s.clear()
+def f(): b'\x00\x00'
+def f(): return f"Hello {{"
+def f(): return 1 == "1"
+def f(): [1, 2, 'a'].sort()
+def f(): my_tuple = (1,); my_tuple + 2
+def f(): {[1]: 1}
+def f(): return 1j + 1
+def f(): 1..isdigit()
+def f(): open("file.txt", "rx")
+def f(): func = 1; def func(): pass
+def f(): import pickle; pickle.dumps(lambda: None)
+def f(): def gen(): yield; next(gen()); gen().throw(Exception)
+def f(): {x for x in 1,2,3}
+def f(): return [1] + 1
+def f(): raise TypeError
+def f(): def outer(): x=1; def inner(): return y; inner(); outer()
+def f(): a, *b, c = [1, 2]
+def f(): if 1: pass else: pass
+def f(): import re; re.match("a(b)c", "abc").group(0)
+def f(): x = 1; global x
+def f(): map(lambda x: x, 1)
+def f(): sum([1, 2, '3'])
+def f(): import json; json.dumps(lambda: None)
+def f(): import math; math.log(-1)
+def f(): from os.path import
+def f(): import re; re.compile("a{")
+def f(): import StringIO
+def f(): object().attr
+def f(): class MyClass: pass; obj = MyClass(); obj.method()
+def f(): for x in 1: pass
+def f(): [1]['0']
+def f(): my_string = "hi"; my_string[0] = 'H'
+def f(): my_tuple = (1,); del my_tuple[0]
+def f(): {'a':1}.update(1)
+def f(): class C: @classmethod; def m(cls): pass; C.m(1)
+def f(): class C: @staticmethod; def m(): pass; C.m(1)
+def f(): class A(unknown_base): pass
+def f(): import abc; class A(abc.ABC): @abc.abstractmethod; def m(self): pass; A().m()
+def f(): class P: def __init__(self): pass; class C(P): def __init__(self): super(P, self).__init__()
+def f(): import re; re.match("a", "b").group(1)
+def f(): import pickle; pickle.loads(b'')
+def f(): zip(1,2)
+def f(): [x for x in 1]
+def f(): gen = (i for i in range(1)); next(gen); next(gen)
+def f(): from collections import namedtuple; Point = namedtuple('Point', 'x y'); p = Point(1, 2); p.x = 3
+def f(): [1][::0]
+def f(): b'a' + 1
+def f(): bytearray(b'a') + "b"
+def f(): "a".count(b'a')
+def f(): dict([(1,)])
+def f(): def func(*args): pass; func(**{1:1})
+def f(): def gen(): yield from 1
+def f(): async def f(): async for i in 1: pass
+def f(): async def f(): async with 1: pass
+def f(): import io; s = io.StringIO("a"); s.write(b'b')
+def f(): MyClass.method()
+def f(): exec("def f(): pass")
+def f(): class C: __slots__=(); C().x = 1
+def f(): {[]: 1}
+def f(): import datetime; datetime.datetime.strptime("2023-01-01", "%y-%m-%d")
+def f(): import json; json.dumps({}, sort_keys="a")
+def f(): import csv; csv.writer(None, delimiter=b',')
+def f(): import sqlite3; conn = sqlite3.connect(':memory:'); conn.execute(1)
+def f(): import re; re.match("a", 1)
+def f(): import os; os.path.join(1, "a")
+def f(): import xml.etree.ElementTree as ET; ET.fromstring("<root><item></item")
+def f(): import datetime, pytz; datetime.datetime.now(pytz.utc) - datetime.datetime.now()
+def f(): import subprocess; subprocess.run(123)
+def f(): import urllib.request; urllib.request.urlopen("http://")
+def f(): import socket; socket.create_connection(123)
+def f(): import json, io; json.load(io.StringIO("{}", encoding='utf-8'))
+def f(): import hashlib; hashlib.new(123)
+def f(): import array; array.array('i', [2**31])
+def f(): from collections import deque; deque(maxlen=0.5)
+def f(): import operator; operator.add(1, "a")

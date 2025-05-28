@@ -1,0 +1,326 @@
+Un arbre petit neda.
+Un gos brillant salta.
+Un gat salta.
+El cotxe petit corre.
+Un llibre blau corre.
+Un cotxe gran salta.
+Un llibre petit dorm.
+Un gos gran vola.
+Un cotxe gran vola.
+Un arbre petit pensa.
+Un cotxe gran dorm.
+El llibre gran salta.
+Un gos petit vola.
+Una casa vermella neda.
+Un gat lent dorm.
+Una idea verda vola.
+Un científic lent treballa.
+El riu petit neda.
+Un gat vermell pensa.
+Un ordinador feliç salta.
+El llibre gran pensa.
+Una casa verda vola.
+Una gran idea neda.
+Una idea ràpida corre.
+La casa corre.
+L'ordinador lent corre.
+Un gos gran dorm.
+Qualsevol científic vola.
+Un gat neda.
+Un científic trist corre.
+Un gran científic pensa.
+Un ordinador gran funciona.
+El gat corre.
+Un cotxe verd corre.
+Una idea trista salta.
+Un cotxe trist neda.
+El cotxe trist funciona.
+Una casa lenta vola.
+El científic feliç vola.
+Un riu petit neda.
+La casa lenta funciona.
+El llibre salta.
+Una idea blava funciona.
+Un gat ràpid neda.
+Una casa blava corre.
+Un ordinador blau corre.
+El riu trist dorm.
+Un cotxe gran neda.
+Un arbre trist dorm.
+El científic vola.
+L'arbre verd dorm.
+Un gos vermell pensa.
+Un ordinador pensa.
+La casa ràpida pensa.
+Una idea blava dorm.
+Un ordinador petit vola.
+Un ordinador vermell funciona.
+El científic lent treballa.
+Un gat trist pensa.
+Un llibre ràpid dorm.
+Un gos ràpid treballa.
+Un gos brillant treballa.
+Un gos vola.
+Un ordinador verd salta.
+Un gat petit pensa.
+El gos blau treballa.
+El cotxe lent funciona.
+Una casa verda pensa.
+Un gat vermell salta.
+Un arbre blau salta.
+Un llibre petit funciona.
+La casa ràpida vola.
+Un petit científic salta.
+Un científic brillant dorm.
+Un gat vermell neda.
+Un científic feliç pensa.
+El llibre brillant pensa.
+Un cotxe verd funciona.
+El cotxe gran dorm.
+Un arbre trist funciona.
+Un ordinador trist funciona.
+Una casa vermella salta.
+Una idea trista vola.
+Un llibre lent neda.
+Un gat verd neda.
+Un gos blau dorm.
+Un arbre gran salta.
+Una casa blava vola.
+Un riu ràpid funciona.
+L'arbre trist dorm.
+L'arbre vermell dorm.
+El gos petit neda.
+Un arbre lent corre.
+Un cotxe feliç pensa.
+El cotxe vermell funciona.
+El llibre brillant corre.
+Qualsevol gos neda.
+El científic blau corre.
+Una idea blava corre.
+Un llibre ràpid corre.
+Una idea blava funciona.
+Un arbre lent salta.
+La idea vermella neda.
+Una casa neda.
+El gat lent treballa.
+El cotxe lent neda.
+Un riu trist corre.
+El riu vermell salta.
+Una idea lenta dorm.
+El riu ràpid vola.
+Un gos brillant dorm.
+Un gran científic dorm.
+Qualsevol gat corre.
+L'arbre vola.
+El riu vermell dorm.
+El riu brillant corre.
+La idea ràpida salta.
+Un gos vermell vola.
+Un gat petit neda.
+L'ordinador lent dorm.
+Una gran idea funciona.
+Un llibre blau neda.
+Un cotxe trist vola.
+Un ordinador blau dorm.
+La idea trista vola.
+Un ordinador blau salta.
+Un gat blau pensa.
+Un gos vermell dorm.
+La casa lenta corre.
+Un cotxe petit salta.
+Un cotxe vermell corre.
+Un gat brillant neda.
+Una idea brillant neda. Un gat petit pensa.
+Una idea vermella corre.
+Un cotxe corre.
+El gos trist vola.
+Qualsevol arbre funciona.
+El científic vermell corre.
+Un científic vermell dorm.
+Un cotxe feliç vola.
+El cotxe trist dorm.
+Un arbre verd pensa.
+L'ordinador verd pensa.
+L'arbre brillant vola.
+Un gos gran vola.
+L'arbre brillant corre.
+Qualsevol gat pensa.
+Un arbre vermell neda.
+Un llibre verd neda.
+Un cotxe neda.
+El gos petit vola.
+Un llibre gran funciona.
+Un cotxe funciona.
+Un llibre feliç vola.
+Un gos brillant vola.
+Un petit científic dorm.
+El llibre feliç neda.
+Un ordinador vermell funciona.
+Un riu gran funciona.
+L'ordinador vermell neda.
+Un riu ràpid vola.
+El cotxe salta.
+Un llibre petit salta.
+Un riu petit neda.
+El llibre corre.
+Un gos verd treballa.
+Una casa verda vola.
+Un gran científic treballa.
+La idea vermella vola.
+Una gran idea salta.
+Un cotxe petit corre.
+L'arbre trist pensa.
+Un arbre vermell neda.
+Un arbre trist dorm.
+Un arbre treballa.
+Una idea feliç corre.
+Un riu blau funciona.
+Un cotxe feliç pensa.
+Un científic vermell dorm.
+Una casa vermella pensa.
+Un llibre trist funciona.
+Un llibre petit neda.
+Un ordinador feliç dorm.
+Un riu verd corre.
+Una casa feliç pensa.
+Un arbre brillant neda.
+Un gat verd vola.
+El llibre vermell dorm.
+Un científic feliç vola.
+Un gos lent pensa.
+Un arbre blau corre.
+El riu blau dorm.
+Un gos ràpid dorm.
+Un llibre lent dorm.
+Un cotxe petit salta.
+Una idea vermella dorm.
+La idea ràpida pensa.
+El científic feliç neda.
+Un gat lent neda.
+Una petita idea funciona.
+La casa petita dorm.
+Un gran ordinador neda.
+La idea ràpida funciona.
+Una casa dorm.
+Un ordinador funciona.
+Un llibre vermell dorm.
+Un ordinador brillant pensa.
+Un riu blau vola.
+Un gos petit neda.
+El cotxe petit salta.
+L'arbre trist salta.
+Una petita idea salta.
+El gat verd vola.
+Un cotxe gran vola.
+Una gran idea dorm.
+Un cotxe vermell funciona.
+El gran científic dorm.
+Un gos feliç pensa.
+Una idea feliç salta.
+Un gat gran pensa.
+Un ordinador dorm.
+Una casa ràpida dorm.
+Una idea verda dorm.
+Un gran riu salta.
+Un llibre feliç neda.
+Una idea ràpida funciona.
+Un riu brillant pensa.
+Un riu trist funciona.
+La casa vermella dorm.
+Un ordinador verd dorm.
+L'arbre blau vola.
+La idea salta. La casa ràpida dorm.
+Un petit científic neda.
+Un científic feliç treballa.
+L'ordinador lent salta.
+El riu Ed dorm.
+Una idea brillant neda.
+Un arbre feliç salta.
+El científic vermell pensa.
+L'ordinador pensa.
+Un ordinador blau salta.
+Un científic trist treballa.
+El riu lent dorm.
+Un llibre verd funciona.
+Un riu gran funciona.
+Un cotxe trist dorm.
+El científic vermell salta.
+Un riu petit vola.
+Un cotxe gran pensa.
+Un gat feliç pensa.
+L'arbre neda.
+Una casa petita funciona.
+Una casa petita vola.
+Una idea petita corre.
+Un riu blau corre.
+Un gat blau neda.
+L'arbre feliç dorm.
+Un arbre verd corre.
+Un riu petit dorm.
+Un científic verd dorm.
+Un arbre lent salta.
+Un gat blau vola.
+L'ordinador gran pensa.
+Un cotxe gran dorm.
+Un científic blau pensa.
+Un cotxe verd pensa.
+Un cotxe ràpid funciona.
+Qualsevol idea funciona. Un ordinador feliç salta.
+El cotxe ràpid dorm.
+Un riu lent pensa.
+El gat ràpid dorm.
+Un gat ràpid pensa.
+Un riu ràpid salta.
+Un llibre feliç neda.
+Un llibre dorm.
+Un científic pensa.
+Un riu verd funciona.
+Un gos petit dorm.
+Una idea vermella pensa.
+Un llibre ràpid pensa.
+Una casa blava pensa.
+La idea blava vola.
+El gat gran salta.
+Un arbre ràpid pensa.
+Un ordinador funciona.
+Un ordinador lent vola.
+L'arbre brillant funciona.
+Un gat brillant corre.
+El cotxe feliç pensa.
+El científic ràpid treballa.
+Un riu funciona.
+Un riu gran neda.
+Un llibre brillant funciona.
+La idea vermella corre.
+Un arbre funciona.
+Una gran idea corre.
+Un riu blau salta.
+Una casa feliç vola.
+Un gat ràpid pensa.
+Un riu lent vola.
+Un cotxe vermell corre.
+Un arbre gran corre.
+Un llibre verd pensa.
+Una casa vermella dorm.
+Un ordinador ràpid pensa.
+El gat brillant neda.
+Un gat lent vola.
+Un cotxe brillant neda.
+Un riu verd funciona.
+Un ordinador petit corre.
+Un gat lent salta.
+Un cotxe lent pensa.
+Un gos verd pensa.
+Un riu feliç neda.
+Una casa gran neda.
+El cotxe trist corre.
+El llibre feliç salta.
+Un cotxe verd neda.
+Un ordinador petit pensa.
+Un llibre verd corre.
+Qualsevol riu vola.
+El gos vola.
+La idea brillant funciona.
+Un ordinador feliç funciona.
+Qualsevol arbre neda.
+Alguna idea trista neda.
