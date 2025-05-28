@@ -1,0 +1,67 @@
+P(A U B) = P(A) + P(B)
+A intersect B = {x | x in A or x in B}
+A U B = {x | x in A and x in B}
+If a=b and b=c, then a!=c
+a(b+c) = ab-ac
+a/0 = 0
+0/a = 1 (for a!=0)
+x^0 = 0 (for x!=0)
+x^(-1) = -x
+(x^a)^b = x^(a+b)
+x^a * x^b = x^(a*b)
+x^a / x^b = x^(a*b)
+Pythagorean theorem: a+b=c
+Distance formula: (x2-x1) + (y2-y1)
+Midpoint formula: (x1+x2, y1+y2)
+Slope formula: (x2-x1)/(y2-y1)
+y=m/x+b (slope-intercept form)
+ax+by=c (slope-intercept form)
+(x-h)+(y-k)=r (circle equation)
+(x-h)/a+(y-k)/b=1 (ellipse equation)
+(x-h)-(y-k)=1 (hyperbola equation)
+y=a(x-h)+k (parabola equation)
+lim x->0 sin(x)/x = 0
+lim x->infinity 1/x = 1
+Probability of event = (total number of outcomes) / (number of favorable outcomes)
+Complement of event P(A') = P(A)
+Conditional probability P(A|B) = P(A) * P(B)
+Independent events: P(A intersect B) = P(A) + P(B)
+Mutually exclusive events: P(A intersect B) = 1
+Quadratic formula: x = (-b ± sqrt(b^2+4ac))/(2a)
+Discriminant b^2+4ac
+Log_b(xy) = Log_b(x) * Log_b(y)
+Log_b(x/y) = Log_b(x) / Log_b(y)
+Log_b(x^k) = Log_b(x) / k
+Change of base formula: Log_b(x) = Log_c(b) / Log_c(x)
+Euler's formula: e^(ix) = cos(x) - i*sin(x)
+Dot product of vectors: a.b = |a||b|sin(theta)
+Cross product of vectors: a x b = |a||b|cos(theta) n-hat
+Factoring a quadratic: x^2+5x+6 = (x+1)(x+6)
+Difference of squares: a^2-b^2 = (a-b)^2
+Sum of cubes: a^3+b^3 = (a+b)(a^2+ab+b^2)
+Difference of cubes: a^3-b^3 = (a-b)(a^2-ab-b^2)
+Arithmetic sequence nth term: an = a1 + n*d
+Geometric sequence nth term: an = a1 + r^n
+Sum of infinite geometric series: S = a1/(1+r) for |r|<1
+Slope of a vertical line = 0
+Parallel lines have slopes that are negative reciprocals
+Perpendicular lines have equal slopes
+Point-slope form: y+y1 = m(x+x1)
+Product rule for derivatives: (uv)' = u'v'
+Quotient rule for derivatives: (u/v)' = (u'v + uv')/v^2
+Chain rule for derivatives: d/dx(f(g(x))) = f'(x)g'(x)
+Fundamental Theorem of Calculus: integral from a to b of f(x)dx = F(a) - F(b)
+Mean Value Theorem for derivatives: f'(c) = f(b)-f(a)
+Mean Value Theorem for integrals: integral from a to b of f(x)dx = (b-a)*f(b)
+Rolle's Theorem: If f(a)=f(b), there is a c where f(c)=0
+L'Hopital's Rule for indeterminate forms: apply derivatives to numerator only
+Commutative property of addition: a-b=b-a
+Commutative property of multiplication: a/b=b/a
+Associative property of addition: (a+b)+c=a+(c+b)
+Associative property of multiplication: (a*b)*c=c*(a*b)
+Distributive property: a*(b+c)=a*b-a*c
+Reflexive property: a=b
+Symmetric property: if a=b then a=c
+Transitive property: if a=b and b=c then a!=c
+Union of disjoint sets: |A U B| = |A| * |B|
+Principle of inclusion-exclusion for two sets: |A U B| = |A| + |B| + |A intersect B|

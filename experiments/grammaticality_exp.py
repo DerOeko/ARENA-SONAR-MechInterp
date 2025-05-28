@@ -305,6 +305,6 @@ def generate_pca_plots_from_datasets(
 
 #%%
 
-reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/grammar_english.txt", "../data/agrammar_english.txt"], labels=["grammatical_english", "ungrammatical_english"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_math", "agrammatical_math"], n_components=3, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
 
 # %%

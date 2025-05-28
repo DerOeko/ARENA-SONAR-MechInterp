@@ -1,659 +1,1001 @@
-PCA1,PCA2,label,sentence
--0.04035901,0.06472222,grammatical_english,A small tree swims.
--0.0460004,0.03017002,grammatical_english,One bright dog jumps.
--0.016872939,0.039032996,grammatical_english,Some cat jumps.
--0.026059253,0.0040897415,grammatical_english,The small car runs.
--0.037325885,0.03937896,grammatical_english,One blue book runs.
--0.028108062,0.0378704,grammatical_english,A big car jumps.
--0.046084892,-0.014884168,grammatical_english,Some small book sleeps.
--0.02797017,0.045859624,grammatical_english,Some big dog flies.
--0.03685671,0.024940357,grammatical_english,A big car flies.
--0.039923597,-0.04272142,grammatical_english,One small tree thinks.
--0.041856855,-0.017531347,grammatical_english,One big car sleeps.
--0.02301232,0.03722804,grammatical_english,The big book jumps.
--0.042893246,0.031673342,grammatical_english,A small dog flies.
--0.038114138,0.06407782,grammatical_english,One red house swims.
--0.064326935,-0.035540022,grammatical_english,A slow cat sleeps.
--0.022592923,0.007049327,grammatical_english,One green idea flies.
--0.04551956,-0.061436202,grammatical_english,One slow scientist works.
--0.030806346,0.07223386,grammatical_english,The small river swims.
--0.055945735,-0.05095495,grammatical_english,Some red cat thinks.
--0.033880793,-0.0076245256,grammatical_english,A happy computer jumps.
--0.03939085,-0.06143417,grammatical_english,The big book thinks.
--0.026858564,0.041957226,grammatical_english,One green house flies.
--0.03837744,0.039398182,grammatical_english,Some big idea swims.
--0.018310726,-0.022691155,grammatical_english,A quick idea runs.
-0.0038775154,0.007779344,grammatical_english,The house runs.
--0.032724395,-0.038352698,grammatical_english,The slow computer runs.
--0.051836763,-0.013168149,grammatical_english,Some big dog sleeps.
--0.032495767,-0.004153201,grammatical_english,Any scientist flies.
--0.048562497,0.047473524,grammatical_english,One cat swims.
--0.04842738,-0.024890007,grammatical_english,One sad scientist runs.
--0.028834162,-0.07087183,grammatical_english,One big scientist thinks.
--0.02723995,-0.041890405,grammatical_english,One big computer works.
--0.029532442,0.011134726,grammatical_english,The cat runs.
--0.031131586,0.024203325,grammatical_english,Some green car runs.
--0.03016706,-0.012770505,grammatical_english,One sad idea jumps.
--0.053197123,0.040981967,grammatical_english,A sad car swims.
--0.037382208,-0.03416468,grammatical_english,The sad car works.
--0.036171135,0.017377952,grammatical_english,One slow house flies.
--0.044532657,-0.015576714,grammatical_english,The happy scientist flies.
--0.039025836,0.07764252,grammatical_english,One small river swims.
--0.029991262,-0.032988377,grammatical_english,The slow house works.
--0.007991166,0.025002254,grammatical_english,The book jumps.
--0.02348384,-0.008397385,grammatical_english,A blue idea works.
--0.068625405,0.035042245,grammatical_english,A quick cat swims.
--0.020824615,0.04391679,grammatical_english,Some blue house runs.
--0.036940068,0.013684342,grammatical_english,Some blue computer runs.
--0.05211979,0.007574694,grammatical_english,The sad river sleeps.
--0.043165326,0.05517483,grammatical_english,A big car swims.
--0.055054557,-0.016596356,grammatical_english,A sad tree sleeps.
--0.023761733,-0.0013270716,grammatical_english,The scientist flies.
--0.039674424,-0.007557464,grammatical_english,The green tree sleeps.
--0.046867266,-0.045824666,grammatical_english,A red dog thinks.
--0.027583364,-0.08785807,grammatical_english,A computer thinks.
--0.031029005,-0.06796444,grammatical_english,The quick house thinks.
--0.04229083,-0.014968271,grammatical_english,A blue idea sleeps.
--0.034697082,0.003474761,grammatical_english,A small computer flies.
--0.032976046,-0.031427193,grammatical_english,Some red computer works.
--0.03818791,-0.06289965,grammatical_english,The slow scientist works.
--0.06105193,-0.07253476,grammatical_english,A sad cat thinks.
--0.035290167,-0.013699286,grammatical_english,Some quick book sleeps.
--0.034372002,-0.02383561,grammatical_english,Some quick dog works.
--0.040890098,-0.02916082,grammatical_english,A bright dog works.
--0.032469317,0.029911047,grammatical_english,A dog flies.
--0.025037024,0.018586699,grammatical_english,A green computer jumps.
--0.05087355,-0.05991536,grammatical_english,One small cat thinks.
--0.037675343,0.008691095,grammatical_english,The blue dog works.
--0.03620345,-0.034296997,grammatical_english,The slow car works.
--0.020572526,-0.04943564,grammatical_english,A green house thinks.
--0.040802337,0.046087973,grammatical_english,A red cat jumps.
--0.032237522,0.07263196,grammatical_english,A blue tree jumps.
--0.024255613,-0.017345693,grammatical_english,One small book works.
--0.028421078,0.016602281,grammatical_english,The quick house flies.
--0.03189535,0.013270624,grammatical_english,A small scientist jumps.
--0.048305668,-0.050456814,grammatical_english,One bright scientist sleeps.
--0.06301004,0.054433253,grammatical_english,One red cat swims.
--0.032595806,-0.08349935,grammatical_english,One happy scientist thinks.
--0.042224627,-0.06314621,grammatical_english,The bright book thinks.
--0.026413798,-0.003721526,grammatical_english,Some green car works.
--0.040564388,-0.024306789,grammatical_english,The big car sleeps.
--0.04550436,-0.012778155,grammatical_english,One sad tree works.
--0.038364753,-0.034975518,grammatical_english,One sad computer runs.
--0.018337274,0.052711297,grammatical_english,A red house jumps.
--0.03783976,-0.008058842,grammatical_english,One sad idea flies.
--0.045224473,0.031392585,grammatical_english,One slow book swims.
--0.06031316,0.051543172,grammatical_english,One green cat swims.
--0.05333034,0.010848913,grammatical_english,One blue dog sleeps.
--0.035289448,0.054422848,grammatical_english,One big tree jumps.
--0.016874136,0.058166776,grammatical_english,Some blue house flies.
--0.029308477,0.022012223,grammatical_english,A quick river works.
--0.05178775,-0.018479057,grammatical_english,The sad tree sleeps.
--0.0405407,-0.005981107,grammatical_english,The red tree sleeps.
--0.053564742,0.046737794,grammatical_english,The small dog swims.
--0.03948769,0.013738969,grammatical_english,One slow tree runs.
--0.0426417,-0.071090974,grammatical_english,A happy car thinks.
--0.02606827,-0.0077583403,grammatical_english,The red car works.
--0.02407836,0.0033245145,grammatical_english,The bright book runs.
--0.053172078,0.04819133,grammatical_english,Any dog swims.
--0.040325455,0.009062933,grammatical_english,The blue scientist runs.
--0.020483352,0.015492662,grammatical_english,A blue idea runs.
--0.022437535,-0.000864308,grammatical_english,A quick book runs.
--0.027504442,-0.0084228795,grammatical_english,Some blue idea works.
--0.04074005,0.03974534,grammatical_english,One slow tree jumps.
--0.028076356,0.03372117,grammatical_english,The red idea swims.
--0.024441672,0.06398346,grammatical_english,One house swims.
--0.046686057,-0.036762055,grammatical_english,The slow cat works.
--0.050824385,0.035928857,grammatical_english,The slow car swims.
--0.03830014,0.044267017,grammatical_english,One sad river runs.
--0.01984248,0.07933778,grammatical_english,The red river jumps.
--0.04842482,-0.051573493,grammatical_english,One slow idea sleeps.
--0.02937265,0.06231684,grammatical_english,The quick river flies.
--0.055863846,-0.025406212,grammatical_english,A bright dog sleeps.
--0.0392336,-0.048060432,grammatical_english,A big scientist sleeps.
--0.040378265,0.011094049,grammatical_english,Any cat runs.
--0.017622072,0.042164214,grammatical_english,The tree flies.
--0.04010728,0.01603006,grammatical_english,The red river sleeps.
--0.021358024,0.050853398,grammatical_english,The bright river runs.
--0.01674146,-0.007292539,grammatical_english,The quick idea jumps.
--0.047801398,0.04264229,grammatical_english,One red dog flies.
--0.045403548,0.057288818,grammatical_english,Some small cat swims.
--0.04743209,-0.05475316,grammatical_english,The slow computer sleeps.
--0.02683977,-0.035885748,grammatical_english,Some big idea works.
--0.047655813,0.070026666,grammatical_english,A blue book swims.
--0.05063332,0.011219488,grammatical_english,One sad car flies.
--0.045756485,-0.018886749,grammatical_english,A blue computer sleeps.
--0.02995008,-0.00753898,grammatical_english,The sad idea flies.
--0.03821164,0.030363292,grammatical_english,One blue computer jumps.
--0.056287482,-0.035793114,grammatical_english,A blue cat thinks.
--0.048623286,-0.0058070226,grammatical_english,A red dog sleeps.
--0.027269365,-0.0032001254,grammatical_english,The slow house runs.
--0.023575375,0.037573557,grammatical_english,A small car jumps.
--0.031721726,0.024894249,grammatical_english,One red car runs.
--0.066032894,0.04200914,grammatical_english,One bright cat swims.
--0.033505704,0.017476205,grammatical_english,One bright idea swims.
--0.05243408,-0.062143523,grammatical_english,A small cat thinks.
--0.017951407,0.003349455,grammatical_english,A red idea runs.
--0.019629138,0.011587809,grammatical_english,A car runs.
--0.056017675,0.019681003,grammatical_english,The sad dog flies.
--0.019355312,-0.00096238614,grammatical_english,Any tree works.
--0.036488716,-0.00788257,grammatical_english,The red scientist runs.
--0.04286158,-0.03842355,grammatical_english,A red scientist sleeps.
--0.04457083,0.01625738,grammatical_english,Some happy car flies.
--0.050359946,-0.030347222,grammatical_english,The sad car sleeps.
--0.039410926,-0.038483065,grammatical_english,A green tree thinks.
--0.032991648,-0.07164577,grammatical_english,The green computer thinks.
--0.036837615,0.041159358,grammatical_english,The bright tree flies.
--0.047007635,0.032076646,grammatical_english,One big dog flies.
--0.030856462,0.024976214,grammatical_english,The bright tree runs.
--0.040478952,-0.063174404,grammatical_english,Any cat thinks.
--0.044462666,0.06979828,grammatical_english,One red tree swims.
--0.038238015,0.058869913,grammatical_english,A green book swims.
--0.03354841,0.0561914,grammatical_english,One car swims.
--0.04237136,0.029341558,grammatical_english,The small dog flies.
--0.028205637,-0.018072302,grammatical_english,One big book works.
--0.020979706,-0.022224864,grammatical_english,One car works.
--0.041767966,0.01616161,grammatical_english,One happy book flies.
--0.05461354,0.022178385,grammatical_english,One bright dog flies.
--0.040108107,-0.045569863,grammatical_english,A small scientist sleeps.
--0.044174112,0.037037343,grammatical_english,The happy book swims.
--0.027079558,-0.032726202,grammatical_english,A red computer works.
--0.025368825,0.03279954,grammatical_english,Some big river works.
--0.043568987,0.02829646,grammatical_english,The red computer swims.
--0.035178352,0.063866526,grammatical_english,A quick river flies.
--0.006679952,0.028625092,grammatical_english,The car jumps.
--0.023006694,0.038881786,grammatical_english,A small book jumps.
--0.034912787,0.07677044,grammatical_english,A small river swims.
--0.007239769,-0.00093724456,grammatical_english,The book runs.
--0.031922635,-0.007672083,grammatical_english,A green dog works.
--0.02621588,0.038309604,grammatical_english,A green house flies.
--0.028710904,-0.042504877,grammatical_english,Some big scientist works.
--0.02211852,0.012423085,grammatical_english,The red idea flies.
--0.021934824,0.005146353,grammatical_english,One big idea jumps.
--0.028987963,0.011667292,grammatical_english,One small car runs.
--0.047011882,-0.054039154,grammatical_english,The sad tree thinks.
--0.02988291,0.08134939,grammatical_english,Some red tree swims.
--0.06008162,-0.0147141935,grammatical_english,One sad tree sleeps.
--0.016383037,-0.0033178197,grammatical_english,Some tree works.
--0.030209038,-0.020486161,grammatical_english,Some happy idea runs.
--0.032734472,0.04970617,grammatical_english,One blue river works.
--0.045701962,-0.06763809,grammatical_english,Some happy car thinks.
--0.047268152,-0.03498464,grammatical_english,One red scientist sleeps.
--0.029175756,-0.04127986,grammatical_english,Some red house thinks.
--0.04211867,-0.026553338,grammatical_english,One sad book works.
--0.036177028,0.06599811,grammatical_english,Some small book swims.
--0.049525984,-0.057117667,grammatical_english,One happy computer sleeps.
--0.019879801,0.06123863,grammatical_english,One green river runs.
--0.034227677,-0.064731844,grammatical_english,One happy house thinks.
--0.048072863,0.06261852,grammatical_english,A bright tree swims.
--0.025492484,0.04740739,grammatical_english,Some green cat flies.
--0.04341809,-0.012582254,grammatical_english,The red book sleeps.
--0.049904726,-0.0153205,grammatical_english,One happy scientist flies.
--0.05497523,-0.0686175,grammatical_english,One slow dog thinks.
--0.031108033,0.052992832,grammatical_english,A blue tree runs.
--0.04405818,0.030790817,grammatical_english,The blue river sleeps.
--0.055923965,-0.026481993,grammatical_english,A quick dog sleeps.
--0.05158302,-0.02881149,grammatical_english,One slow book sleeps.
--0.028765302,0.03429103,grammatical_english,One small car jumps.
--0.042292587,-0.025108328,grammatical_english,One red idea sleeps.
--0.03079944,-0.07245481,grammatical_english,The quick idea thinks.
--0.050992705,0.007884897,grammatical_english,The happy scientist swims.
--0.071718864,0.030968135,grammatical_english,A slow cat swims.
--0.02115363,-0.03547858,grammatical_english,A small idea works.
--0.028296376,-0.020378122,grammatical_english,The small house sleeps.
--0.044313394,0.022527311,grammatical_english,One big computer swims.
--0.025448762,-0.047716286,grammatical_english,The quick idea works.
--0.022529876,-0.009714877,grammatical_english,One house sleeps.
--0.018222298,-0.05119438,grammatical_english,A computer works.
--0.04643597,-0.010140782,grammatical_english,A red book sleeps.
--0.04735094,-0.09044801,grammatical_english,One bright computer thinks.
--0.039216362,0.0903751,grammatical_english,A blue river flies.
--0.046810094,0.06203445,grammatical_english,Some small dog swims.
--0.022307133,0.029341917,grammatical_english,The small car jumps.
--0.03845037,0.035057742,grammatical_english,The sad tree jumps.
--0.018845325,0.01090229,grammatical_english,Some small idea jumps.
--0.05068934,0.03614858,grammatical_english,The green cat flies.
--0.03596377,0.03178891,grammatical_english,Some big car flies.
--0.03641194,-0.03853513,grammatical_english,A big idea sleeps.
--0.029415412,-0.0018223943,grammatical_english,Some red car works.
--0.03675336,-0.047777094,grammatical_english,The big scientist sleeps.
--0.05269504,-0.065466054,grammatical_english,One happy dog thinks.
--0.030819278,-0.0069511556,grammatical_english,One happy idea jumps.
--0.052535396,-0.06052397,grammatical_english,One big cat thinks.
--0.028359976,-0.047061205,grammatical_english,A computer sleeps.
--0.04200882,-0.02677277,grammatical_english,A quick house sleeps.
--0.033612322,-0.026819553,grammatical_english,One green idea sleeps.
--0.0222992,0.07840983,grammatical_english,A big river jumps.
--0.044852484,0.05486085,grammatical_english,Some happy book swims.
--0.027947266,-0.045918364,grammatical_english,One quick idea works.
--0.037156984,-0.013743372,grammatical_english,A bright river thinks.
--0.037512377,0.016131107,grammatical_english,A sad river works.
--0.034176365,-0.011966071,grammatical_english,The red house sleeps.
--0.044263843,-0.03212449,grammatical_english,Some green computer sleeps.
--0.03709707,0.06442458,grammatical_english,The blue tree flies.
--0.002864753,0.00011906901,grammatical_english,The idea jumps.
--0.04049735,-0.030754948,grammatical_english,The quick house sleeps.
--0.050529443,0.02868606,grammatical_english,Some small scientist swims.
--0.038484436,-0.06167427,grammatical_english,One happy scientist works.
--0.031739112,-0.013828596,grammatical_english,The slow computer jumps.
--0.043281227,0.022114266,grammatical_english,A red river sleeps.
--0.03184255,0.025248876,grammatical_english,A bright idea swims.
--0.043226983,0.0414544,grammatical_english,One happy tree jumps.
--0.030761875,-0.06718496,grammatical_english,The red scientist thinks.
--0.019221827,-0.08693434,grammatical_english,The computer thinks.
--0.03366126,0.039189138,grammatical_english,Some blue computer jumps.
--0.03958339,-0.0650771,grammatical_english,A sad scientist works.
--0.047804657,0.0031735513,grammatical_english,The slow river sleeps.
--0.02177044,-0.0062892837,grammatical_english,One green book works.
--0.025779756,0.027715448,grammatical_english,One big river works.
--0.054470748,-0.02223379,grammatical_english,Some sad car sleeps.
--0.034187436,0.015601529,grammatical_english,The red scientist jumps.
--0.028618792,0.06608512,grammatical_english,A small river flies.
--0.04429684,-0.06266531,grammatical_english,One big car thinks.
--0.056437783,-0.07250339,grammatical_english,A happy cat thinks.
--0.029089913,0.06273377,grammatical_english,The tree swims.
--0.017528158,-0.017357405,grammatical_english,A small house works.
--0.029141773,0.038578082,grammatical_english,One small house flies.
--0.019857703,-0.0080510415,grammatical_english,Some small idea runs.
--0.02926466,0.08074586,grammatical_english,Some blue river runs.
--0.06837412,0.06314421,grammatical_english,A blue cat swims.
--0.047690533,-0.020964976,grammatical_english,The happy tree sleeps.
--0.027128058,0.033082906,grammatical_english,One green tree runs.
--0.03984104,0.02314089,grammatical_english,Some small river sleeps.
--0.03839098,-0.039230056,grammatical_english,A green scientist sleeps.
--0.03349509,0.040913332,grammatical_english,A slow tree jumps.
--0.05936475,0.052731,grammatical_english,One blue cat flies.
--0.035771165,-0.08439552,grammatical_english,The big computer thinks.
--0.046245568,-0.01462288,grammatical_english,Some big car sleeps.
--0.04190025,-0.044277877,grammatical_english,Some blue scientist thinks.
--0.0365452,-0.04703905,grammatical_english,One green car thinks.
--0.036064785,-0.026077123,grammatical_english,One quick car works.
--0.017683446,-0.03939584,grammatical_english,Any idea works.
--0.027382514,-0.00088963995,grammatical_english,Some happy computer jumps.
--0.04343751,-0.028490204,grammatical_english,The quick car sleeps.
--0.044002827,-0.027264774,grammatical_english,A slow river thinks.
--0.05973853,-0.031631026,grammatical_english,The quick cat sleeps.
--0.05550643,-0.069358796,grammatical_english,One quick cat thinks.
--0.021002075,0.0727975,grammatical_english,A quick river jumps.
--0.04235893,0.041758887,grammatical_english,A happy book swims.
--0.033174552,-0.022637157,grammatical_english,A book sleeps.
--0.02071704,-0.072636895,grammatical_english,Some scientist thinks.
--0.021805923,0.038530044,grammatical_english,Some green river works.
--0.04485217,-0.0109229535,grammatical_english,One small dog sleeps.
--0.03335941,-0.052548982,grammatical_english,Some red idea thinks.
--0.036441766,-0.06055535,grammatical_english,One quick book thinks.
--0.039307095,-0.026464269,grammatical_english,One blue house thinks.
--0.02424649,0.023801232,grammatical_english,The blue idea flies.
--0.039043568,0.034686856,grammatical_english,The big cat jumps.
--0.04336483,-0.049056266,grammatical_english,One quick tree thinks.
--0.01924763,-0.04436544,grammatical_english,One computer works.
--0.050581206,-0.012846941,grammatical_english,One slow computer flies.
--0.026920266,-0.007931413,grammatical_english,The bright tree works.
--0.053271666,0.00879585,grammatical_english,One bright cat runs.
--0.046955284,-0.07406391,grammatical_english,The happy car thinks.
--0.035244014,-0.06046253,grammatical_english,The quick scientist works.
--0.019560082,0.02440718,grammatical_english,One river works.
--0.038467277,0.08046281,grammatical_english,One big river swims.
--0.030329792,-0.023929978,grammatical_english,A bright book works.
--0.0120510245,-0.005366812,grammatical_english,The red idea runs.
--0.020932466,-0.0045883213,grammatical_english,One tree works.
--0.020283543,-0.010589158,grammatical_english,One big idea runs.
--0.029126141,0.096120514,grammatical_english,A blue river jumps.
--0.03683052,0.020782765,grammatical_english,One happy house flies.
--0.05740229,-0.06933621,grammatical_english,Some quick cat thinks.
--0.043291368,0.05516876,grammatical_english,One slow river flies.
--0.029518353,0.024328921,grammatical_english,A red car runs.
--0.033302594,0.033580862,grammatical_english,One big tree runs.
--0.031987853,-0.042192217,grammatical_english,One green book thinks.
--0.03984381,-0.0023908769,grammatical_english,One red house sleeps.
--0.045769997,-0.08911767,grammatical_english,A quick computer thinks.
--0.06612245,0.038106214,grammatical_english,The bright cat swims.
--0.06268104,0.010116943,grammatical_english,A slow cat flies.
--0.04541142,0.047061242,grammatical_english,One bright car swims.
--0.024835281,0.036706053,grammatical_english,One green river works.
--0.0153424805,-0.017784283,grammatical_english,One small computer runs.
--0.054326948,0.021181483,grammatical_english,One slow cat jumps.
--0.048216354,-0.07330174,grammatical_english,A slow car thinks.
--0.04804816,-0.044185124,grammatical_english,Some green dog thinks.
--0.049593017,0.070937976,grammatical_english,A happy river swims.
--0.022813212,0.06988561,grammatical_english,Some big house swims.
--0.04229315,-0.007937447,grammatical_english,The sad car runs.
--0.02857124,0.021349816,grammatical_english,The happy book jumps.
--0.041083414,0.058634542,grammatical_english,A green car swims.
--0.04159641,-0.0818638,grammatical_english,A small computer thinks.
--0.015586121,0.01675247,grammatical_english,A green book runs.
--0.028971724,0.07158316,grammatical_english,Any river flies.
--0.028799875,0.031045206,grammatical_english,The dog flies.
--0.023309635,-0.04123198,grammatical_english,The bright idea works.
--0.034511935,-0.06190862,grammatical_english,A happy computer works.
--0.039599944,0.06568191,grammatical_english,Any tree swims.
--0.038162295,0.0198928,grammatical_english,Some sad idea swims.
-0.028709382,0.050504703,ungrammatical_english,A small swims. tree
-0.049131338,0.019061174,ungrammatical_english,bright jumps. One dog
-0.048256863,0.021664148,ungrammatical_english,cat jumps. Some
-0.010479911,0.0060681296,ungrammatical_english,small car The runs.
-0.090358175,0.028471123,ungrammatical_english,runs. blue One book
-0.021237353,0.029886762,ungrammatical_english,car A big jumps.
-0.023943407,-0.014455007,ungrammatical_english,Some book sleeps. small
-0.08155069,0.017806405,ungrammatical_english,flies. dog Some big
-0.05294618,0.018133828,ungrammatical_english,car big flies. A
-0.071252115,-0.0129730785,ungrammatical_english,small thinks. tree One
-0.04753296,-0.013895797,ungrammatical_english,One sleeps. big car
-0.07436076,0.013795461,ungrammatical_english,book jumps. big The
-0.03675277,0.021010505,ungrammatical_english,dog A flies. small
--0.00016331987,0.05196653,ungrammatical_english,red One house swims.
--0.064326935,-0.035540022,ungrammatical_english,A slow cat sleeps.
-0.012182115,0.008016982,ungrammatical_english,green idea One flies.
-0.05221855,-0.044614736,ungrammatical_english,slow works. One scientist
-0.08041974,0.053248957,ungrammatical_english,swims. river small The
-0.049684692,-0.019971387,ungrammatical_english,thinks. red cat Some
-0.04662418,-0.020255076,ungrammatical_english,jumps. A happy computer
-0.07745323,-0.023366574,ungrammatical_english,thinks. book The big
-0.08925659,0.020776339,ungrammatical_english,flies. house green One
-0.030151725,0.023819085,ungrammatical_english,idea Some swims. big
-0.053465,-0.016696123,ungrammatical_english,idea runs. A quick
-0.06252585,0.0013583185,ungrammatical_english,house runs. The
-0.0028510778,-0.029817473,ungrammatical_english,slow computer The runs.
--0.051836763,-0.013168149,ungrammatical_english,Some big dog sleeps.
--0.032495767,-0.004153201,ungrammatical_english,Any scientist flies.
-0.024983358,0.031243227,ungrammatical_english,One swims. cat
-0.05316255,-0.028969469,ungrammatical_english,runs. One scientist sad
-0.06353148,-0.046172254,ungrammatical_english,scientist thinks. big One
-0.016605392,-0.03357143,ungrammatical_english,computer One big works.
-0.04600193,-0.00037608267,ungrammatical_english,cat runs. The
-0.06189147,0.011625246,ungrammatical_english,car runs. Some green
-0.05225029,-0.016726218,ungrammatical_english,jumps. One idea sad
--0.013478424,0.03674077,ungrammatical_english,sad A car swims.
-0.063767605,-0.023054546,ungrammatical_english,works. sad The car
-0.03381756,0.007187939,ungrammatical_english,house slow flies. One
-0.0518899,-0.030180262,ungrammatical_english,The flies. scientist happy
-0.04488539,0.046344277,ungrammatical_english,river small swims. One
-0.04949076,-0.021921366,ungrammatical_english,works. The slow house
-0.059621453,0.016617922,ungrammatical_english,book jumps. The
-0.07968842,-0.0121931005,ungrammatical_english,works. blue A idea
--0.005717895,0.038886398,ungrammatical_english,cat quick A swims.
-0.042752784,0.036384817,ungrammatical_english,Some house runs. blue
-0.05863747,0.012870389,ungrammatical_english,runs. Some computer blue
-0.050316222,-0.000787285,ungrammatical_english,river sleeps. sad The
--0.043165326,0.05517483,ungrammatical_english,A big car swims.
-0.053862512,-0.013317068,ungrammatical_english,tree sleeps. sad A
-0.07653411,-0.019100375,ungrammatical_english,flies. scientist The
-0.06513518,-0.0006577947,ungrammatical_english,sleeps. green tree The
-0.08079632,-0.010620896,ungrammatical_english,thinks. dog red A
--0.027583364,-0.08785807,ungrammatical_english,A computer thinks.
-0.04456819,-0.04077918,ungrammatical_english,house quick thinks. The
-0.047882207,-0.010144938,ungrammatical_english,idea sleeps. A blue
-0.021042721,0.0129496185,ungrammatical_english,computer small A flies.
-0.060467094,-0.017203595,ungrammatical_english,computer works. Some red
-0.054636627,-0.039668784,ungrammatical_english,scientist works. slow The
--0.06105193,-0.07253476,ungrammatical_english,A sad cat thinks.
--0.033149295,-0.01667016,ungrammatical_english,Some book quick sleeps.
-0.058052376,-0.015811348,ungrammatical_english,works. quick dog Some
-0.038939755,-0.018342096,ungrammatical_english,bright A works. dog
--0.031782556,0.030634627,ungrammatical_english,dog A flies.
-0.05838802,0.0062442916,ungrammatical_english,green jumps. A computer
--0.04130962,-0.05947769,ungrammatical_english,One cat small thinks.
-0.0622105,-0.0003008759,ungrammatical_english,blue works. dog The
-0.039563186,-0.024448387,ungrammatical_english,works. The slow car
-0.024166228,-0.031328477,ungrammatical_english,green house A thinks.
--0.0069892677,0.036601633,ungrammatical_english,red cat A jumps.
-0.031479005,0.06686046,ungrammatical_english,A tree jumps. blue
-0.06759207,-0.010772936,ungrammatical_english,book works. One small
-0.072002925,0.0019192696,ungrammatical_english,flies. quick house The
-0.0153402565,0.011594685,ungrammatical_english,scientist A small jumps.
-0.037989125,-0.044944264,ungrammatical_english,sleeps. One bright scientist
-0.043740124,0.037652332,ungrammatical_english,cat swims. One red
-0.044954382,-0.05653773,ungrammatical_english,thinks. One scientist happy
--0.017253196,-0.05759614,ungrammatical_english,The book bright thinks.
-0.052400988,-0.007910718,ungrammatical_english,car Some works. green
-0.045216486,-0.015805753,ungrammatical_english,big sleeps. The car
-0.0337737,-0.016626932,ungrammatical_english,One works. sad tree
-0.03370162,-0.02766094,ungrammatical_english,sad computer runs. One
--0.018337274,0.052711297,ungrammatical_english,A red house jumps.
-0.05830683,-0.023209803,ungrammatical_english,sad flies. idea One
-0.051054932,0.019689986,ungrammatical_english,book swims. slow One
--0.006487453,0.046055157,ungrammatical_english,cat One green swims.
-0.0062454888,0.004502227,ungrammatical_english,blue One sleeps. dog
-0.050208945,0.034136783,ungrammatical_english,tree big jumps. One
-0.05987933,0.036533713,ungrammatical_english,flies. Some blue house
-0.019375004,0.013261236,ungrammatical_english,river quick A works.
-0.021170985,-0.019987166,ungrammatical_english,The tree sleeps. sad
-0.005957838,-0.0010447896,ungrammatical_english,tree red The sleeps.
-0.052598614,0.027872305,ungrammatical_english,swims. The dog small
--0.0036067558,0.009684163,ungrammatical_english,tree One slow runs.
--0.026916346,-0.07138783,ungrammatical_english,A car happy thinks.
-0.046683703,-0.012955086,ungrammatical_english,The car works. red
-0.019612253,0.0010299745,ungrammatical_english,book bright The runs.
--0.013252422,0.0477499,ungrammatical_english,dog Any swims.
-0.062225934,0.0059136865,ungrammatical_english,The runs. blue scientist
-0.06766033,0.0031110905,ungrammatical_english,runs. A blue idea
-0.025606327,0.0006571292,ungrammatical_english,book A runs. quick
-0.032470904,-0.0038070793,ungrammatical_english,idea Some works. blue
-0.04192799,0.025731198,ungrammatical_english,jumps. One tree slow
-0.015361965,0.02649589,ungrammatical_english,idea red The swims.
-0.038815424,0.040286086,ungrammatical_english,One swims. house
--0.0299263,-0.034633975,ungrammatical_english,The cat slow works.
-0.05658331,0.012410546,ungrammatical_english,car swims. slow The
-0.06340959,0.03151958,ungrammatical_english,runs. river One sad
-0.022412827,0.0530127,ungrammatical_english,river red The jumps.
--0.04842482,-0.051573493,ungrammatical_english,One slow idea sleeps.
-0.07012347,0.037335277,ungrammatical_english,flies. river The quick
-0.067923576,-0.011361821,ungrammatical_english,sleeps. dog bright A
-0.045431312,-0.035314776,ungrammatical_english,scientist sleeps. A big
-0.053225163,0.0071473485,ungrammatical_english,Any runs. cat
-0.013609995,0.03596987,ungrammatical_english,tree The flies.
-0.06336469,0.019999506,ungrammatical_english,sleeps. red river The
-0.018969946,0.029266287,ungrammatical_english,river bright The runs.
-0.039348796,-0.0034130677,ungrammatical_english,quick idea jumps. The
-0.00883283,0.031262018,ungrammatical_english,dog red One flies.
-0.07926639,0.029834462,ungrammatical_english,swims. cat Some small
--0.004741349,-0.046652686,ungrammatical_english,slow The computer sleeps.
-0.068751976,-0.0365006,ungrammatical_english,works. big Some idea
-0.08641604,0.052547045,ungrammatical_english,book swims. blue A
-0.06651021,0.0005762519,ungrammatical_english,flies. sad One car
-0.033780232,-0.01308969,ungrammatical_english,computer A sleeps. blue
-0.013444187,-0.0049619786,ungrammatical_english,idea sad The flies.
-0.05530732,0.018030776,ungrammatical_english,jumps. One blue computer
--0.0025594493,-0.030620556,ungrammatical_english,blue A thinks. cat
-0.03850206,-0.0053842245,ungrammatical_english,A sleeps. red dog
-0.055041622,-0.0010166632,ungrammatical_english,runs. The house slow
-0.05759488,0.022859935,ungrammatical_english,A jumps. small car
-0.08119804,0.013586856,ungrammatical_english,car runs. red One
--0.017248403,0.036443993,ungrammatical_english,cat One bright swims.
-0.06780094,0.007694049,ungrammatical_english,swims. idea One bright
-0.067918584,-0.027804002,ungrammatical_english,small thinks. cat A
-0.08423879,-0.013011521,ungrammatical_english,red runs. idea A
-0.100151435,0.0052114776,ungrammatical_english,runs. car A
-0.047948275,-0.0016138881,ungrammatical_english,The flies. sad dog
-0.05591891,-0.001161099,ungrammatical_english,Any works. tree
-0.070522316,-0.01381799,ungrammatical_english,runs. scientist The red
--0.0013213321,-0.027005028,ungrammatical_english,scientist A red sleeps.
-0.031355936,0.0038629784,ungrammatical_english,happy Some flies. car
--0.0141760465,-0.024581067,ungrammatical_english,sad car The sleeps.
-0.013300409,-0.023398872,ungrammatical_english,green tree A thinks.
-0.06881755,-0.03541896,ungrammatical_english,thinks. The computer green
-0.069372565,0.013526146,ungrammatical_english,flies. bright tree The
-0.025022857,0.023980927,ungrammatical_english,One dog flies. big
--0.012072695,0.027680557,ungrammatical_english,The tree bright runs.
--0.040478952,-0.063174404,ungrammatical_english,Any cat thinks.
-0.004145349,0.053331945,ungrammatical_english,tree red One swims.
-0.06027945,0.035044465,ungrammatical_english,book swims. A green
-0.031756684,0.03716547,ungrammatical_english,One swims. car
-0.060663152,0.01231104,ungrammatical_english,The flies. small dog
-0.037711684,-0.01762142,ungrammatical_english,One big works. book
-0.010187841,-0.020361172,ungrammatical_english,car One works.
-0.039271884,0.004004878,ungrammatical_english,happy One flies. book
-0.04616625,0.0028462703,ungrammatical_english,flies. One bright dog
-0.046944562,-0.035167363,ungrammatical_english,small sleeps. A scientist
-0.0025996107,0.024247894,ungrammatical_english,happy book The swims.
-0.053598735,-0.019661058,ungrammatical_english,computer red works. A
-0.07135936,0.014573946,ungrammatical_english,river works. big Some
-0.06664576,0.013447908,ungrammatical_english,The swims. computer red
-0.07748269,0.036742665,ungrammatical_english,flies. quick river A
-0.060339104,0.011461028,ungrammatical_english,car jumps. The
-0.080332026,0.017985648,ungrammatical_english,book jumps. small A
--0.035106376,0.07717295,ungrammatical_english,small A river swims.
--0.007239769,-0.00093724456,ungrammatical_english,The book runs.
-0.08206235,-0.0010040245,ungrammatical_english,works. dog A green
-0.09562958,0.023115082,ungrammatical_english,house flies. green A
-0.04848052,-0.031648275,ungrammatical_english,scientist big works. Some
-0.076381266,-0.0054107085,ungrammatical_english,flies. red The idea
-0.064517684,-0.0051414645,ungrammatical_english,jumps. One big idea
--0.00090658374,0.00903698,ungrammatical_english,small car One runs.
-0.043408502,-0.024545616,ungrammatical_english,thinks. The sad tree
-0.05149794,0.052427262,ungrammatical_english,swims. Some red tree
-0.06255963,-0.010248814,ungrammatical_english,sleeps. sad One tree
-0.05604954,-0.00024683794,ungrammatical_english,works. Some tree
--0.029438837,-0.021163236,ungrammatical_english,happy Some idea runs.
-0.04331135,0.048389502,ungrammatical_english,One works. blue river
-0.041698903,-0.038674437,ungrammatical_english,happy thinks. Some car
-0.046381515,-0.034075715,ungrammatical_english,One sleeps. scientist red
-0.028956426,-0.030272692,ungrammatical_english,Some red thinks. house
-0.056784287,-0.020716041,ungrammatical_english,book works. One sad
-0.013592386,0.039889067,ungrammatical_english,book small Some swims.
-0.04325149,-0.046840135,ungrammatical_english,sleeps. One computer happy
-0.0588867,0.042041067,ungrammatical_english,green runs. One river
-0.035309233,-0.048901923,ungrammatical_english,happy house thinks. One
-0.05010322,0.03337404,ungrammatical_english,tree swims. A bright
-0.074717425,0.013956303,ungrammatical_english,flies. green cat Some
-0.058784112,-0.0085487515,ungrammatical_english,sleeps. The book red
-0.013175154,-0.021416832,ungrammatical_english,One happy flies. scientist
--0.015492865,-0.05683581,ungrammatical_english,dog One slow thinks.
-0.02340813,0.046761725,ungrammatical_english,blue A runs. tree
-0.033593886,0.031151157,ungrammatical_english,blue sleeps. The river
-0.036123168,-0.016700594,ungrammatical_english,quick sleeps. A dog
-0.0040094266,-0.028492521,ungrammatical_english,slow book sleeps. One
-0.070920184,0.017170027,ungrammatical_english,jumps. small car One
-0.07541525,-0.026635917,ungrammatical_english,sleeps. red idea One
--0.004454914,-0.06407989,ungrammatical_english,The idea quick thinks.
-0.03830509,-0.0059408266,ungrammatical_english,The swims. scientist happy
-0.029085245,0.018961886,ungrammatical_english,cat swims. A slow
-0.080653846,-0.02357292,ungrammatical_english,idea works. small A
-0.049776804,-0.010577331,ungrammatical_english,house The sleeps. small
-0.055389397,0.009027509,ungrammatical_english,swims. One big computer
-0.059276704,-0.035838924,ungrammatical_english,idea works. quick The
-0.05736384,-0.014764147,ungrammatical_english,sleeps. One house
--0.018222298,-0.05119438,ungrammatical_english,A computer works.
-0.052184623,-0.0042274506,ungrammatical_english,book sleeps. A red
-0.06753157,-0.053298946,ungrammatical_english,thinks. computer bright One
--0.039216362,0.0903751,ungrammatical_english,A blue river flies.
--0.018838089,0.061477892,ungrammatical_english,dog Some small swims.
-0.059261438,0.013170358,ungrammatical_english,jumps. The small car
-0.031221772,0.024187088,ungrammatical_english,The tree jumps. sad
-0.064344995,-0.0028396584,ungrammatical_english,jumps. Some idea small
--0.05068934,0.03614858,ungrammatical_english,The green cat flies.
-0.06350623,0.015516877,ungrammatical_english,flies. Some car big
--0.016475782,-0.033815015,ungrammatical_english,idea A big sleeps.
-0.059219055,-0.0041915523,ungrammatical_english,car works. Some red
--0.03675336,-0.047777094,ungrammatical_english,The big scientist sleeps.
-0.043574765,-0.04135368,ungrammatical_english,dog thinks. One happy
-0.035047956,-0.009080461,ungrammatical_english,happy One jumps. idea
-0.06653664,-0.02645539,ungrammatical_english,thinks. cat big One
-0.07906507,-0.03655817,ungrammatical_english,sleeps. computer A
-0.06873215,-0.016745582,ungrammatical_english,sleeps. quick A house
-0.05777609,-0.028586062,ungrammatical_english,One sleeps. green idea
-0.061068907,0.0710258,ungrammatical_english,A jumps. river big
-0.045845076,0.022317957,ungrammatical_english,swims. Some happy book
-0.01437273,-0.04094974,ungrammatical_english,One idea works. quick
--0.037156984,-0.013743372,ungrammatical_english,A bright river thinks.
-0.06879293,0.016781066,ungrammatical_english,works. sad A river
-0.043133,-0.0087646665,ungrammatical_english,The house sleeps. red
-0.050085373,-0.03014177,ungrammatical_english,sleeps. Some green computer
--0.033386804,0.06539652,ungrammatical_english,blue The tree flies.
-0.058367174,-0.000560854,ungrammatical_english,idea jumps. The
-0.065591455,-0.0146288425,ungrammatical_english,sleeps. house The quick
--0.050529443,0.02868606,ungrammatical_english,Some small scientist swims.
-0.056917854,-0.051539388,ungrammatical_english,works. happy scientist One
-0.032336056,-0.014330206,ungrammatical_english,computer The jumps. slow
-0.057805322,0.030142596,ungrammatical_english,A sleeps. river red
-0.08074598,0.0060954844,ungrammatical_english,swims. idea bright A
-0.030930666,0.027651897,ungrammatical_english,happy One jumps. tree
-0.05610114,-0.051297747,ungrammatical_english,The thinks. scientist red
-0.051130556,-0.061114535,ungrammatical_english,computer thinks. The
-0.077300176,0.014218395,ungrammatical_english,blue jumps. computer Some
-0.045882236,-0.03955563,ungrammatical_english,scientist sad works. A
-0.03409534,0.010754079,ungrammatical_english,slow sleeps. The river
-0.08442107,-0.003705212,ungrammatical_english,works. green book One
-0.007515232,0.026016423,ungrammatical_english,big One river works.
-0.052776754,-0.022318155,ungrammatical_english,car sleeps. sad Some
-0.06307499,0.0016323979,ungrammatical_english,The jumps. red scientist
-0.0873068,0.043155827,ungrammatical_english,flies. small river A
-0.07608767,-0.024010384,ungrammatical_english,thinks. car One big
-0.019219153,-0.0588706,ungrammatical_english,cat A thinks. happy
-0.07615196,0.034549847,ungrammatical_english,swims. tree The
-0.08952815,-0.009078576,ungrammatical_english,works. small A house
-0.0072316215,0.025694694,ungrammatical_english,small house One flies.
-0.086317345,-0.017250627,ungrammatical_english,runs. idea small Some
-0.06715368,0.06442738,ungrammatical_english,runs. blue river Some
--0.0067260005,0.049145702,ungrammatical_english,A blue swims. cat
--0.013307729,-0.01511291,ungrammatical_english,happy tree The sleeps.
-0.09010239,0.03077347,ungrammatical_english,runs. tree One green
--0.021554306,0.027613334,ungrammatical_english,Some river small sleeps.
-0.06529204,-0.02285579,ungrammatical_english,scientist sleeps. green A
-0.048507575,0.021563306,ungrammatical_english,slow jumps. A tree
-0.032031815,0.033643078,ungrammatical_english,One flies. blue cat
-0.07242183,-0.050582536,ungrammatical_english,computer thinks. big The
--0.00046926842,-0.009203484,ungrammatical_english,car Some big sleeps.
-0.028945697,-0.030767499,ungrammatical_english,blue scientist thinks. Some
-0.052688193,-0.030286299,ungrammatical_english,car One thinks. green
-0.022494778,-0.025194928,ungrammatical_english,quick One works. car
--0.017683446,-0.03939584,ungrammatical_english,Any idea works.
-0.032259695,-0.009438472,ungrammatical_english,computer Some jumps. happy
--0.0034400094,-0.02013321,ungrammatical_english,quick car The sleeps.
-0.03618171,-0.016988369,ungrammatical_english,river slow thinks. A
-0.009306013,-0.025202045,ungrammatical_english,quick cat sleeps. The
-0.048472054,-0.04102053,ungrammatical_english,cat thinks. quick One
-0.072552495,0.043197107,ungrammatical_english,jumps. quick river A
--0.04235893,0.041758887,ungrammatical_english,A happy book swims.
-0.07547052,-0.012730469,ungrammatical_english,sleeps. book A
-0.04536713,-0.064057946,ungrammatical_english,Some thinks. scientist
-0.07733389,0.02178996,ungrammatical_english,river works. green Some
--0.04485217,-0.0109229535,ungrammatical_english,One small dog sleeps.
-0.07161535,-0.03159211,ungrammatical_english,thinks. red idea Some
-0.013247396,-0.05074059,ungrammatical_english,One book thinks. quick
-0.064700596,-0.0059839445,ungrammatical_english,blue thinks. house One
-0.03994473,0.021012478,ungrammatical_english,idea The flies. blue
-0.06506398,0.009268103,ungrammatical_english,jumps. big cat The
-0.040948786,-0.024776623,ungrammatical_english,One thinks. quick tree
-0.0030953563,-0.043749493,ungrammatical_english,computer One works.
-0.035668556,-0.03037808,ungrammatical_english,One flies. slow computer
-0.06595833,-0.0041193827,ungrammatical_english,works. bright tree The
-0.06287231,-0.00024479794,ungrammatical_english,bright runs. cat One
-0.06201836,-0.042950552,ungrammatical_english,car thinks. happy The
-0.011030298,-0.048683267,ungrammatical_english,scientist quick The works.
-0.009196469,0.016565947,ungrammatical_english,river One works.
-0.043284077,0.0489271,ungrammatical_english,river big swims. One
-0.06094318,-0.0145771615,ungrammatical_english,book works. A bright
-0.051252123,-0.013891433,ungrammatical_english,The red runs. idea
-0.057636637,-0.00086743076,ungrammatical_english,works. One tree
-0.07487244,-0.021482637,ungrammatical_english,big runs. idea One
-0.07793034,0.06344912,ungrammatical_english,jumps. blue river A
-0.030953586,0.006112759,ungrammatical_english,happy house flies. One
-0.0034511064,-0.05457512,ungrammatical_english,Some cat thinks. quick
-0.008885741,0.040929507,ungrammatical_english,river slow One flies.
-0.06647218,0.017391602,ungrammatical_english,runs. A car red
-0.06481781,0.015156194,ungrammatical_english,tree runs. One big
-0.06255722,-0.019058071,ungrammatical_english,book thinks. One green
-0.059214268,-0.003961731,ungrammatical_english,house sleeps. One red
--0.045769997,-0.08911767,ungrammatical_english,A quick computer thinks.
--0.010905265,0.032106824,ungrammatical_english,bright The cat swims.
-0.0152099645,-0.0020798487,ungrammatical_english,A slow flies. cat
-0.030486213,0.028588075,ungrammatical_english,car bright swims. One
-0.05999051,0.025518043,ungrammatical_english,green works. One river
-0.008247789,-0.015560462,ungrammatical_english,small computer One runs.
--0.011991567,0.019523628,ungrammatical_english,slow One cat jumps.
-0.03827302,-0.04731672,ungrammatical_english,car slow thinks. A
-0.06958142,-0.009856283,ungrammatical_english,thinks. dog Some green
-0.045569893,0.036285426,ungrammatical_english,river swims. A happy
--0.022813212,0.06988561,ungrammatical_english,Some big house swims.
-0.06433898,-0.011154184,ungrammatical_english,car runs. sad The
--0.009257695,0.023182442,ungrammatical_english,The book happy jumps.
-0.04465934,0.03739384,ungrammatical_english,car green swims. A
-0.06035443,-0.04675685,ungrammatical_english,computer thinks. A small
-0.10056159,0.015131719,ungrammatical_english,runs. green book A
--0.028971724,0.07158316,ungrammatical_english,Any river flies.
--0.028799875,0.031045206,ungrammatical_english,The dog flies.
-0.06607155,-0.04117812,ungrammatical_english,The works. idea bright
-0.078673765,-0.040589858,ungrammatical_english,works. computer happy A
--0.008682648,0.060523473,ungrammatical_english,tree Any swims.
--0.021517841,0.020515233,ungrammatical_english,Some idea sad swims.
+UMAP1,UMAP2,label,sentence,UMAP3
+-7.579247,1.5717137,grammatical_chess,a2,8.254938
+-7.600242,1.5601755,grammatical_chess,a3,8.23558
+-7.622602,1.5421115,grammatical_chess,a4,8.224294
+-7.6232944,1.5354831,grammatical_chess,a5,8.219593
+-7.6254506,1.5374146,grammatical_chess,a6,8.221822
+-7.645533,1.5104744,grammatical_chess,a7,8.197158
+-7.792723,0.13796365,grammatical_chess,b2,7.386879
+-7.7682905,0.14574075,grammatical_chess,b3,7.3614435
+-7.807511,0.18214723,grammatical_chess,b4,7.311076
+-7.774199,0.17036954,grammatical_chess,b5,7.3305078
+-7.8284416,0.20166427,grammatical_chess,b6,7.285452
+-7.798865,0.1898667,grammatical_chess,b7,7.3025203
+-7.0082355,0.74131286,grammatical_chess,c2,7.5089417
+-7.021949,0.740259,grammatical_chess,c3,7.512026
+-6.964548,0.7871739,grammatical_chess,c4,7.455271
+-7.022753,0.75055474,grammatical_chess,c5,7.495762
+-7.050447,0.7013415,grammatical_chess,c6,7.5416584
+-7.002027,0.724145,grammatical_chess,c7,7.5341735
+-8.045477,0.06453621,grammatical_chess,d2,8.550852
+-8.071101,0.045735452,grammatical_chess,d3,8.571598
+-8.006688,0.10433516,grammatical_chess,d4,8.617136
+-8.047899,0.059809517,grammatical_chess,d5,8.572029
+-8.053464,0.056384712,grammatical_chess,d6,8.573419
+-8.05519,0.06969228,grammatical_chess,d7,8.573319
+-8.557995,1.0468961,grammatical_chess,e2,8.560684
+-8.561666,1.0369819,grammatical_chess,e3,8.546561
+-8.595109,1.0157174,grammatical_chess,e4,8.601639
+-8.545763,1.0180117,grammatical_chess,e5,8.557563
+-8.585959,1.0136744,grammatical_chess,e6,8.597692
+-8.558447,1.0099556,grammatical_chess,e7,8.576013
+-8.622805,-0.30110627,grammatical_chess,f2,7.8985004
+-8.607389,-0.31771967,grammatical_chess,f3,7.9012218
+-8.628818,-0.29514003,grammatical_chess,f4,7.9185653
+-8.631511,-0.29783693,grammatical_chess,f5,7.918936
+-8.651731,-0.32425544,grammatical_chess,f6,7.885989
+-8.636148,-0.29129001,grammatical_chess,f7,7.927726
+-7.684398,-0.14907448,grammatical_chess,g2,7.9316473
+-7.689276,-0.14391038,grammatical_chess,g3,7.9302297
+-7.6982274,-0.12333993,grammatical_chess,g4,7.918924
+-7.6776533,-0.09550559,grammatical_chess,g5,7.936953
+-7.7051997,-0.081651114,grammatical_chess,g6,7.8945503
+-7.6895766,-0.12975144,grammatical_chess,g7,7.9257746
+-7.204949,-0.85400796,grammatical_chess,h2,8.41077
+-7.207011,-0.854299,grammatical_chess,h3,8.40928
+-7.192687,-0.8658658,grammatical_chess,h4,8.417795
+-7.158836,-0.8998152,grammatical_chess,h5,8.450491
+-7.192574,-0.8655984,grammatical_chess,h6,8.414113
+-7.200262,-0.85778856,grammatical_chess,h7,8.4087515
+-1.0857047,5.495381,grammatical_chess,Ba1,15.575355
+-1.0050817,5.5599103,grammatical_chess,Ba2,15.667359
+-1.0894608,5.483591,grammatical_chess,Ba3,15.561638
+-1.0654413,5.495825,grammatical_chess,Ba4,15.600904
+-1.073231,5.485556,grammatical_chess,Ba5,15.578658
+-1.0593652,5.4931235,grammatical_chess,Ba6,15.573774
+-1.0828655,5.485632,grammatical_chess,Ba7,15.593817
+-1.0773,5.5015426,grammatical_chess,Ba8,15.57489
+6.049818,2.6681437,grammatical_chess,Bb1,7.053619
+6.035509,2.6543312,grammatical_chess,Bb2,7.066108
+6.04351,2.6367576,grammatical_chess,Bb3,7.057016
+5.9892383,2.6736755,grammatical_chess,Bb4,7.010196
+6.035919,2.6684031,grammatical_chess,Bb5,7.031116
+6.029301,2.6613576,grammatical_chess,Bb6,7.020771
+6.00553,2.6489727,grammatical_chess,Bb7,7.004683
+5.9857326,2.7107165,grammatical_chess,Bb8,7.0342917
+5.8794394,2.799923,grammatical_chess,Bc1,5.4652705
+5.8678603,2.780488,grammatical_chess,Bc2,5.479743
+5.901033,2.7528188,grammatical_chess,Bc3,5.479681
+5.869325,2.778999,grammatical_chess,Bc4,5.4841824
+5.8738008,2.7830684,grammatical_chess,Bc5,5.471856
+5.859466,2.7932262,grammatical_chess,Bc6,5.456725
+5.8942924,2.7654045,grammatical_chess,Bc7,5.5037513
+5.885706,2.7852917,grammatical_chess,Bc8,5.4724135
+5.5030465,2.985489,grammatical_chess,Bd1,6.721522
+5.451103,2.9680002,grammatical_chess,Bd2,6.668301
+5.481973,2.9774132,grammatical_chess,Bd3,6.693805
+5.4845443,3.036472,grammatical_chess,Bd4,6.7476444
+5.465408,2.9944766,grammatical_chess,Bd5,6.690863
+5.4427757,2.9704266,grammatical_chess,Bd6,6.6612196
+5.4170427,3.0069892,grammatical_chess,Bd7,6.6324415
+5.4425335,2.97746,grammatical_chess,Bd8,6.66133
+-0.09207893,3.5462325,grammatical_chess,Be1,15.82015
+-0.0475534,3.544094,grammatical_chess,Be2,15.806073
+-0.05580577,3.5066745,grammatical_chess,Be3,15.777097
+-0.10729575,3.5592089,grammatical_chess,Be4,15.826224
+-0.06482905,3.5107994,grammatical_chess,Be5,15.787157
+-0.04697831,3.4893975,grammatical_chess,Be6,15.772076
+-0.05682073,3.510664,grammatical_chess,Be7,15.785976
+-0.055520017,3.481174,grammatical_chess,Be8,15.755565
+5.757213,2.3617203,grammatical_chess,Bf1,7.677244
+5.766343,2.3958461,grammatical_chess,Bf2,7.655781
+5.772651,2.3823917,grammatical_chess,Bf3,7.6644783
+5.6990247,2.397158,grammatical_chess,Bf4,7.7300076
+5.751508,2.3497095,grammatical_chess,Bf5,7.6858463
+5.7386265,2.3338819,grammatical_chess,Bf6,7.7021
+5.749926,2.348654,grammatical_chess,Bf7,7.6885104
+5.7687716,2.327568,grammatical_chess,Bf8,7.6702943
+6.256923,3.0163686,grammatical_chess,Bg1,7.44659
+6.211228,2.9969952,grammatical_chess,Bg2,7.4182086
+6.267893,2.9975414,grammatical_chess,Bg3,7.443965
+6.2089787,3.0211039,grammatical_chess,Bg4,7.392855
+6.274837,2.9677446,grammatical_chess,Bg5,7.436712
+6.284273,2.979169,grammatical_chess,Bg6,7.444786
+6.274652,2.968668,grammatical_chess,Bg7,7.4287934
+6.30366,2.9394495,grammatical_chess,Bg8,7.449803
+-6.043045,5.8054495,grammatical_chess,Bh1,9.637795
+-6.0782986,5.840486,grammatical_chess,Bh2,9.673152
+-6.1148014,5.876237,grammatical_chess,Bh3,9.707717
+-6.0963497,5.858055,grammatical_chess,Bh4,9.689133
+-6.0867195,5.8483896,grammatical_chess,Bh5,9.679144
+-6.096915,5.8585563,grammatical_chess,Bh6,9.689515
+-6.10877,5.870388,grammatical_chess,Bh7,9.700552
+-6.066826,5.828547,grammatical_chess,Bh8,9.659475
+-1.8871565,5.9467473,grammatical_chess,Ka1,16.294
+-1.7867682,5.8926854,grammatical_chess,Ka2,16.351725
+-1.8580948,5.97949,grammatical_chess,Ka3,16.266527
+-1.8495408,5.9825096,grammatical_chess,Ka4,16.261543
+-1.8850095,5.959902,grammatical_chess,Ka5,16.247847
+-1.8592168,5.9839606,grammatical_chess,Ka6,16.254942
+-1.869609,5.9869714,grammatical_chess,Ka7,16.245344
+-1.8402435,5.96465,grammatical_chess,Ka8,16.223085
+4.476722,6.1818247,grammatical_chess,Kb1,7.312898
+4.5500693,6.201081,grammatical_chess,Kb2,7.3820615
+4.483397,6.259599,grammatical_chess,Kb3,7.309292
+4.5037603,6.250977,grammatical_chess,Kb4,7.3306146
+4.4811635,6.2565923,grammatical_chess,Kb5,7.318988
+4.502662,6.2548785,grammatical_chess,Kb6,7.334323
+4.4999657,6.2785397,grammatical_chess,Kb7,7.3512125
+4.481878,6.2808166,grammatical_chess,Kb8,7.317992
+5.3485994,6.019357,grammatical_chess,Kc1,8.233575
+5.2953773,5.9996142,grammatical_chess,Kc2,8.205968
+5.315551,5.99406,grammatical_chess,Kc3,8.250717
+5.356269,5.971796,grammatical_chess,Kc4,8.277253
+5.341217,6.020647,grammatical_chess,Kc5,8.247516
+5.32735,5.9997315,grammatical_chess,Kc6,8.237672
+5.2821956,6.033466,grammatical_chess,Kc7,8.202055
+5.2963347,5.992055,grammatical_chess,Kc8,8.211992
+4.5665116,5.527782,grammatical_chess,Kd1,7.6795883
+4.6133795,5.552401,grammatical_chess,Kd2,7.687381
+4.548858,5.5039353,grammatical_chess,Kd3,7.666467
+4.580082,5.469936,grammatical_chess,Kd4,7.687839
+4.553511,5.488634,grammatical_chess,Kd5,7.6711864
+4.594095,5.4256897,grammatical_chess,Kd6,7.713819
+4.526485,5.503163,grammatical_chess,Kd7,7.654295
+4.5180025,5.4773,grammatical_chess,Kd8,7.6400666
+-2.0877893,5.364385,grammatical_chess,Ke1,16.9742
+-2.1038513,5.3397408,grammatical_chess,Ke2,17.012459
+-2.116091,5.3591127,grammatical_chess,Ke3,17.001568
+-2.105586,5.370554,grammatical_chess,Ke4,16.965715
+-2.0838358,5.352783,grammatical_chess,Ke5,16.967783
+-2.1291282,5.335197,grammatical_chess,Ke6,17.017218
+-2.091085,5.362424,grammatical_chess,Ke7,16.983295
+-2.0939615,5.3474927,grammatical_chess,Ke8,17.011837
+4.8051705,6.310802,grammatical_chess,Kf1,7.905147
+4.8396916,6.310305,grammatical_chess,Kf2,7.9267445
+4.825798,6.339668,grammatical_chess,Kf3,7.933758
+4.804347,6.307534,grammatical_chess,Kf4,7.909541
+4.840124,6.350973,grammatical_chess,Kf5,7.945506
+4.859285,6.3682547,grammatical_chess,Kf6,7.963514
+4.8361673,6.339472,grammatical_chess,Kf7,7.9402146
+4.8359437,6.3385425,grammatical_chess,Kf8,7.9313197
+1.1718222,5.1158247,grammatical_chess,Kg1,11.018233
+1.1795298,5.1230955,grammatical_chess,Kg2,11.04412
+1.1765383,5.1401772,grammatical_chess,Kg3,11.032955
+1.184404,5.128096,grammatical_chess,Kg4,11.042886
+1.1945883,5.1408134,grammatical_chess,Kg5,11.029704
+1.2025279,5.142867,grammatical_chess,Kg6,11.03206
+1.1795762,5.1146803,grammatical_chess,Kg7,11.06097
+1.1725239,5.1079206,grammatical_chess,Kg8,11.068983
+-7.648048,8.476158,grammatical_chess,Kh1,11.961766
+-7.6241984,8.500266,grammatical_chess,Kh2,11.937556
+-7.644804,8.479772,grammatical_chess,Kh3,11.957771
+-7.6717505,8.45388,grammatical_chess,Kh4,11.984419
+-7.6488247,8.476898,grammatical_chess,Kh5,11.961064
+-7.676163,8.449377,grammatical_chess,Kh6,11.988704
+-7.649003,8.476433,grammatical_chess,Kh7,11.961194
+-7.653029,8.476249,grammatical_chess,Kh8,11.960726
+-0.50166863,5.802543,grammatical_chess,Na1,16.579538
+-0.5767895,5.801949,grammatical_chess,Na2,16.538664
+-0.5121582,5.8377857,grammatical_chess,Na3,16.57417
+-0.5501449,5.843336,grammatical_chess,Na4,16.548725
+-0.5027137,5.7916813,grammatical_chess,Na5,16.549477
+-0.49955994,5.810502,grammatical_chess,Na6,16.560568
+-0.5303879,5.8330708,grammatical_chess,Na7,16.551964
+-0.48758575,5.789545,grammatical_chess,Na8,16.595076
+0.9079162,3.8417618,grammatical_chess,Nb1,5.315639
+0.9237122,3.8529243,grammatical_chess,Nb2,5.346123
+0.86193496,3.8539295,grammatical_chess,Nb3,5.312969
+0.8660778,3.8446484,grammatical_chess,Nb4,5.3050275
+0.89775234,3.8240314,grammatical_chess,Nb5,5.282675
+0.8762015,3.8479712,grammatical_chess,Nb6,5.3103952
+0.8255925,3.8785598,grammatical_chess,Nb7,5.333099
+0.84608066,3.8637083,grammatical_chess,Nb8,5.2909155
+1.485873,4.29448,grammatical_chess,Nc1,6.134609
+1.4691502,4.2621007,grammatical_chess,Nc2,6.1019106
+1.4764572,4.2907367,grammatical_chess,Nc3,6.129874
+1.4762851,4.2959704,grammatical_chess,Nc4,6.131523
+1.5193853,4.345798,grammatical_chess,Nc5,6.1789856
+1.5050118,4.3161716,grammatical_chess,Nc6,6.1593237
+1.4590461,4.3389773,grammatical_chess,Nc7,6.163032
+1.480059,4.30763,grammatical_chess,Nc8,6.141638
+2.7683072,-2.5267751,grammatical_chess,Nd1,7.099103
+2.750391,-2.5454152,grammatical_chess,Nd2,7.116615
+2.7893038,-2.507807,grammatical_chess,Nd3,7.0786867
+2.7724535,-2.5238304,grammatical_chess,Nd4,7.094873
+2.7784028,-2.5182307,grammatical_chess,Nd5,7.0894027
+2.7638898,-2.5333667,grammatical_chess,Nd6,7.1042495
+2.7810814,-2.5133636,grammatical_chess,Nd7,7.0864124
+2.8265843,-2.470365,grammatical_chess,Nd8,7.0412436
+-0.3213714,4.7341633,grammatical_chess,Ne1,16.906466
+-0.31020483,4.727738,grammatical_chess,Ne2,16.915833
+-0.29747277,4.7144403,grammatical_chess,Ne3,16.928362
+-0.2981811,4.715206,grammatical_chess,Ne4,16.934063
+-0.29676414,4.7127166,grammatical_chess,Ne5,16.929962
+-0.32698935,4.740694,grammatical_chess,Ne6,16.912868
+-0.2998454,4.711421,grammatical_chess,Ne7,16.93356
+-0.29758874,4.7080073,grammatical_chess,Ne8,16.93437
+1.445736,3.4694688,grammatical_chess,Nf1,4.991974
+1.4402888,3.4563954,grammatical_chess,Nf2,4.989005
+1.4291599,3.4513745,grammatical_chess,Nf3,4.9737244
+1.4839169,3.502864,grammatical_chess,Nf4,5.035734
+1.4613969,3.464193,grammatical_chess,Nf5,4.9948726
+1.4495996,3.4666495,grammatical_chess,Nf6,4.9764323
+1.4581448,3.4646466,grammatical_chess,Nf7,4.985082
+1.4618207,3.4631026,grammatical_chess,Nf8,4.981429
+1.404639,-4.040933,grammatical_chess,Ng1,8.106568
+1.3944527,-4.0472174,grammatical_chess,Ng2,8.114509
+1.4176507,-4.019153,grammatical_chess,Ng3,8.103511
+1.4443462,-3.996799,grammatical_chess,Ng4,8.066876
+1.4191918,-4.021702,grammatical_chess,Ng5,8.091773
+1.3774297,-4.051504,grammatical_chess,Ng6,8.132624
+1.3961153,-4.032638,grammatical_chess,Ng7,8.113133
+1.4144063,-4.0160675,grammatical_chess,Ng8,8.095337
+-0.10622372,-0.18480448,grammatical_chess,Nh1,11.930913
+-0.07353623,-0.20801821,grammatical_chess,Nh2,11.898839
+-0.104546055,-0.16678546,grammatical_chess,Nh3,11.941879
+-0.10440761,-0.16135155,grammatical_chess,Nh4,11.956104
+-0.10109055,-0.15525395,grammatical_chess,Nh5,11.965926
+-0.08223781,-0.15719226,grammatical_chess,Nh6,11.95872
+-0.08476839,-0.15957086,grammatical_chess,Nh7,11.958566
+-0.061600596,-0.19863679,grammatical_chess,Nh8,11.9809065
+-1.2482344,3.3536615,grammatical_chess,O-O,10.22663
+6.3300242,15.234322,grammatical_chess,Qa1,11.753415
+6.3562627,15.260494,grammatical_chess,Qa2,11.779531
+6.315402,15.219751,grammatical_chess,Qa3,11.738554
+6.324841,15.229232,grammatical_chess,Qa4,11.748085
+6.3139615,15.2183275,grammatical_chess,Qa5,11.737122
+6.25871,15.163116,grammatical_chess,Qa6,11.681925
+6.2635303,15.167968,grammatical_chess,Qa7,11.6866865
+6.322276,15.226661,grammatical_chess,Qa8,11.745385
+6.2463694,14.480326,grammatical_chess,Qb1,18.757116
+6.2374806,14.553387,grammatical_chess,Qb2,18.799707
+6.221864,14.431882,grammatical_chess,Qb3,18.730263
+6.1953397,14.434635,grammatical_chess,Qb4,18.721613
+6.17928,14.485253,grammatical_chess,Qb5,18.713945
+6.2034287,14.418547,grammatical_chess,Qb6,18.719835
+6.179652,14.4436865,grammatical_chess,Qb7,18.717213
+6.1766624,14.501994,grammatical_chess,Qb8,18.753717
+6.5106688,15.150449,grammatical_chess,Qc1,19.16819
+6.517529,15.117919,grammatical_chess,Qc2,19.150274
+6.509163,15.155257,grammatical_chess,Qc3,19.134937
+6.4904985,15.154953,grammatical_chess,Qc4,19.153486
+6.482059,15.142874,grammatical_chess,Qc5,19.143847
+6.534763,15.194051,grammatical_chess,Qc6,19.166197
+6.5099187,15.153126,grammatical_chess,Qc7,19.153101
+6.4982085,15.133386,grammatical_chess,Qc8,19.156855
+7.298441,14.834005,grammatical_chess,Qd1,18.94759
+7.2923656,14.835773,grammatical_chess,Qd2,18.95487
+7.3009543,14.84677,grammatical_chess,Qd3,18.931246
+7.3319097,14.822339,grammatical_chess,Qd4,18.9524
+7.35716,14.821175,grammatical_chess,Qd5,18.954157
+7.3220778,14.823173,grammatical_chess,Qd6,18.949575
+7.278507,14.8416,grammatical_chess,Qd7,18.90778
+7.356568,14.8462,grammatical_chess,Qd8,18.923908
+14.092134,-5.4716625,grammatical_chess,Qe1,12.125718
+14.050691,-5.430222,grammatical_chess,Qe2,12.167315
+14.11144,-5.4909654,grammatical_chess,Qe3,12.106727
+14.085746,-5.465276,grammatical_chess,Qe4,12.132409
+14.101577,-5.481091,grammatical_chess,Qe5,12.116819
+14.1184,-5.497935,grammatical_chess,Qe6,12.099824
+14.192805,-5.572353,grammatical_chess,Qe7,12.025437
+14.181477,-5.561019,grammatical_chess,Qe8,12.036793
+5.9424367,14.80556,grammatical_chess,Qf1,18.457205
+5.945259,14.807289,grammatical_chess,Qf2,18.515568
+5.8968835,14.841468,grammatical_chess,Qf3,18.43146
+5.8962893,14.82509,grammatical_chess,Qf4,18.47517
+5.8918037,14.804417,grammatical_chess,Qf5,18.451502
+5.8735404,14.851186,grammatical_chess,Qf6,18.375504
+5.931825,14.812782,grammatical_chess,Qf7,18.467552
+5.9274673,14.813042,grammatical_chess,Qf8,18.535223
+6.363899,14.793948,grammatical_chess,Qg1,19.005672
+6.3369517,14.785514,grammatical_chess,Qg2,19.01636
+6.3184857,14.832226,grammatical_chess,Qg3,19.04364
+6.2898645,14.766255,grammatical_chess,Qg4,18.999481
+6.333649,14.890844,grammatical_chess,Qg5,19.080067
+6.3534093,14.83541,grammatical_chess,Qg6,19.027456
+6.3571687,14.852479,grammatical_chess,Qg7,19.064243
+6.371287,14.835812,grammatical_chess,Qg8,19.056793
+5.742499,14.962878,grammatical_chess,Qh1,18.885002
+5.7348013,14.959131,grammatical_chess,Qh2,18.910975
+5.7030406,14.979808,grammatical_chess,Qh3,18.916548
+5.6574683,14.963679,grammatical_chess,Qh4,18.958994
+5.662545,14.937209,grammatical_chess,Qh5,18.956793
+5.69791,14.975686,grammatical_chess,Qh6,18.923218
+5.6440973,14.958671,grammatical_chess,Qh7,18.952873
+5.7148356,14.985853,grammatical_chess,Qh8,18.922691
+0.5974566,6.4820313,grammatical_chess,Ra1,17.277561
+0.6289612,6.510785,grammatical_chess,Ra2,17.305016
+0.59716773,6.48128,grammatical_chess,Ra3,17.278954
+0.60831535,6.4871793,grammatical_chess,Ra4,17.287941
+0.6345965,6.5156026,grammatical_chess,Ra5,17.31466
+0.6423149,6.523895,grammatical_chess,Ra6,17.322699
+0.589043,6.4702673,grammatical_chess,Ra7,17.269556
+0.6100798,6.492456,grammatical_chess,Ra8,17.290176
+0.8976366,3.1742673,grammatical_chess,Rb1,-1.7987888
+0.88895595,3.1867228,grammatical_chess,Rb2,-1.8010814
+0.9432246,3.148516,grammatical_chess,Rb3,-1.8082347
+0.9518894,3.1496706,grammatical_chess,Rb4,-1.8178582
+0.90258574,3.1529632,grammatical_chess,Rb5,-1.782296
+0.9381573,3.1537943,grammatical_chess,Rb6,-1.8364987
+0.9492608,3.1891198,grammatical_chess,Rb7,-1.8193537
+0.9377721,3.157193,grammatical_chess,Rb8,-1.8195044
+0.041707598,3.1470172,grammatical_chess,Rc1,-1.819611
+0.056101464,3.171862,grammatical_chess,Rc2,-1.807752
+-0.005661683,3.1129794,grammatical_chess,Rc3,-1.847088
+0.016187698,3.1313043,grammatical_chess,Rc4,-1.8265961
+-0.036820073,3.0738878,grammatical_chess,Rc5,-1.8756013
+-0.019481337,3.0894501,grammatical_chess,Rc6,-1.8652447
+-0.01806146,3.090469,grammatical_chess,Rc7,-1.8597566
+-0.02443876,3.1094818,grammatical_chess,Rc8,-1.8510004
+0.5593837,3.6415393,grammatical_chess,Rd1,-1.8525052
+0.5445923,3.6700256,grammatical_chess,Rd2,-1.8468297
+0.5884281,3.7244244,grammatical_chess,Rd3,-1.9216164
+0.62064075,3.75925,grammatical_chess,Rd4,-1.9480141
+0.5890581,3.74123,grammatical_chess,Rd5,-1.9322871
+0.596815,3.7429986,grammatical_chess,Rd6,-1.9422537
+0.5536884,3.774607,grammatical_chess,Rd7,-1.9502188
+0.63383245,3.7092566,grammatical_chess,Rd8,-1.9488027
+5.261823,9.498282,grammatical_chess,Re1,16.243359
+5.2699246,9.508757,grammatical_chess,Re2,16.254326
+5.254844,9.491325,grammatical_chess,Re3,16.234867
+5.2786174,9.516958,grammatical_chess,Re4,16.260408
+5.2511187,9.489228,grammatical_chess,Re5,16.232712
+5.2591915,9.497511,grammatical_chess,Re6,16.241291
+5.2891946,9.527833,grammatical_chess,Re7,16.271526
+5.287027,9.525655,grammatical_chess,Re8,16.269905
+0.36288613,4.4040947,grammatical_chess,Rf1,-0.83679193
+0.36059892,4.3908753,grammatical_chess,Rf2,-0.8518584
+0.36112723,4.4061728,grammatical_chess,Rf3,-0.83554035
+0.34813035,4.392332,grammatical_chess,Rf4,-0.8537075
+0.35110986,4.3890915,grammatical_chess,Rf5,-0.8507086
+0.41527644,4.462299,grammatical_chess,Rf6,-0.7820818
+0.38123944,4.420249,grammatical_chess,Rf7,-0.8205543
+0.40694377,4.4535728,grammatical_chess,Rf8,-0.78941983
+0.35865206,3.3629403,grammatical_chess,Rg1,-1.4800563
+0.37112275,3.3718538,grammatical_chess,Rg2,-1.5143107
+0.33954692,3.3474133,grammatical_chess,Rg3,-1.4463265
+0.3373304,3.3966367,grammatical_chess,Rg4,-1.4819865
+0.37118325,3.3298757,grammatical_chess,Rg5,-1.4243246
+0.3553488,3.3671386,grammatical_chess,Rg6,-1.4591534
+0.3742533,3.3483908,grammatical_chess,Rg7,-1.426977
+0.28426772,3.2779553,grammatical_chess,Rg8,-1.4541383
+-0.6903643,8.90821,grammatical_chess,Rh1,-6.8961477
+-0.6953538,8.91309,grammatical_chess,Rh2,-6.8909955
+-0.6954382,8.913202,grammatical_chess,Rh3,-6.890959
+-0.716,8.933749,grammatical_chess,Rh4,-6.870388
+-0.6845071,8.9022665,grammatical_chess,Rh5,-6.902004
+-0.69338536,8.911181,grammatical_chess,Rh6,-6.8930764
+-0.7079536,8.925769,grammatical_chess,Rh7,-6.8785515
+-0.6920162,8.909797,grammatical_chess,Rh8,-6.8944592
+-3.2028222,3.666598,grammatical_chess,a2#,12.423166
+-7.1656713,2.2800922,grammatical_chess,a2+,8.61466
+-3.1909425,3.6521342,grammatical_chess,a3#,12.433342
+-7.1370826,2.2382374,grammatical_chess,a3+,8.570761
+-3.1753743,3.6194832,grammatical_chess,a4#,12.440881
+-7.1587725,2.292922,grammatical_chess,a4+,8.622819
+-3.1897204,3.644384,grammatical_chess,a5#,12.443069
+-7.1661615,2.287843,grammatical_chess,a5+,8.618407
+-3.1690936,3.6199794,grammatical_chess,a6#,12.443901
+-7.149523,2.2771385,grammatical_chess,a6+,8.610212
+-3.1825004,3.6629047,grammatical_chess,a7#,12.430977
+-7.120924,2.3085566,grammatical_chess,a7+,8.641105
+-3.3038948,4.5691586,grammatical_chess,b2#,12.490143
+-4.3191037,0.8554452,grammatical_chess,b2+,7.3212085
+-3.2787764,4.5756516,grammatical_chess,b3#,12.502534
+-4.341378,0.83826053,grammatical_chess,b3+,7.3352003
+-3.3260555,4.5903745,grammatical_chess,b4#,12.483415
+-4.3228755,0.85813075,grammatical_chess,b4+,7.316916
+-3.3172746,4.5655284,grammatical_chess,b5#,12.489515
+-4.3276806,0.8310464,grammatical_chess,b5+,7.3446317
+-3.2976723,4.583054,grammatical_chess,b6#,12.515262
+-4.342043,0.87675464,grammatical_chess,b6+,7.2979436
+-3.3065355,4.5543275,grammatical_chess,b7#,12.493706
+-4.324218,0.86233073,grammatical_chess,b7+,7.3131294
+-3.1030684,4.191814,grammatical_chess,c2#,12.085068
+-6.3153396,1.0651734,grammatical_chess,c2+,7.4393916
+-3.1362882,4.198276,grammatical_chess,c3#,12.048055
+-6.3010793,1.0647907,grammatical_chess,c3+,7.420862
+-3.065574,4.153817,grammatical_chess,c4#,12.087218
+-6.3090267,1.07595,grammatical_chess,c4+,7.4308286
+-3.0777323,4.1761055,grammatical_chess,c5#,12.081426
+-6.3091035,1.0740348,grammatical_chess,c5+,7.4330215
+-3.1012387,4.174252,grammatical_chess,c6#,12.074067
+-6.303104,1.0762868,grammatical_chess,c6+,7.4332037
+-3.0076604,4.2442245,grammatical_chess,c7#,12.172399
+-6.301115,1.077565,grammatical_chess,c7+,7.4324875
+-3.975693,4.4987235,grammatical_chess,d2#,12.427306
+4.684036,2.1016176,grammatical_chess,d2+,15.725028
+-3.9581938,4.4940257,grammatical_chess,d3#,12.409773
+4.6907344,2.1088352,grammatical_chess,d3+,15.719285
+-3.993671,4.5225186,grammatical_chess,d4#,12.45508
+4.6902356,2.1088414,grammatical_chess,d4+,15.719432
+-3.9839475,4.4942207,grammatical_chess,d5#,12.439129
+4.690502,2.113549,grammatical_chess,d5+,15.714598
+-3.9540684,4.508865,grammatical_chess,d6#,12.413168
+4.696764,2.1101513,grammatical_chess,d6+,15.716012
+-3.9687312,4.5027146,grammatical_chess,d7#,12.433399
+4.6926064,2.1097806,grammatical_chess,d7+,15.718142
+-3.1400318,3.1707551,grammatical_chess,e2#,12.845505
+-8.861437,1.5377085,grammatical_chess,e2+,8.6713705
+-3.1242254,3.181448,grammatical_chess,e3#,12.825643
+-8.859275,1.5454191,grammatical_chess,e3+,8.671553
+-3.145804,3.1601944,grammatical_chess,e4#,12.849964
+-8.865938,1.537969,grammatical_chess,e4+,8.676637
+-3.1587317,3.1753774,grammatical_chess,e5#,12.831405
+-8.871482,1.543945,grammatical_chess,e5+,8.679772
+-3.134909,3.1692886,grammatical_chess,e6#,12.836091
+-8.867686,1.5483406,grammatical_chess,e6+,8.672176
+-3.1170168,3.1247973,grammatical_chess,e7#,12.874539
+-8.88948,1.5692443,grammatical_chess,e7+,8.6915245
+-3.3894956,4.7128825,grammatical_chess,f2#,11.876445
+-9.387504,-0.33139417,grammatical_chess,f2+,7.545795
+-3.392769,4.705981,grammatical_chess,f3#,11.881303
+-9.410537,-0.31775194,grammatical_chess,f3+,7.553037
+-3.3626928,4.737339,grammatical_chess,f4#,11.872237
+-9.4111395,-0.31620222,grammatical_chess,f4+,7.5572186
+-3.3289945,4.7699714,grammatical_chess,f5#,11.903235
+-9.418428,-0.31587273,grammatical_chess,f5+,7.55528
+-3.3876152,4.732354,grammatical_chess,f6#,11.886354
+-9.423799,-0.29341167,grammatical_chess,f6+,7.588702
+-3.3812315,4.763814,grammatical_chess,f7#,11.865846
+-9.432956,-0.30366486,grammatical_chess,f7+,7.5648594
+-3.8386092,4.1657634,grammatical_chess,g2#,11.79524
+-5.200059,-0.087529294,grammatical_chess,g2+,8.314471
+-3.841058,4.1469755,grammatical_chess,g3#,11.774166
+-5.189535,-0.075692184,grammatical_chess,g3+,8.298876
+-3.8584983,4.1423116,grammatical_chess,g4#,11.781839
+-5.2157865,-0.103565425,grammatical_chess,g4+,8.329179
+-3.8366632,4.1558776,grammatical_chess,g5#,11.7796335
+-5.204399,-0.08947046,grammatical_chess,g5+,8.3142185
+-3.8478427,4.1388087,grammatical_chess,g6#,11.762016
+-5.2120433,-0.10070791,grammatical_chess,g6+,8.325604
+-3.839905,4.1412935,grammatical_chess,g7#,11.779515
+-5.1830726,-0.078148924,grammatical_chess,g7+,8.304404
+-3.7103908,4.6723976,grammatical_chess,h2#,11.319115
+-1.6207442,-0.77280957,grammatical_chess,h2+,14.814317
+-3.7053726,4.680188,grammatical_chess,h3#,11.313445
+-1.6227986,-0.7785607,grammatical_chess,h3+,14.822535
+-3.725027,4.708926,grammatical_chess,h4#,11.290542
+-1.620193,-0.77999634,grammatical_chess,h4+,14.823881
+-3.6827276,4.669839,grammatical_chess,h5#,11.335626
+-1.5711628,-0.8307438,grammatical_chess,h5+,14.874026
+-3.7068765,4.6801763,grammatical_chess,h6#,11.309815
+-1.6206172,-0.7811917,grammatical_chess,h6+,14.823818
+-3.7024329,4.69058,grammatical_chess,h7#,11.315012
+-1.5981663,-0.8048727,grammatical_chess,h7+,14.848434
+-0.9376558,3.5451727,grammatical_chess,B1a2,4.5446916
+-1.005827,3.5487301,grammatical_chess,B1a3,4.6299586
+-0.96029824,3.4709141,grammatical_chess,B1a4,4.615525
+-0.91050893,3.4965856,grammatical_chess,B1b2,4.5100904
+-0.9251132,3.5066721,grammatical_chess,B1b3,4.5642066
+-0.8869602,3.5574894,grammatical_chess,B1b4,4.428882
+-0.7922657,3.6200373,grammatical_chess,B1c2,4.340346
+-0.8935041,3.5397243,grammatical_chess,B1c3,4.4501963
+-0.86206526,3.6145556,grammatical_chess,B1c4,4.3908668
+-0.7103718,3.5100749,grammatical_chess,B1d2,4.609572
+-0.68221396,3.5569234,grammatical_chess,B1d3,4.6368065
+-0.43079436,3.673981,grammatical_chess,B1d4,4.6965127
+-0.90869755,3.4260902,grammatical_chess,B1e2,4.6463094
+-1.0481902,3.486766,grammatical_chess,B1e3,4.692525
+-0.93315727,3.3978875,grammatical_chess,B1e4,4.6658897
+-0.8125933,3.3711421,grammatical_chess,B1f2,4.5729766
+-0.87189174,3.4331741,grammatical_chess,B1f3,4.561077
+-0.78228956,3.4552546,grammatical_chess,B1f4,4.54117
+-0.7684363,3.4559302,grammatical_chess,B1g2,4.5819383
+-0.80713534,3.3944664,grammatical_chess,B1g3,4.600403
+-0.7325607,3.3890917,grammatical_chess,B1g4,4.591582
+-0.79464465,3.4233997,grammatical_chess,B1h2,4.5871067
+-0.81585187,3.4333448,grammatical_chess,B1h3,4.5921
+-0.7753907,3.429232,grammatical_chess,B1h4,4.5785575
+-1.0418817,3.6456678,grammatical_chess,B2a3,4.5142603
+-1.0887753,3.5757372,grammatical_chess,B2a4,4.57109
+-1.0586939,3.6358814,grammatical_chess,B2a5,4.479386
+-0.9745072,3.6903422,grammatical_chess,B2b3,4.449195
+-0.9683492,3.7222784,grammatical_chess,B2b4,4.419
+-1.0194339,3.7273614,grammatical_chess,B2b5,4.395365
+-0.959531,3.6949008,grammatical_chess,B2c3,4.403524
+-0.87776554,3.7449503,grammatical_chess,B2c4,4.3708386
+-0.96100193,3.7605367,grammatical_chess,B2c5,4.355528
+-0.6523599,3.7724469,grammatical_chess,B2d3,4.5465217
+-0.5030508,3.7469876,grammatical_chess,B2d4,4.650428
+-1.2510066,3.3482268,agrammatical_chess,OO,10.217658
+-7.5798173,1.5622873,agrammatical_chess,a0,8.251963
+-7.6294403,1.5212239,agrammatical_chess,a9,8.212816
+-7.758985,0.1780104,agrammatical_chess,b0,7.463572
+-7.822907,0.21436645,agrammatical_chess,b9,7.3231297
+-7.0668373,0.68737656,agrammatical_chess,c0,7.548863
+-7.006672,0.6983921,agrammatical_chess,c9,7.5529046
+-7.979035,0.054298826,agrammatical_chess,d0,8.412854
+-8.065023,0.06663725,agrammatical_chess,d9,8.5569
+-8.528356,1.1664287,agrammatical_chess,e0,8.494789
+-8.530444,1.002539,agrammatical_chess,e9,8.553385
+-8.635292,-0.2725208,agrammatical_chess,f0,7.9157624
+-8.608609,-0.28108707,agrammatical_chess,f9,7.930345
+-7.755551,0.051645912,agrammatical_chess,g0,7.9048862
+-7.694345,-0.12072985,agrammatical_chess,g9,7.91521
+-7.2511296,-0.7807128,agrammatical_chess,h0,8.37203
+-7.2210307,-0.82598364,agrammatical_chess,h9,8.392457
+-11.596219,3.828703,agrammatical_chess,i1,16.493021
+-11.593845,3.8263307,agrammatical_chess,i2,16.502317
+-11.601964,3.8342104,agrammatical_chess,i3,16.498625
+-11.585555,3.8182385,agrammatical_chess,i4,16.493279
+-11.609128,3.8415506,agrammatical_chess,i5,16.504732
+-11.600774,3.8331594,agrammatical_chess,i6,16.504688
+-11.627657,3.861015,agrammatical_chess,i7,16.527283
+-11.617639,3.8501163,agrammatical_chess,i8,16.514545
+-5.630015,-2.9482963,agrammatical_chess,z1,5.339883
+-5.6128397,-2.9649897,agrammatical_chess,z2,5.323077
+-5.5960035,-2.9829972,agrammatical_chess,z3,5.305911
+-5.5976315,-2.9816225,agrammatical_chess,z4,5.3073974
+-5.5944014,-2.9849684,agrammatical_chess,z5,5.3040824
+-5.561797,-3.017172,agrammatical_chess,z6,5.271842
+-5.5916905,-2.9878297,agrammatical_chess,z7,5.3012557
+-5.576282,-3.0031757,agrammatical_chess,z8,5.2857985
+-1.0542072,5.4334497,agrammatical_chess,Ba0,15.650794
+-1.0485269,5.4870057,agrammatical_chess,Ba9,15.619184
+5.9777513,2.682989,agrammatical_chess,Bb0,7.1220107
+5.9751115,2.7138455,agrammatical_chess,Bb9,7.0240355
+5.8400464,2.7651706,agrammatical_chess,Bc0,5.5005107
+5.905988,2.7574763,agrammatical_chess,Bc9,5.5265594
+5.559636,2.950825,agrammatical_chess,Bd0,6.776087
+5.489066,2.997249,agrammatical_chess,Bd9,6.7049227
+-0.09634845,3.5542698,agrammatical_chess,Be0,15.722692
+-0.065683894,3.5151854,agrammatical_chess,Be9,15.755219
+5.8973923,2.6040485,agrammatical_chess,Bf0,7.4903784
+5.7783027,2.3860323,agrammatical_chess,Bf9,7.6590624
+6.0954895,2.910703,agrammatical_chess,Bg0,7.362084
+6.290795,2.9312274,agrammatical_chess,Bg9,7.4132686
+-6.0424795,5.8070474,agrammatical_chess,Bh0,9.642278
+-6.0570946,5.8216753,agrammatical_chess,Bh9,9.654717
+-1.60835,1.1344808,agrammatical_chess,Bi1,19.344648
+-1.5841206,1.1289979,agrammatical_chess,Bi2,19.368973
+-1.6133469,1.1272899,agrammatical_chess,Bi3,19.33904
+-1.6142739,1.1328225,agrammatical_chess,Bi4,19.332506
+-1.6250927,1.1347756,agrammatical_chess,Bi5,19.32564
+-1.6713543,1.166827,agrammatical_chess,Bi6,19.278158
+-1.6594671,1.1563286,agrammatical_chess,Bi7,19.285046
+-1.6308308,1.1621168,agrammatical_chess,Bi8,19.3205
+6.105465,3.5247903,agrammatical_chess,Bz1,7.4598937
+6.068143,3.5229595,agrammatical_chess,Bz2,7.453225
+6.0590377,3.551866,agrammatical_chess,Bz3,7.444742
+6.0140285,3.5834992,agrammatical_chess,Bz4,7.4251947
+6.054013,3.5748038,agrammatical_chess,Bz5,7.4470572
+6.095749,3.5515594,agrammatical_chess,Bz6,7.4349484
+6.0676665,3.622303,agrammatical_chess,Bz7,7.489113
+6.048275,3.6023548,agrammatical_chess,Bz8,7.4556985
+-1.8347406,5.9602423,agrammatical_chess,Ka0,16.234024
+-1.8632286,5.995283,agrammatical_chess,Ka9,16.229013
+4.570163,6.1645017,agrammatical_chess,Kb0,7.411402
+4.513665,6.296256,agrammatical_chess,Kb9,7.399392
+5.38656,6.072117,agrammatical_chess,Kc0,8.135416
+5.25695,6.0842633,agrammatical_chess,Kc9,8.149852
+4.5953383,5.773399,agrammatical_chess,Kd0,7.6769
+4.479147,5.5496287,agrammatical_chess,Kd9,7.6089735
+-2.0520928,5.3760915,agrammatical_chess,Ke0,16.93579
+-2.0399694,5.3967514,agrammatical_chess,Ke9,16.931648
+4.7767277,6.2104926,agrammatical_chess,Kf0,7.8465657
+4.819328,6.308702,agrammatical_chess,Kf9,7.9030285
+1.2427157,5.1867104,agrammatical_chess,Kg0,10.982618
+1.1454947,5.0768423,agrammatical_chess,Kg9,11.096822
+-7.655525,8.465087,agrammatical_chess,Kh0,11.970809
+-7.657618,8.462022,agrammatical_chess,Kh9,11.973498
+-2.933437,4.8179564,agrammatical_chess,Ki1,18.673649
+-2.9151819,4.805506,agrammatical_chess,Ki2,18.686676
+-2.935526,4.822926,agrammatical_chess,Ki3,18.661707
+-2.9566672,4.8416343,agrammatical_chess,Ki4,18.650404
+-2.9428072,4.827143,agrammatical_chess,Ki5,18.66021
+-2.9094758,4.789956,agrammatical_chess,Ki6,18.706028
+-2.9181597,4.8020024,agrammatical_chess,Ki7,18.685955
+-2.9207609,4.798555,agrammatical_chess,Ki8,18.70065
+5.34878,5.1651874,agrammatical_chess,Kz1,7.8245625
+5.3202124,5.194871,agrammatical_chess,Kz2,7.820327
+5.353095,5.150742,agrammatical_chess,Kz3,7.8311152
+5.3503127,5.1045322,agrammatical_chess,Kz4,7.825435
+5.3665,5.149917,agrammatical_chess,Kz5,7.839611
+5.4020176,5.121685,agrammatical_chess,Kz6,7.871657
+5.420248,5.122206,agrammatical_chess,Kz7,7.873854
+5.404444,5.148695,agrammatical_chess,Kz8,7.858637
+-0.41783798,5.7182937,agrammatical_chess,Na0,16.617085
+-0.52438915,5.803471,agrammatical_chess,Na9,16.555208
+0.96184623,3.8063488,agrammatical_chess,Nb0,5.2849917
+0.8760168,3.844243,agrammatical_chess,Nb9,5.304657
+1.5117413,4.2716174,agrammatical_chess,Nc0,6.1222277
+1.4916536,4.3036466,agrammatical_chess,Nc9,6.1451135
+2.7282565,-2.5640075,agrammatical_chess,Nd0,7.1384726
+2.7745802,-2.5187593,agrammatical_chess,Nd9,7.093523
+-0.43262848,5.0515223,agrammatical_chess,Ne0,16.659597
+-0.34248978,4.763836,agrammatical_chess,Ne9,16.890799
+1.3961881,3.5217779,agrammatical_chess,Nf0,5.056494
+1.4601892,3.4868221,agrammatical_chess,Nf9,5.0115323
+1.3613861,-4.0731883,agrammatical_chess,Ng0,8.147017
+1.3584169,-4.0332427,agrammatical_chess,Ng9,8.155525
+-0.08764401,-0.18463227,agrammatical_chess,Nh0,11.926744
+-0.10388808,-0.17287672,agrammatical_chess,Nh9,11.939305
+-1.3588946,3.4998105,agrammatical_chess,Ni1,18.595882
+-1.3754121,3.5190518,agrammatical_chess,Ni2,18.610048
+-1.3573724,3.501776,agrammatical_chess,Ni3,18.598894
+-1.3616464,3.5038733,agrammatical_chess,Ni4,18.60192
+-1.3255888,3.4680862,agrammatical_chess,Ni5,18.57838
+-1.3436165,3.4852324,agrammatical_chess,Ni6,18.585623
+-1.3465227,3.4880888,agrammatical_chess,Ni7,18.59004
+-1.3557833,3.4970233,agrammatical_chess,Ni8,18.59776
+5.8577633,15.637237,agrammatical_chess,Nz1,6.2586436
+5.8128133,15.680666,agrammatical_chess,Nz2,6.2145762
+5.8391356,15.654772,agrammatical_chess,Nz3,6.2404857
+5.798995,15.694215,agrammatical_chess,Nz4,6.200728
+5.826452,15.669033,agrammatical_chess,Nz5,6.2280064
+5.7988396,15.693967,agrammatical_chess,Nz6,6.200742
+5.8164487,15.6605,agrammatical_chess,Nz7,6.2239704
+5.82623,15.664495,agrammatical_chess,Nz8,6.22882
+-1.2287067,3.336189,agrammatical_chess,O.O,10.191172
+-1.292555,3.386886,agrammatical_chess,OO#,10.279379
+-1.2338939,3.3340552,agrammatical_chess,OO+,10.195222
+-1.2557542,3.3529701,agrammatical_chess,OOO,10.221052
+6.243315,15.1475525,agrammatical_chess,Qa0,11.667551
+6.2696853,15.17408,agrammatical_chess,Qa9,11.692964
+6.428551,14.732135,agrammatical_chess,Qb0,18.811546
+6.154081,14.5766535,agrammatical_chess,Qb9,18.797369
+6.5558777,15.11055,agrammatical_chess,Qc0,18.996931
+6.4869027,15.108299,agrammatical_chess,Qc9,19.133621
+6.981492,14.864718,agrammatical_chess,Qd0,18.8821
+7.2662196,14.846605,agrammatical_chess,Qd9,18.903742
+14.139646,-5.5191607,agrammatical_chess,Qe0,12.078461
+14.138093,-5.517626,agrammatical_chess,Qe9,12.080194
+6.217602,14.932124,agrammatical_chess,Qf0,18.752644
+5.990815,14.894928,agrammatical_chess,Qf9,18.590012
+6.441546,14.905248,agrammatical_chess,Qg0,18.901314
+6.3219414,14.819828,agrammatical_chess,Qg9,19.000408
+5.957359,14.970728,agrammatical_chess,Qh0,18.861612
+5.7043505,14.987399,agrammatical_chess,Qh9,18.903233
+10.11117,10.014932,agrammatical_chess,Qi1,14.125119
+10.112845,10.016781,agrammatical_chess,Qi2,14.127104
+10.0931835,9.996891,agrammatical_chess,Qi3,14.106956
+10.10491,10.008361,agrammatical_chess,Qi4,14.11842
+10.107764,10.0114,agrammatical_chess,Qi5,14.121458
+10.092964,9.996541,agrammatical_chess,Qi6,14.106548
+10.076769,9.980425,agrammatical_chess,Qi7,14.090424
+10.040332,9.945568,agrammatical_chess,Qi8,14.055551
+6.2168503,14.683873,agrammatical_chess,Qz1,19.70296
+6.2265286,14.700885,agrammatical_chess,Qz2,19.656021
+6.2153955,14.678701,agrammatical_chess,Qz3,19.764437
+6.2021255,14.665776,agrammatical_chess,Qz4,19.726099
+6.2224793,14.669181,agrammatical_chess,Qz5,19.75074
+6.173732,14.639867,agrammatical_chess,Qz6,19.725502
+6.186796,14.675524,agrammatical_chess,Qz7,19.722095
+6.2139344,14.601288,agrammatical_chess,Qz8,19.656782
+0.561858,6.4523344,agrammatical_chess,Ra0,17.248405
+0.6070599,6.489844,agrammatical_chess,Ra9,17.287493
+0.76549727,3.2715428,agrammatical_chess,Rb0,-1.7184653
+0.83401257,3.2725182,agrammatical_chess,Rb9,-1.8910536
+0.10896513,3.1788876,agrammatical_chess,Rc0,-1.7930768
+-0.00047749578,3.1122272,agrammatical_chess,Rc9,-1.8437047
+0.5651763,3.5768046,agrammatical_chess,Rd0,-1.7625494
+0.5959978,3.7396646,agrammatical_chess,Rd9,-1.9412662
+5.296447,9.537198,agrammatical_chess,Re0,16.2864
+5.2800093,9.518668,agrammatical_chess,Re9,16.26284
+0.3397504,4.331471,agrammatical_chess,Rf0,-0.8930155
+0.37902746,4.4035926,agrammatical_chess,Rf9,-0.8383312
+0.44998512,3.356917,agrammatical_chess,Rg0,-1.6134826
+0.34132585,3.32085,agrammatical_chess,Rg9,-1.4187149
+-0.69103765,8.908824,agrammatical_chess,Rh0,-6.895444
+-0.6408412,8.858666,agrammatical_chess,Rh9,-6.9459333
+9.164562,1.2402765,agrammatical_chess,Ri1,15.779739
+9.1582155,1.2414539,agrammatical_chess,Ri2,15.778504
+9.148856,1.2556165,agrammatical_chess,Ri3,15.763218
+9.15227,1.2515081,agrammatical_chess,Ri4,15.767774
+9.183344,1.2209417,agrammatical_chess,Ri5,15.798026
+9.145995,1.2606893,agrammatical_chess,Ri6,15.756968
+9.149537,1.2552358,agrammatical_chess,Ri7,15.763512
+9.149046,1.2555487,agrammatical_chess,Ri8,15.763244
+-0.07464717,3.757472,agrammatical_chess,Rz1,-1.5556546
+-0.061555076,3.7794535,agrammatical_chess,Rz2,-1.5337365
+-0.09875408,3.7738154,agrammatical_chess,Rz3,-1.5523872
+-0.103048645,3.7779732,agrammatical_chess,Rz4,-1.5609348
+-0.12654655,3.7853272,agrammatical_chess,Rz5,-1.5817052
+-0.12124333,3.785113,agrammatical_chess,Rz6,-1.5611423
+-0.055139624,3.7267485,agrammatical_chess,Rz7,-1.6094851
+-0.10808344,3.7719102,agrammatical_chess,Rz8,-1.5682331
+-3.1140854,3.7123406,agrammatical_chess,a0#,12.355547
+-7.18814,2.2217648,agrammatical_chess,a0+,8.5756445
+-3.1229665,3.6513355,agrammatical_chess,a9#,12.395164
+-7.118664,2.2646797,agrammatical_chess,a9+,8.599474
+-3.3474512,4.321346,agrammatical_chess,b0#,12.211933
+-4.318667,0.8449318,agrammatical_chess,b0+,7.3408313
+-3.320761,4.469328,agrammatical_chess,b9#,12.472244
+-4.375348,0.9109301,agrammatical_chess,b9+,7.272286
+-3.2836611,4.220042,agrammatical_chess,c0#,12.038353
+-6.3330817,1.0676755,agrammatical_chess,c0+,7.456835
+-3.057543,4.207849,agrammatical_chess,c9#,12.119367
+-6.3074465,1.0865583,agrammatical_chess,c9+,7.426413
+-3.6513352,4.3613243,agrammatical_chess,d0#,12.140637
+4.6907754,2.1122916,agrammatical_chess,d0+,15.715759
+-3.9552965,4.4897094,agrammatical_chess,d9#,12.417896
+4.700315,2.1217256,agrammatical_chess,d9+,15.7069645
+-3.0824106,3.2651875,agrammatical_chess,e0#,12.754237
+-8.790898,1.5106049,agrammatical_chess,e0+,8.59892
+-3.111333,3.1864688,agrammatical_chess,e9#,12.832937
+-8.91317,1.5894915,agrammatical_chess,e9+,8.713756
+-3.4359496,4.6181607,agrammatical_chess,f0#,11.87429
+-9.37707,-0.3009336,agrammatical_chess,f0+,7.5822654
+-3.3700926,4.754633,agrammatical_chess,f9#,11.851241
+-9.452373,-0.282967,agrammatical_chess,f9+,7.582082
+-3.5890248,4.2769027,agrammatical_chess,g0#,11.911516
+-5.1728253,-0.067176916,agrammatical_chess,g0+,8.294863
+-3.8156836,4.161891,agrammatical_chess,g9#,11.802856
+-5.2049274,-0.08337162,agrammatical_chess,g9+,8.310084
+-3.5398607,4.475069,agrammatical_chess,h0#,11.656913
+-1.6268163,-0.76850575,agrammatical_chess,h0+,14.808109
+-3.6625092,4.649578,agrammatical_chess,h9#,11.362977
+-1.6239128,-0.7793439,agrammatical_chess,h9+,14.819878
+-3.6654875,2.4124784,agrammatical_chess,i1#,12.933367
+-11.600966,3.8181925,agrammatical_chess,i1+,17.32996
+-3.6566465,2.4180777,agrammatical_chess,i2#,12.942063
+-11.599213,3.8346953,agrammatical_chess,i2+,17.320131
+-3.6456327,2.4318314,agrammatical_chess,i3#,12.946657
+-11.626111,3.807359,agrammatical_chess,i3+,17.355362
+-3.633148,2.4463186,agrammatical_chess,i4#,12.961912
+-11.599376,3.8685048,agrammatical_chess,i4+,17.284988
+-3.6383634,2.4431796,agrammatical_chess,i5#,12.9520855
+-11.595849,3.8370135,agrammatical_chess,i5+,17.316793
+-3.6467733,2.4352572,agrammatical_chess,i6#,12.942357
+-11.596053,3.836496,agrammatical_chess,i6+,17.318497
+-3.64324,2.4543414,agrammatical_chess,i7#,12.937448
+-11.592719,3.8370237,agrammatical_chess,i7+,17.32369
+-3.6399913,2.4428322,agrammatical_chess,i8#,12.941076
+-11.595496,3.8242514,agrammatical_chess,i8+,17.329533
+-4.9885383,6.2655387,agrammatical_chess,z1#,12.517104
+-0.0802777,16.27391,agrammatical_chess,z1+,1.7066855
+-4.9973335,6.228381,agrammatical_chess,z2#,12.547882
+-0.08073116,16.28748,agrammatical_chess,z2+,1.6987811
+-4.986465,6.266211,agrammatical_chess,z3#,12.513456
+-0.08044739,16.280354,agrammatical_chess,z3+,1.7029657
+-5.003819,6.2835903,agrammatical_chess,z4#,12.531221
+-0.08036884,16.280413,agrammatical_chess,z4+,1.7031018
+-4.987284,6.267038,agrammatical_chess,z5#,12.514668
+-0.08042336,16.279581,agrammatical_chess,z5+,1.7034204
+-4.981941,6.2615056,agrammatical_chess,z6#,12.508356
+-0.08041948,16.279543,agrammatical_chess,z6+,1.7034473
+-5.0024886,6.2820005,agrammatical_chess,z7#,12.531444
+-0.08015597,16.269335,agrammatical_chess,z7+,1.7091632
+-4.9793935,6.2590246,agrammatical_chess,z8#,12.506326
+-0.08022237,16.271702,agrammatical_chess,z8+,1.7081193
+0.9179,3.7949948,agrammatical_chess,0--0,5.2320914
+-0.16112036,3.7589197,agrammatical_chess,B0d4,4.8167896
+-0.20605397,3.7519932,agrammatical_chess,B9d4,4.7862554
+-0.7985458,3.617827,agrammatical_chess,Ba0#,13.211388
+-1.034321,5.478565,agrammatical_chess,Ba0+,15.814298
+-0.855692,3.509833,agrammatical_chess,Ba9#,13.276544
+-1.0277393,5.481903,agrammatical_chess,Ba9+,15.9792
+-0.13604413,3.611889,agrammatical_chess,Bb0#,12.726507
+2.4187245,3.6727848,agrammatical_chess,Bb0+,6.5232763
+0.00753912,3.4561708,agrammatical_chess,Bb9#,12.663474
+2.4710124,3.5993016,agrammatical_chess,Bb9+,6.589247
+-0.13126966,3.617312,agrammatical_chess,Bc0#,12.712486
+2.4796004,3.6231773,agrammatical_chess,Bc0+,6.575867
+-0.013935837,3.484383,agrammatical_chess,Bc9#,12.667133
+2.4412808,3.642273,agrammatical_chess,Bc9+,6.5526648
+-0.15509069,3.6340349,agrammatical_chess,Bd0#,12.741458
+2.4898186,3.6634367,agrammatical_chess,Bd0+,6.5279336
+0.03638809,3.4712033,agrammatical_chess,Bd9#,12.645961
+2.5573711,3.5666852,agrammatical_chess,Bd9+,6.638378
+-0.79467756,3.5367846,agrammatical_chess,Be0#,13.263871
+-0.25355592,3.792822,agrammatical_chess,Be0+,15.763479
+-0.89853114,3.4404905,agrammatical_chess,Be9#,13.345986
+-0.22082594,3.7489622,agrammatical_chess,Be9+,15.774341
+-0.09749566,3.6392188,agrammatical_chess,Bf0#,12.698074
+2.4330337,3.6546931,agrammatical_chess,Bf0+,6.5310197
+-0.0355638,3.4645813,agrammatical_chess,Bf9#,12.701879
+2.4265106,3.650382,agrammatical_chess,Bf9+,6.5311866
+-0.15978284,3.6010292,agrammatical_chess,Bg0#,12.754379
+2.4236689,3.593661,agrammatical_chess,Bg0+,6.5857058
+0.015283344,3.4230418,agrammatical_chess,Bg9#,12.667576
+2.4721494,3.5659058,agrammatical_chess,Bg9+,6.5909624
+-0.67183197,3.5515969,agrammatical_chess,Bh0#,12.876273
+-6.0325375,5.800325,agrammatical_chess,Bh0+,9.63409
+-0.7248021,3.5303545,agrammatical_chess,Bh9#,12.863082
+-6.0487623,5.818788,agrammatical_chess,Bh9+,9.65354
+-2.2458136,1.3189971,agrammatical_chess,Bi1#,17.834858
+-1.3591539,1.1450837,agrammatical_chess,Bi1+,19.624172
+-2.2346783,1.3278881,agrammatical_chess,Bi2#,17.830482
+-1.3812866,1.1431122,agrammatical_chess,Bi2+,19.601807
+-2.238363,1.3250887,agrammatical_chess,Bi3#,17.833496
+-1.3730648,1.1342958,agrammatical_chess,Bi3+,19.613083
+-2.2041087,1.3577145,agrammatical_chess,Bi4#,17.805231
+-1.397201,1.1139164,agrammatical_chess,Bi4+,19.587376
+-2.290156,1.2745415,agrammatical_chess,Bi5#,17.884144
+-1.3572118,1.1380268,agrammatical_chess,Bi5+,19.631664
+-2.252422,1.3108488,agrammatical_chess,Bi6#,17.795782
+-1.3850255,1.1188558,agrammatical_chess,Bi6+,19.601799
+-2.2320235,1.3230486,agrammatical_chess,Bi7#,17.864887
+-1.3579173,1.1438719,agrammatical_chess,Bi7+,19.629364
+-2.2049625,1.3567615,agrammatical_chess,Bi8#,17.79745
+-1.3576375,1.1391314,agrammatical_chess,Bi8+,19.63029
+5.6226707,3.1902056,agrammatical_chess,Bid4,6.9901404
+7.531792,4.9710693,agrammatical_chess,Bxa0,8.419105
+7.6100955,4.9523425,agrammatical_chess,Bxa9,8.4492655
+7.2693753,4.6617355,agrammatical_chess,Bxb0,8.327224
+7.4527817,4.620819,agrammatical_chess,Bxb9,8.385865
+7.285215,4.676251,agrammatical_chess,Bxc0,8.347731
+7.3917236,4.6747,agrammatical_chess,Bxc9,8.405514
+7.311239,4.663955,agrammatical_chess,Bxd0,8.349588
+7.4005237,4.642274,agrammatical_chess,Bxd9,8.39763
+7.435048,4.866605,agrammatical_chess,Bxe0,8.437832
+7.5648427,4.8676233,agrammatical_chess,Bxe9,8.434857
+7.307636,4.619132,agrammatical_chess,Bxf0,8.346069
+7.363262,4.682283,agrammatical_chess,Bxf9,8.359856
+7.282791,4.6425114,agrammatical_chess,Bxg0,8.332898
+7.480043,4.707602,agrammatical_chess,Bxg9,8.455364
+7.4653163,4.932633,agrammatical_chess,Bxh0,8.3889265
+7.504204,4.9067335,agrammatical_chess,Bxh9,8.397423
+9.28792,5.535829,agrammatical_chess,Bxi1,8.917605
+9.311522,5.5185204,agrammatical_chess,Bxi2,8.942738
+9.309753,5.5053267,agrammatical_chess,Bxi3,8.952684
+9.341586,5.473491,agrammatical_chess,Bxi4,8.985716
+9.308505,5.502014,agrammatical_chess,Bxi5,8.953667
+9.327488,5.4799585,agrammatical_chess,Bxi6,8.973893
+9.282345,5.512634,agrammatical_chess,Bxi7,8.932397
+9.282918,5.5043716,agrammatical_chess,Bxi8,8.938611
+6.970153,4.054907,agrammatical_chess,Bxz1,8.263578
+7.0399995,4.086984,agrammatical_chess,Bxz2,8.3074875
+6.9990616,4.015017,agrammatical_chess,Bxz3,8.295249
+6.9865212,3.9936318,agrammatical_chess,Bxz4,8.295448
+6.995059,4.0065093,agrammatical_chess,Bxz5,8.301006
+6.981055,4.0019636,agrammatical_chess,Bxz6,8.275321
+6.947107,3.9778333,agrammatical_chess,Bxz7,8.279426
+6.973386,4.0020366,agrammatical_chess,Bxz8,8.285246
+0.83550143,3.1766133,agrammatical_chess,Bz1#,12.761699
+2.6219578,3.0644722,agrammatical_chess,Bz1+,6.6967816
+0.8383166,3.144142,agrammatical_chess,Bz2#,12.79041
+2.6518362,3.0224617,agrammatical_chess,Bz2+,6.7272325
+0.84363234,3.1474223,agrammatical_chess,Bz3#,12.787856
+2.6660614,3.0077093,agrammatical_chess,Bz3+,6.7403054
+0.8629333,3.152188,agrammatical_chess,Bz4#,12.779746
+2.6566205,3.0140486,agrammatical_chess,Bz4+,6.7309594
+0.8353171,3.1635554,agrammatical_chess,Bz5#,12.776879
+2.6414087,3.029818,agrammatical_chess,Bz5+,6.7168083
+0.8257254,3.1432402,agrammatical_chess,Bz6#,12.793417
+2.6586883,3.0057347,agrammatical_chess,Bz6+,6.732934
+0.8388244,3.1462452,agrammatical_chess,Bz7#,12.78811
+2.6561618,3.006324,agrammatical_chess,Bz7+,6.731475
+0.8355725,3.1546125,agrammatical_chess,Bz8#,12.782949
+2.674341,2.984909,agrammatical_chess,Bz8+,6.749233
+5.9513693,3.6111448,agrammatical_chess,Bzd4,7.4034486
+0.15632108,3.8143885,agrammatical_chess,K0d4,4.972294
+0.100823455,3.843198,agrammatical_chess,K9d4,4.924618
+-0.8114892,3.593752,agrammatical_chess,Ka0#,13.174465
+-1.701971,5.823098,agrammatical_chess,Ka0+,16.32578
+-0.8895034,3.485854,agrammatical_chess,Ka9#,13.276204
+-1.7453114,5.8571143,agrammatical_chess,Ka9+,16.325607
+0.17567913,3.677251,agrammatical_chess,Kb0#,12.517773
+2.8329897,4.2118187,agrammatical_chess,Kb0+,6.787472
+0.24615435,3.6871338,agrammatical_chess,Kb9#,12.468651
+2.8163493,4.259334,agrammatical_chess,Kb9+,6.7381654
+0.07483468,3.67759,agrammatical_chess,Kc0#,12.569388
+2.7400575,4.228394,agrammatical_chess,Kc0+,6.7771006
+0.17516302,3.6013858,agrammatical_chess,Kc9#,12.532475
+2.7829418,4.2893534,agrammatical_chess,Kc9+,6.73439
+0.04616641,3.736183,agrammatical_chess,Kd0#,12.621414
+2.8470252,4.267049,agrammatical_chess,Kd0+,6.7616534
+0.24089392,3.6146173,agrammatical_chess,Kd9#,12.476249
+2.8153875,4.2650056,agrammatical_chess,Kd9+,6.75465
+-0.7996265,3.5899618,agrammatical_chess,Ke0#,13.145628
+-1.911576,5.4092646,agrammatical_chess,Ke0+,16.823187
+-0.8880074,3.4750679,agrammatical_chess,Ke9#,13.279627
+-1.8651514,5.428747,agrammatical_chess,Ke9+,16.786558
+0.16375285,3.6607218,agrammatical_chess,Kf0#,12.500669
+2.7871447,4.225618,agrammatical_chess,Kf0+,6.7878714
+0.17859492,3.6105502,agrammatical_chess,Kf9#,12.513838
+2.8085203,4.2656417,agrammatical_chess,Kf9+,6.744174
+0.9998624,4.8770084,agrammatical_chess,Kg0#,11.3168545
+1.1606939,5.078976,agrammatical_chess,Kg0+,11.065655
+1.0276622,4.910164,agrammatical_chess,Kg9#,11.276513
+1.1728414,5.080662,agrammatical_chess,Kg9+,11.042328
+-0.79544806,3.607778,agrammatical_chess,Kh0#,12.8351145
+-7.6679206,8.429682,agrammatical_chess,Kh0+,11.990283
+-0.81271887,3.5743864,agrammatical_chess,Kh9#,12.900761
+-7.715318,8.374676,agrammatical_chess,Kh9+,12.043022
+-1.5284559,2.0481353,agrammatical_chess,Ki1#,14.41083
+-2.7806542,4.5722775,agrammatical_chess,Ki1+,19.177681
+-1.5339403,2.0495849,agrammatical_chess,Ki2#,14.437055
+-2.7882352,4.586842,agrammatical_chess,Ki2+,19.151875
+-1.5278752,2.0437992,agrammatical_chess,Ki3#,14.41002
+-2.7796988,4.562867,agrammatical_chess,Ki3+,19.20784
+-1.5557239,2.0149572,agrammatical_chess,Ki4#,14.4372
+-2.780067,4.5720663,agrammatical_chess,Ki4+,19.184137
+-1.5772669,1.9936246,agrammatical_chess,Ki5#,14.456838
+-2.7812152,4.5703783,agrammatical_chess,Ki5+,19.188902
+-1.543023,2.029439,agrammatical_chess,Ki6#,14.425452
+-2.7650652,4.5529423,agrammatical_chess,Ki6+,19.212193
+-1.5674804,2.0035236,agrammatical_chess,Ki7#,14.448562
+-2.78265,4.5711355,agrammatical_chess,Ki7+,19.191227
+-1.5589181,2.0114324,agrammatical_chess,Ki8#,14.440443
+-2.7811012,4.5686374,agrammatical_chess,Ki8+,19.191824
+5.154498,4.97061,agrammatical_chess,Kid4,7.744619
+7.431405,5.1738825,agrammatical_chess,Kxa0,8.376028
+7.508504,5.1367335,agrammatical_chess,Kxa9,8.386269
+7.0556355,5.2213893,agrammatical_chess,Kxb0,8.293229
+7.264605,4.9879117,agrammatical_chess,Kxb9,8.39815
+7.024391,5.251523,agrammatical_chess,Kxc0,8.28881
+7.304951,4.9918504,agrammatical_chess,Kxc9,8.418173
+7.0648484,5.2539215,agrammatical_chess,Kxd0,8.299297
+7.234239,5.0487437,agrammatical_chess,Kxd9,8.412681
+7.4292064,5.1960883,agrammatical_chess,Kxe0,8.344177
+7.447474,5.127205,agrammatical_chess,Kxe9,8.377772
+7.0616784,5.2268057,agrammatical_chess,Kxf0,8.303715
+7.192864,5.088199,agrammatical_chess,Kxf9,8.366551
+7.0453777,5.2594233,agrammatical_chess,Kxg0,8.289573
+7.1863155,5.0987563,agrammatical_chess,Kxg9,8.374987
+7.417691,5.0506735,agrammatical_chess,Kxh0,8.369579
+7.4152336,5.059042,agrammatical_chess,Kxh9,8.345217
+8.669288,5.744317,agrammatical_chess,Kxi1,8.3901
+8.694281,5.7798147,agrammatical_chess,Kxi2,8.411443
+8.709547,5.799549,agrammatical_chess,Kxi3,8.427106
+8.699337,5.7837677,agrammatical_chess,Kxi4,8.415812
+8.734158,5.8169026,agrammatical_chess,Kxi5,8.450601
+8.683469,5.7790737,agrammatical_chess,Kxi6,8.414119
+8.731548,5.8097043,agrammatical_chess,Kxi7,8.44524
+8.691583,5.77789,agrammatical_chess,Kxi8,8.415887
+6.437569,5.131744,agrammatical_chess,Kxz1,8.263442
+6.434023,5.150781,agrammatical_chess,Kxz2,8.2679405
+6.386512,5.177752,agrammatical_chess,Kxz3,8.254157
+6.389566,5.1693277,agrammatical_chess,Kxz4,8.269594
+6.393515,5.14746,agrammatical_chess,Kxz5,8.246719
+6.3993044,5.172093,agrammatical_chess,Kxz6,8.268319
+6.4224935,5.119223,agrammatical_chess,Kxz7,8.224287
+6.395952,5.1525683,agrammatical_chess,Kxz8,8.252875
+0.72637415,3.5524156,agrammatical_chess,Kz1#,12.486527
+3.0549307,4.3990345,agrammatical_chess,Kz1+,6.6811237
+0.7478711,3.5243711,agrammatical_chess,Kz2#,12.509989
+3.0432882,4.3920794,agrammatical_chess,Kz2+,6.6897655
+0.73646444,3.548264,agrammatical_chess,Kz3#,12.494248
+3.097499,4.3960905,agrammatical_chess,Kz3+,6.6931853
+0.7521875,3.529061,agrammatical_chess,Kz4#,12.509516
+3.0623038,4.4117894,agrammatical_chess,Kz4+,6.6724176
+0.7217915,3.5399375,agrammatical_chess,Kz5#,12.501933
+3.0426471,4.39198,agrammatical_chess,Kz5+,6.6916656
+0.72575134,3.5472782,agrammatical_chess,Kz6#,12.494838
+3.0318272,4.383815,agrammatical_chess,Kz6+,6.6936216
+0.73386705,3.5381463,agrammatical_chess,Kz7#,12.499483
+3.0366025,4.425421,agrammatical_chess,Kz7+,6.653683
+0.7543048,3.519276,agrammatical_chess,Kz8#,12.518234
+3.0710294,4.4297533,agrammatical_chess,Kz8+,6.648864
+5.299844,5.05439,agrammatical_chess,Kzd4,7.767183
+0.28426802,3.819276,agrammatical_chess,N0d4,5.0174723
+0.16196944,3.8157864,agrammatical_chess,N9d4,4.9597545
+-0.7972376,3.5566525,agrammatical_chess,Na0#,13.157467
+-0.75110763,5.6118474,agrammatical_chess,Na0+,16.432577
+-0.8807103,3.4711316,agrammatical_chess,Na9#,13.315103
+-0.7596361,5.630718,agrammatical_chess,Na9+,16.440212
+-0.2377885,3.563496,agrammatical_chess,Nb0#,12.811449
+1.991145,3.858292,agrammatical_chess,Nb0+,6.2379246
+-0.12018562,3.4689314,agrammatical_chess,Nb9#,12.753005
+2.0211575,3.8787627,agrammatical_chess,Nb9+,6.2963133
+-0.18497325,3.573271,agrammatical_chess,Nc0#,12.648203
+1.909067,3.9769628,agrammatical_chess,Nc0+,6.2419567
+-0.093993604,3.4602888,agrammatical_chess,Nc9#,12.724024
+1.887985,4.0200443,agrammatical_chess,Nc9+,6.284079
+-0.58322287,3.3343542,agrammatical_chess,Nd0#,12.932413
+2.6299243,-2.6566272,agrammatical_chess,Nd0+,7.227147
+-0.60315394,3.318245,agrammatical_chess,Nd9#,12.95264
+2.6588953,-2.6267636,agrammatical_chess,Nd9+,7.201682
+-0.7158276,3.4369893,agrammatical_chess,Ne0#,13.126625
+-0.7576104,5.2442327,agrammatical_chess,Ne0+,16.51548
+-0.88169825,3.3733015,agrammatical_chess,Ne9#,13.32477
+-0.79914355,5.277714,agrammatical_chess,Ne9+,16.530218
+-0.18012214,3.5485413,agrammatical_chess,Nf0#,12.761217
+2.0683477,3.8321958,agrammatical_chess,Nf0+,6.2792115
+-0.1130574,3.471858,agrammatical_chess,Nf9#,12.734849
+2.063982,3.8598604,agrammatical_chess,Nf9+,6.3120146
+-0.62315905,3.3899121,agrammatical_chess,Ng0#,12.958766
+1.4465048,-3.9817975,agrammatical_chess,Ng0+,8.074365
+-0.72126687,3.3128016,agrammatical_chess,Ng9#,13.065228
+1.4236399,-3.9627461,agrammatical_chess,Ng9+,8.095805
+-0.59345865,3.292697,agrammatical_chess,Nh0#,12.906982
+-0.12123084,-0.19474928,agrammatical_chess,Nh0+,11.904867
+-0.6783881,3.262355,agrammatical_chess,Nh9#,12.9540205
+-0.13720456,-0.12948859,agrammatical_chess,Nh9+,11.926427
+-1.3621844,2.309822,agrammatical_chess,Ni1#,14.257852
+-1.4731814,3.6021519,agrammatical_chess,Ni1+,18.68594
+-1.3856181,2.278372,agrammatical_chess,Ni2#,14.296964
+-1.438419,3.572271,agrammatical_chess,Ni2+,18.64587
