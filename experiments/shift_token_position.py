@@ -450,3 +450,41 @@ stats
     == 0.0
 ).squeeze().sum(dim=1)
 # %%
+
+source_sequence = ("dog", "is", "in", "the", "house")
+shifting_vector, modified_sequence = modify_specific_token(source_sequence, 0, "cat")
+modified_sequence
+# %%
+gramatical_direction = (
+    torch.from_numpy(np.load("./data/grammaticality_direction.npy"))
+    .to(shifting_vector.device)
+    .to(shifting_vector.dtype)
+)
+ungramatical_shifting_vector = shifting_vector - 0.0 * gramatical_direction
+# %%
+source_embedding = encoder_decoder.encode(
+    encoder_decoder.list_str_to_token_ids(source_sequence).unsqueeze(0)
+)[0]
+
+encoder_decoder.token_ids_to_list_str_batch(
+    encoder_decoder.decode(
+        (source_embedding + ungramatical_shifting_vector).unsqueeze(0)
+    )
+)
+# %%
+# %%
+source_sequence = ("dog", "house", "car", "died")
+
+source_embedding = encoder_decoder.encode(
+    encoder_decoder.list_str_to_token_ids(source_sequence).unsqueeze(0)
+)[0]
+
+res = {}
+for gramaticality in [-10, -5, -1, -0.5, -0.2, -0.1, 0.0, 0.1, 0.2, 0.5, 1, 5, 10]:
+    source_embedding_modified = source_embedding + gramaticality * gramatical_direction
+
+    res[gramaticality] = encoder_decoder.token_ids_to_list_str_batch(
+        encoder_decoder.decode(source_embedding_modified.unsqueeze(0))
+    )
+res
+# %%
