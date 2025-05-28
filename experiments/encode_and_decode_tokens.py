@@ -947,3 +947,176 @@ print("\nDecoded sequence after shifting 'cat' from position 4 to 5:")
 print(decoded_cat_shifted)
 
 # %%
+# Create test embeddings for "run" at different positions
+# Create test embeddings for "run" at different positions
+# Create test embeddings for "run" at different positions
+# Create test embeddings for "speak" at different positions
+
+sequence_length = 20
+
+filler_token = "cat"
+
+for filler_token in [
+    "one",
+    "an",
+    "the",
+    "a",
+    "cat",
+    "dog",
+    "speak",
+    "_",
+    "-",
+    ".",
+    ",",
+]:
+    print(f"{filler_token=}")
+    # Create dog embeddings and PCA data
+    test_embeddings_dog = {}
+    dog_data = []
+    for pos in range(sequence_length - 1):
+        sequence = [filler_token] * sequence_length
+        sequence[pos] = "dog"
+        sequence_tensor = encoder_decoder.list_str_to_token_ids_batch([sequence])
+        with torch.no_grad():
+            sequence_embeddings = encoder_decoder.encode(sequence_tensor)
+        test_embeddings_dog[tuple(sequence)] = {
+            "sequence": sequence,
+            "sequence_embeddings": sequence_embeddings[0],
+        }
+        embedding = sequence_embeddings[0]
+        pca_coords = pca.transform(embedding.cpu().detach().numpy().reshape(1, -1))[0]
+        dog_data.append(
+            {
+                "position": pos + 1,
+                "x": pca_coords[0],
+                "y": pca_coords[1],
+                "z": pca_coords[2],
+            }
+        )
+
+    dog_data = pd.DataFrame(dog_data)
+
+    # Create cat embeddings and PCA data
+    test_embeddings_cat = {}
+    cat_data = []
+    for pos in range(sequence_length - 1):
+        sequence = [filler_token] * sequence_length
+        sequence[pos] = "cat"
+        sequence_tensor = encoder_decoder.list_str_to_token_ids_batch([sequence])
+        with torch.no_grad():
+            sequence_embeddings = encoder_decoder.encode(sequence_tensor)
+        test_embeddings_cat[tuple(sequence)] = {
+            "sequence": sequence,
+            "sequence_embeddings": sequence_embeddings[0],
+        }
+        embedding = sequence_embeddings[0]
+        pca_coords = pca.transform(embedding.cpu().detach().numpy().reshape(1, -1))[0]
+        cat_data.append(
+            {
+                "position": pos + 1,
+                "x": pca_coords[0],
+                "y": pca_coords[1],
+                "z": pca_coords[2],
+            }
+        )
+
+    cat_data = pd.DataFrame(cat_data)
+
+    # Create speak embeddings and PCA data
+    test_embeddings = {}
+    speak_data = []
+    for pos in range(sequence_length - 1):
+        sequence = [filler_token] * sequence_length
+        sequence[pos] = "speak"
+        sequence_tensor = encoder_decoder.list_str_to_token_ids_batch([sequence])
+        with torch.no_grad():
+            sequence_embeddings = encoder_decoder.encode(sequence_tensor)
+        test_embeddings[tuple(sequence)] = {
+            "sequence": sequence,
+            "sequence_embeddings": sequence_embeddings[0],
+        }
+        embedding = sequence_embeddings[0]
+        pca_coords = pca.transform(embedding.cpu().detach().numpy().reshape(1, -1))[0]
+        speak_data.append(
+            {
+                "position": pos + 1,
+                "x": pca_coords[0],
+                "y": pca_coords[1],
+                "z": pca_coords[2],
+            }
+        )
+
+    speak_data = pd.DataFrame(speak_data)
+
+    # Create the 3D scatter plot with all curves
+    fig = go.Figure()
+
+    # Add the dog positions
+    fig.add_trace(
+        go.Scatter3d(
+            x=dog_data["x"],
+            y=dog_data["y"],
+            z=dog_data["z"],
+            mode="markers+lines",
+            marker=dict(
+                size=5,
+                color=dog_data["position"],
+                colorscale="Viridis",
+                showscale=True,
+                colorbar=dict(title="Dog Position"),
+            ),
+            name="Dog Position",
+        )
+    )
+
+    # Add the cat positions
+    fig.add_trace(
+        go.Scatter3d(
+            x=cat_data["x"],
+            y=cat_data["y"],
+            z=cat_data["z"],
+            mode="markers+lines",
+            marker=dict(
+                size=5,
+                color=cat_data["position"],
+                colorscale="Plasma",
+                showscale=True,
+                colorbar=dict(x=1.0, title="Cat Position"),
+            ),
+            name="Cat Position",
+        )
+    )
+
+    # Add the speak positions
+    fig.add_trace(
+        go.Scatter3d(
+            x=speak_data["x"],
+            y=speak_data["y"],
+            z=speak_data["z"],
+            mode="markers+lines",
+            marker=dict(
+                size=5,
+                color=speak_data["position"],
+                colorscale="Turbo",
+                showscale=True,
+                colorbar=dict(x=1.1, title="Speak Position"),
+            ),
+            name="Speak Position",
+        )
+    )
+
+    # Update layout
+    fig.update_layout(
+        title="3D PCA of Sequence Embeddings - Dog, Cat and Speak Positions",
+        scene=dict(
+            xaxis_title="First Principal Component",
+            yaxis_title="Second Principal Component",
+            zaxis_title="Third Principal Component",
+        ),
+        width=1000,
+        height=800,
+    )
+
+    fig.show()
+
+# %%
