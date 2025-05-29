@@ -18,6 +18,12 @@ def make_move_illegal(move: str) -> str:
         final_char = move[-1]
         move = move[:-1]
 
+    if (
+        move[-2] not in BOARD_POSITION_LETTERS
+        and move[-1] not in BOARD_POSITION_NUMBERS
+    ):
+        # If the move isn't defining a destination position, don't change it
+        return move + final_char
     return move[:-2] + random.choice(BOARD_POSITIONS) + final_char
 
 
@@ -38,5 +44,5 @@ def make_sequence_illegal(move_steps: str) -> list[str]:
     """
     game_strings = []
     for game in move_steps.split("\n"):
-        game_strings.append(" ".join(map(make_move_illegal, move_steps.split(" "))))
+        game_strings.append(" ".join(map(make_move_illegal, game.split(" "))))
     return "\n".join(game_strings)
