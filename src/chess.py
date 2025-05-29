@@ -7,6 +7,6 @@ BOARD_POSITIONS = [
 
 def make_sequence_illegal(move_steps: list[str]) -> list[str]:
     """
-    Make a sequence illegal by adding a random number of illegal tokens to the end of the sequence.
+    Make a sequence illegal by randomising the destination position of each move.
     """
     return [move[:-2] + random.choice(BOARD_POSITIONS) for move in move_steps]
