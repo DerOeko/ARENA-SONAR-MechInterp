@@ -115,7 +115,6 @@ cosine_similarity = torch.nn.functional.cosine_similarity(
 cosine_similarity
 
 # %%
-english_to_spanish_vectors = []
 english_spanish_pairs = [
     ("the dog runs fast", "el perro corre rápido"),
     ("a cat sleeps quietly", "un gato duerme tranquilamente"),
@@ -416,6 +415,9 @@ english_spanish_pairs = [
     ("yellow grows passion", "el amarillo crece pasión"),
     ("ziziphus grows jujube", "el azufaifo crece jujube"),
 ]
+english_to_spanish_vectors = []
+english_vectors = []
+spanish_vectors = []
 for english_text, spanish_text in english_spanish_pairs:
     english_tokens = english_encoder_decoder.tokenizer_encoder(english_text)
     spanish_tokens = spanish_encoder_decoder.tokenizer_encoder(spanish_text)
@@ -431,9 +433,21 @@ for english_text, spanish_text in english_spanish_pairs:
     ]
 
     english_to_spanish_vectors.append(spanish_embedding - english_embedding)
+    english_vectors.append(english_embedding)
+    spanish_vectors.append(spanish_embedding)
 
 # %%
-english_to_spanish_vector = torch.stack(english_to_spanish_vectors, dim=0).mean(dim=0)
+# english_to_spanish_vector = (
+#     torch.stack(english_to_spanish_vectors, dim=0).squeeze().mean(dim=0)
+# )
+# Convert lists of vectors to tensors and stack them
+english_vectors_tensor = torch.stack(english_vectors, dim=0).squeeze()
+spanish_vectors_tensor = torch.stack(spanish_vectors, dim=0).squeeze()
+
+spanish_vectors_tensor - english_vectors_tensor
+english_to_spanish_vector = (spanish_vectors_tensor - english_vectors_tensor).mean(
+    dim=0
+)
 english_to_spanish_vector
 # %%
 english_sentence = ("the", "dog", "and", "the", "cat")
@@ -476,4 +490,124 @@ cosine_similarity = torch.nn.functional.cosine_similarity(
     + english_to_spanish_vector,
 )
 print(cosine_similarity)
+# %%
+
+# Combine English and Spanish vectors
+all_vectors = torch.cat(
+    [
+        english_vectors_tensor[: english_vectors_tensor.shape[0] // 1],
+        spanish_vectors_tensor[: spanish_vectors_tensor.shape[0] // 1],
+    ]
+)
+
+# Convert to numpy for PCA
+all_vectors_np = all_vectors.cpu().numpy()
+
+
+# translation_vector_np = english_to_spanish_vector.unsqueeze(0).cpu().numpy()
+mean_english_vector_np = english_vectors_tensor.mean(dim=0).unsqueeze(0).cpu().numpy()
+mean_spanish_vector_np = spanish_vectors_tensor.mean(dim=0).unsqueeze(0).cpu().numpy()
+
+# Perform PCA
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+vectors_2d = pca.fit_transform(all_vectors_np)
+translation_vector_2d_destination = pca.transform(mean_spanish_vector_np)
+translation_vector_2d_origin = pca.transform(mean_english_vector_np)
+
+# Split back into English and Spanish vectors
+n_pairs = len(english_vectors)
+# english_2d = vectors_2d[:n_pairs]
+# spanish_2d = vectors_2d[n_pairs:]
+english_2d = pca.transform(english_vectors_tensor.cpu().numpy())
+spanish_2d = pca.transform(spanish_vectors_tensor.cpu().numpy())
+
+# Plot
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 8))
+plt.scatter(english_2d[:, 0], english_2d[:, 1], c="blue", label="English", alpha=0.6)
+plt.scatter(spanish_2d[:, 0], spanish_2d[:, 1], c="red", label="Spanish", alpha=0.6)
+
+# Draw lines connecting corresponding pairs
+for i in range(n_pairs):
+    plt.plot(
+        [english_2d[i, 0], spanish_2d[i, 0]],
+        [english_2d[i, 1], spanish_2d[i, 1]],
+        "gray",
+        alpha=0.3,
+    )
+
+# Plot the translation vector
+plt.quiver(
+    translation_vector_2d_origin[0, 0],
+    translation_vector_2d_origin[0, 1],
+    translation_vector_2d_destination[0, 0] - translation_vector_2d_origin[0, 0],
+    translation_vector_2d_destination[0, 1] - translation_vector_2d_origin[0, 1],
+    angles="xy",
+    scale_units="xy",
+    scale=1,
+    color="green",
+    label="Translation Vector",
+    width=0.01,
+)
+
+plt.title("PCA of English and Spanish Word Embeddings")
+plt.xlabel("First Principal Component")
+plt.ylabel("Second Principal Component")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+
+# %%
+
+# Test cosine similarity for various sentence pairs
+test_sentence_pairs = [
+    (
+        ("el", "perro", "corre", "en", "el", "parque"),
+        ("the", "dog", "runs", "in", "the", "park"),
+    ),
+    (("yo", "voy", "al", "mar"), ("i", "go", "to", "sea")),
+    (("el", "sol", "da", "luz"), ("the", "sun", "gives", "light")),
+    (("mi", "pan", "es", "sal"), ("my", "bread", "is", "salt")),
+    (("tu", "ves", "la", "flor"), ("you", "see", "the", "rose")),
+]
+
+print("\nTesting translation vector on new sentences:")
+print("-" * 50)
+
+for spanish_sentence, english_sentence in test_sentence_pairs:
+    # Encode sentences once
+    spanish_embedding = spanish_encoder_decoder.encode(
+        spanish_encoder_decoder.list_str_to_token_ids(spanish_sentence).unsqueeze(0)
+    )[0]
+    english_embedding = english_encoder_decoder.encode(
+        english_encoder_decoder.list_str_to_token_ids(english_sentence).unsqueeze(0)
+    )[0]
+    translated_english = english_embedding + english_to_spanish_vector
+
+    # Calculate cosine similarities
+    cosine_similarity = torch.nn.functional.cosine_similarity(
+        spanish_embedding, english_embedding
+    )
+    translated_cosine_similarity = torch.nn.functional.cosine_similarity(
+        spanish_embedding, translated_english
+    )
+
+    # Calculate L2 distances
+    distance = torch.norm(spanish_embedding - english_embedding)
+    translated_distance = torch.norm(spanish_embedding - translated_english)
+
+    print(f"\nSpanish: {' '.join(spanish_sentence)}")
+    print(f"English: {' '.join(english_sentence)}")
+    print(f"Original cosine similarity: {cosine_similarity.item():.4f}")
+    print(f"Similarity after translation: {translated_cosine_similarity.item():.4f}")
+    print(
+        f"Improvement: {(translated_cosine_similarity - cosine_similarity).item():.4f}"
+    )
+    print(f"Original L2 distance: {distance.item():.4f}")
+    print(f"Distance after translation: {translated_distance.item():.4f}")
+    print(f"Distance improvement: {(distance - translated_distance).item():.4f}")
+
 # %%
