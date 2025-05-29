@@ -18,14 +18,14 @@ from tqdm.auto import tqdm
 import umap
 import phate
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.pca_utils import (
+from src.utils.pca_utils import (
     perform_dimensionality_reduction,
     create_plot_dataframe
 )
 from sonar.models.sonar_text import (
     load_sonar_tokenizer,
 )
-from utils.generate_random_sequences import generate_random_sequences
+from src.utils.generate_random_sequences import generate_random_sequences
 
 # SONAR and fairseq2 imports
 from sonar.models.sonar_text import load_sonar_tokenizer
