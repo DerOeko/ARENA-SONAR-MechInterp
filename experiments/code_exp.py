@@ -8,7 +8,7 @@ import torch
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fairseq2.typing import CPU, DataType, Device
-.pca_utils import (
+from src.utils.pca_utils import (
     prepare_embeddings_for_pca,
     perform_dimensionality_reduction,
     create_plot_dataframe,
@@ -43,7 +43,7 @@ from src.sonar_encoder_decoder import SonarEncoderDecoder
 from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
 import numpy as np
 
-.generate_random_sequences import generate_random_sequences
+from utils.generate_random_sequences import generate_random_sequences
 #%%
 # --- Configuration ---
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
