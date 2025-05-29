@@ -1,0 +1,155 @@
+def divide_by_zero(a): return a / 0
+def access_list_out_of_bounds(list_obj): return list_obj[len(list_obj)]
+def access_dict_nonexistent_key(dict_obj): return dict_obj['non_existent_key']
+def convert_invalid_to_int(text): return int(text)
+def call_undefined_function(): return undefined_function()
+def operate_on_non_iterable_length(): return len(123)
+def modify_string_in_place(text): text[0] = 'a'; return text
+def concatenate_list_and_int(list_obj): return list_obj + 1
+def import_nonexistent_module(): import nonexistent_module_xyz
+def read_nonexistent_file(): with open("nonexistent.txt", "r") as f: f.read()
+def write_to_protected_file(): with open("/root/protected.txt", "w") as f: f.write("test")
+def invalid_json_decode(): import json; json.loads("{'key': 'value'")
+def operate_on_none_type(): return None + 1
+def call_method_on_non_object(): return 5.some_method()
+def mismatched_tuple_unpacking(): a, b = (1, 2, 3)
+def use_unassigned_variable(): return unassigned_var
+def recursive_no_base_case(): return recursive_no_base_case()
+def generator_memory_exhaustion(): (i for i in range(10**100))
+def modify_frozen_set(): s = frozenset([1, 2]); s.add(3)
+def invalid_regex_pattern(): import re; re.compile("[")
+def unsafe_eval(code): return eval(code)
+def overflow_integer(): return 10**1000
+def create_too_large_list(): return [0] * (10**100)
+def tuple_assignment_error(): my_tuple = (1, 2); my_tuple[0] = 3
+def unclosed_file_handle(): f = open("temp.txt", "w"); f.write("data")
+def circular_import(): import circular_a
+def print_non_existent_variable(): print(non_existent_variable)
+def class_attribute_error(): class MyClass: pass; MyClass.non_existent_attribute
+def list_pop_empty(): my_list = []; my_list.pop()
+def dict_pop_non_existent(): my_dict = {}; my_dict.pop('key')
+def set_pop_empty(): my_set = set(); my_set.pop()
+def invalid_slice(): my_list = [1, 2, 3]; my_list[4:2] = []
+def complex_number_modulo(): return 5 + 3j % 2
+def invalid_loop_target(): for i in 123: pass
+def use_yield_outside_function(): yield 1
+def async_without_await(): async def func(): pass; func()
+def raise_unhandled_exception(): raise ValueError("This is an unhandled error")
+def assert_false_condition(): assert False, "This assertion will fail"
+def bad_indentation():
+    return 1
+def keyword_as_variable(): class = 5
+def invalid_escape_sequence(): return "\uqqq"
+def try_to_iterate_none(): for x in None: pass
+def modify_tuple_element(): my_tuple = (1, [2, 3]); my_tuple[1][0] = 99
+def infinite_loop(): while True: pass
+def memory_leak_simulation(): data = []; while True: data.append("a" * (10**6))
+def unicode_encode_error(): "你好".encode("ascii")
+def invalid_binary_operation(): return "hello" + 5
+def unsupported_operand_type(): return [1, 2, 3] * "a"
+def missing_argument_call(): def func(a, b): pass; func(1)
+def extra_argument_call(): def func(a): pass; func(1, 2)
+def access_closed_file(): f = open("test.txt", "w"); f.close(); f.write("data")
+def invalid_format_specifier(): return "{:q}".format(10)
+def access_non_callable(): x = 5; x()
+def invalid_regex_flag(): import re; re.sub("a", "b", "abc", flags="INVALID")
+def set_object_attribute(): my_obj = object(); my_obj.x = 1
+def non_integer_slice(): my_list = [1, 2, 3]; my_list[1.5]
+def dictionary_key_error(): d = {'a': 1}; print(d['b'])
+def list_remove_nonexistent(): my_list = [1, 2, 3]; my_list.remove(4)
+def open_directory_as_file(): open("my_directory", "r")
+def os_remove_nonexistent(): import os; os.remove("nonexistent_file.txt")
+def os_mkdir_existing(): import os; os.mkdir("existing_directory")
+def invalid_class_instantiation(): class MyClass: def __init__(self, a): self.a = a; MyClass()
+def invalid_super_call(): class A: pass; class B(A): def __init__(self): super().__init__(1)
+def modify_tuple_by_slice(): my_tuple = (1, 2, 3); my_tuple[0:1] = (4,)
+def invalid_lambda_syntax(): lambda x, y: x + y,
+def use_non_string_as_key(): my_dict = {1: 'a'}; print(my_dict[[1]])
+def invalid_import_syntax(): import .module
+def mismatched_string_quotes(): return 'hello"
+def invalid_numeric_literal(): return 0b123
+def invalid_fstring_syntax(): return f"Hello {name!"
+def invalid_dict_comprehension(): {x: y for x, y in [(1,2), (3,4,5)]}
+def call_non_method(): class MyClass: pass; MyClass().method()
+def access_private_attribute(): class MyClass: def __init__(self): self.__private_var = 1; MyClass().__private_var
+def string_index_float(): return "hello"[1.0]
+def invalid_range_args(): list(range(1, 0, -1))
+def modify_set_while_iterating(): s = {1, 2, 3}; for x in s: s.add(4)
+def invalid_byte_literal(): b'\xzz'
+def mismatched_fstring_brace(): return f"Hello {{"
+def invalid_type_for_comparison(): return 1 < "2"
+def list_sort_mixed_types(): [1, 'a'].sort()
+def tuple_add_element(): my_tuple = (1,); my_tuple += 2
+def invalid_dict_key_type(): my_dict = {[1, 2]: 3}
+def complex_number_bit_shift(): return 1j << 1
+def non_string_strip(): return 123.strip()
+def invalid_file_mode(): open("file.txt", "xyz")
+def function_redefinition(): def func(): return 1; func = 5
+def attempt_to_pickle_unpicklable(): import threading; import pickle; pickle.dumps(threading.Lock())
+def invalid_generator_send(): def gen(): yield; next(gen()); gen().send(1)
+def set_comprehension_error(): {x for x in [1,2,3], 4}
+def invalid_list_multiplication(): return [1,2,3] * [4,5,6]
+def raise_type_error(): raise TypeError("Intentional Type Error")
+def name_error_in_nested_scope(): def outer(): inner_var = 1; def inner(): return outer_var; return inner(); outer()
+def invalid_unpacking_star_expression(): a, *b, c = [1]
+def non_boolean_in_if_condition(): if "hello": pass
+def incorrect_regex_group_access(): import re; re.match("a(b)c", "abc").group(5)
+def access_global_before_declaration(): global x; x = 1
+def pass_non_callable_to_map(): map(1, [1, 2, 3])
+def non_numeric_for_sum(): sum([1, 'a', 3])
+def json_dump_unserializable(): import json; json.dumps(set([1,2,3]))
+def math_domain_error(): import math; math.sqrt(-1)
+def import_from_non_package(): from my_file import MyClass
+def invalid_regex_quantifier(): import re; re.compile("a{1")
+def use_deprecated_module(): import imp
+def access_non_existent_attribute_on_instance(): class MyClass: pass; MyClass().non_existent_attr
+def call_non_method_on_instance(): class MyClass: pass; obj = MyClass(); obj.some_var()
+def iterate_over_non_iterable_object(): for x in 123: pass
+def access_list_with_string_index(): my_list = [1, 2, 3]; print(my_list['0'])
+def modify_string_with_assign(): my_string = "hello"; my_string[0] = 'J'
+def tuple_delete_element(): my_tuple = (1, 2, 3); del my_tuple[0]
+def invalid_dict_update(): my_dict = {'a': 1}; my_dict.update([('b', 2), 'c'])
+def pass_too_few_args_to_classmethod(): class MyClass: @classmethod; def my_method(cls, a): pass; MyClass.my_method()
+def pass_too_many_args_to_staticmethod(): class MyClass: @staticmethod; def my_method(a): pass; MyClass.my_method(1, 2)
+def invalid_class_inheritance(): class A(123): pass
+def call_abstract_method_directly(): import abc; class AbstractClass(abc.ABC): @abc.abstractmethod; def my_method(self): pass; AbstractClass().my_method()
+def invalid_super_class_init(): class Parent: def __init__(self, x): self.x = x; class Child(Parent): def __init__(self): super().__init__(); Child()
+def regex_group_index_out_of_bounds(): import re; re.match("a(b)c", "abc").group(3)
+def invalid_pickle_load(): import pickle; pickle.loads(b'invalid data')
+def invalid_zip_arguments(): zip([1,2], [3,4,5], [6,7,8], [9])
+def non_iterable_in_comprehension(): [x for x in 123]
+def access_generator_after_exhaustion(): gen = (i for i in range(1)); next(gen); next(gen)
+def modify_namedtuple(): from collections import namedtuple; Point = namedtuple('Point', ['x', 'y']); p = Point(1, 2); p.x = 3
+def invalid_slice_step(): my_list = [1, 2, 3]; my_list[::0]
+def bytes_add_int(): return b'abc' + 1
+def bytearray_add_str(): return bytearray(b'abc') + "d"
+def use_non_integer_as_count(): "abc".count(1)
+def dict_from_invalid_iterable(): dict([1,2])
+def invalid_callable_unpacking(): def func(*args): pass; func(**{'a':1})
+def invalid_yield_from_syntax(): def gen(): yield from 123
+def invalid_async_for_syntax(): async def f(): async for i in [1,2,3]: pass
+def invalid_async_with_syntax(): async def f(): async with open('file.txt'): pass
+def modify_string_builder_with_int(): import io; s = io.StringIO("test"); s.write(123)
+def use_class_as_instance(): class MyClass: pass; MyClass.some_method()
+def raise_syntax_error_dynamically(): exec("raise SyntaxError()") # raises SyntaxError after compilation
+def invalid_attribute_assignment(): class MyClass: __slots__ = ('x',); obj = MyClass(); obj.y = 1
+def attempt_to_hash_unhashable(): my_dict = {}; my_dict[[1, 2]] = 3
+def datetime_invalid_format(): import datetime; datetime.datetime.strptime("2023-13-01", "%Y-%m-%d")
+def invalid_json_dump_options(): import json; json.dumps({}, sort_keys=1)
+def csv_writer_invalid_dialect(): import csv; csv.writer(None, dialect='nonexistent')
+def sqlite3_invalid_query(): import sqlite3; conn = sqlite3.connect(':memory:'); conn.execute("SELECT * FROM non_existent_table")
+def regex_non_string_input(): import re; re.match(123, "abc")
+def os_path_join_non_string(): import os; os.path.join("a", 123)
+def xml_parse_invalid_xml(): import xml.etree.ElementTree as ET; ET.fromstring("<root><item></item>")
+def datetime_timezone_mismatch(): import datetime, pytz; naive = datetime.datetime.now(); aware = pytz.utc.localize(datetime.datetime.now()); aware - naive
+def subprocess_invalid_command(): import subprocess; subprocess.run("nonexistent_command_xyz")
+def urllib_invalid_url(): import urllib.request; urllib.request.urlopen("invalid://url")
+def socket_invalid_host(): import socket; socket.create_connection(('invalid_host', 80))
+def json_load_from_string_io_binary(): import json, io; json.load(io.BytesIO(b'{}'))
+def hashlib_invalid_algorithm(): import hashlib; hashlib.new('nonexistent_alg')
+def array_typecode_error(): import array; array.array('Q', [-1])
+def collections_deque_max_len_negative(): from collections import deque; deque(maxlen=-1)
+def operator_invalid_argument(): import operator; operator.add("a", 1)
+def functools_partial_no_callable(): from functools import partial; partial(123, 1)
+def weakref_non_object(): import weakref; weakref.ref(1)
+def threading_start_already_started(): import threading; t = threading.Thread(target=lambda:None); t.start(); t.start()

@@ -1,0 +1,329 @@
+A small tree swims.
+One bright dog jumps.
+Some cat jumps.
+The small car runs.
+One blue book runs.
+A big car jumps.
+Some small book sleeps.
+Some big dog flies.
+A big car flies.
+One small tree thinks.
+One big car sleeps.
+The big book jumps.
+A small dog flies.
+One red house swims.
+A slow cat sleeps.
+One green idea flies.
+One slow scientist works.
+The small river swims.
+Some red cat thinks.
+A happy computer jumps.
+The big book thinks.
+One green house flies.
+Some big idea swims.
+A quick idea runs.
+The house runs.
+The slow computer runs.
+Some big dog sleeps.
+Any scientist flies.
+One cat swims.
+One sad scientist runs.
+One big scientist thinks.
+One big computer works.
+The cat runs.
+Some green car runs.
+One sad idea jumps.
+A sad car swims.
+The sad car works.
+One slow house flies.
+The happy scientist flies.
+One small river swims.
+The slow house works.
+The book jumps.
+A blue idea works.
+A quick cat swims.
+Some blue house runs.
+Some blue computer runs.
+The sad river sleeps.
+A big car swims.
+A sad tree sleeps.
+The scientist flies.
+The green tree sleeps.
+A red dog thinks.
+A computer thinks.
+The quick house thinks.
+A blue idea sleeps.
+A small computer flies.
+Some red computer works.
+The slow scientist works.
+A sad cat thinks.
+Some quick book sleeps.
+Some quick dog works.
+A bright dog works.
+A dog flies.
+A green computer jumps.
+One small cat thinks.
+The blue dog works.
+The slow car works.
+A green house thinks.
+A red cat jumps.
+A blue tree jumps.
+One small book works.
+The quick house flies.
+A small scientist jumps.
+One bright scientist sleeps.
+One red cat swims.
+One happy scientist thinks.
+The bright book thinks.
+Some green car works.
+The big car sleeps.
+One sad tree works.
+One sad computer runs.
+A red house jumps.
+One sad idea flies.
+One slow book swims.
+One green cat swims.
+One blue dog sleeps.
+One big tree jumps.
+Some blue house flies.
+A quick river works.
+The sad tree sleeps.
+The red tree sleeps.
+The small dog swims.
+One slow tree runs.
+A happy car thinks.
+The red car works.
+The bright book runs.
+Any dog swims.
+The blue scientist runs.
+A blue idea runs.
+A quick book runs.
+Some blue idea works.
+One slow tree jumps.
+The red idea swims.
+One house swims.
+The slow cat works.
+The slow car swims.
+One sad river runs.
+The red river jumps.
+One slow idea sleeps.
+The quick river flies.
+A bright dog sleeps.
+A big scientist sleeps.
+Any cat runs.
+The tree flies.
+The red river sleeps.
+The bright river runs.
+The quick idea jumps.
+One red dog flies.
+Some small cat swims.
+The slow computer sleeps.
+Some big idea works.
+A blue book swims.
+One sad car flies.
+A blue computer sleeps.
+The sad idea flies.
+One blue computer jumps.
+A blue cat thinks.
+A red dog sleeps.
+The slow house runs.
+A small car jumps.
+One red car runs.
+One bright cat swims.
+One bright idea swims.
+A small cat thinks.
+A red idea runs.
+A car runs.
+The sad dog flies.
+Any tree works.
+The red scientist runs.
+A red scientist sleeps.
+Some happy car flies.
+The sad car sleeps.
+A green tree thinks.
+The green computer thinks.
+The bright tree flies.
+One big dog flies.
+The bright tree runs.
+Any cat thinks.
+One red tree swims.
+A green book swims.
+One car swims.
+The small dog flies.
+One big book works.
+One car works.
+One happy book flies.
+One bright dog flies.
+A small scientist sleeps.
+The happy book swims.
+A red computer works.
+Some big river works.
+The red computer swims.
+A quick river flies.
+The car jumps.
+A small book jumps.
+A small river swims.
+The book runs.
+A green dog works.
+A green house flies.
+Some big scientist works.
+The red idea flies.
+One big idea jumps.
+One small car runs.
+The sad tree thinks.
+Some red tree swims.
+One sad tree sleeps.
+Some tree works.
+Some happy idea runs.
+One blue river works.
+Some happy car thinks.
+One red scientist sleeps.
+Some red house thinks.
+One sad book works.
+Some small book swims.
+One happy computer sleeps.
+One green river runs.
+One happy house thinks.
+A bright tree swims.
+Some green cat flies.
+The red book sleeps.
+One happy scientist flies.
+One slow dog thinks.
+A blue tree runs.
+The blue river sleeps.
+A quick dog sleeps.
+One slow book sleeps.
+One small car jumps.
+One red idea sleeps.
+The quick idea thinks.
+The happy scientist swims.
+A slow cat swims.
+A small idea works.
+The small house sleeps.
+One big computer swims.
+The quick idea works.
+One house sleeps.
+A computer works.
+A red book sleeps.
+One bright computer thinks.
+A blue river flies.
+Some small dog swims.
+The small car jumps.
+The sad tree jumps.
+Some small idea jumps.
+The green cat flies.
+Some big car flies.
+A big idea sleeps.
+Some red car works.
+The big scientist sleeps.
+One happy dog thinks.
+One happy idea jumps.
+One big cat thinks.
+A computer sleeps.
+A quick house sleeps.
+One green idea sleeps.
+A big river jumps.
+Some happy book swims.
+One quick idea works.
+A bright river thinks.
+A sad river works.
+The red house sleeps.
+Some green computer sleeps.
+The blue tree flies.
+The idea jumps.
+The quick house sleeps.
+Some small scientist swims.
+One happy scientist works.
+The slow computer jumps.
+A red river sleeps.
+A bright idea swims.
+One happy tree jumps.
+The red scientist thinks.
+The computer thinks.
+Some blue computer jumps.
+A sad scientist works.
+The slow river sleeps.
+One green book works.
+One big river works.
+Some sad car sleeps.
+The red scientist jumps.
+A small river flies.
+One big car thinks.
+A happy cat thinks.
+The tree swims.
+A small house works.
+One small house flies.
+Some small idea runs.
+Some blue river runs.
+A blue cat swims.
+The happy tree sleeps.
+One green tree runs.
+Some small river sleeps.
+A green scientist sleeps.
+A slow tree jumps.
+One blue cat flies.
+The big computer thinks.
+Some big car sleeps.
+Some blue scientist thinks.
+One green car thinks.
+One quick car works.
+Any idea works.
+Some happy computer jumps.
+The quick car sleeps.
+A slow river thinks.
+The quick cat sleeps.
+One quick cat thinks.
+A quick river jumps.
+A happy book swims.
+A book sleeps.
+Some scientist thinks.
+Some green river works.
+One small dog sleeps.
+Some red idea thinks.
+One quick book thinks.
+One blue house thinks.
+The blue idea flies.
+The big cat jumps.
+One quick tree thinks.
+One computer works.
+One slow computer flies.
+The bright tree works.
+One bright cat runs.
+The happy car thinks.
+The quick scientist works.
+One river works.
+One big river swims.
+A bright book works.
+The red idea runs.
+One tree works.
+One big idea runs.
+A blue river jumps.
+One happy house flies.
+Some quick cat thinks.
+One slow river flies.
+A red car runs.
+One big tree runs.
+One green book thinks.
+One red house sleeps.
+A quick computer thinks.
+The bright cat swims.
+A slow cat flies.
+One bright car swims.
+One green river works.
+One small computer runs.
+One slow cat jumps.
+A slow car thinks.
+Some green dog thinks.
+A happy river swims.
+Some big house swims.
+The sad car runs.
+The happy book jumps.
+A green car swims.
+A small computer thinks.
+A green book runs.
+Any river flies.
+The dog flies.
+The bright idea works.
+A happy computer works.
+Any tree swims.
+Some sad idea swims.

@@ -1,0 +1,310 @@
+def f(name): return f"Hello, {name}!"
+def f(a, b): return a + b
+def f(a, b): return a - b
+def f(a, b): return a * b
+def f(a, b): return a / b if b != 0 else 0
+def f(base, exponent): return base ** exponent
+def f(number): return number % 2 == 0
+def f(number): return number % 2 != 0
+def f(iterable): return len(iterable)
+def f(list_obj): return list_obj[0] if list_obj else None
+def f(list_obj): return list_obj[-1] if list_obj else None
+def f(text): return text.capitalize()
+def f(text): return text.lower()
+def f(text): return text.upper()
+def f(text): return text[::-1]
+def f(str1, str2): return str1 + str2
+def f(start, end): return list(range(start, end))
+def f(numbers): return max(numbers) if numbers else None
+def f(numbers): return min(numbers) if numbers else None
+def f(numbers): return sum(numbers)
+def f(numbers): return sum(numbers) / len(numbers) if numbers else 0
+def f(element, list_obj): return element in list_obj
+def f(list_obj, element): return list_obj + [element]
+def f(list_obj, element): return [item for item in list_obj if item != element]
+def f(list_obj): return list(set(list_obj))
+def f(key, value): return {key: value}
+def f(dict_obj, key): return dict_obj.get(key)
+def f(dict_obj, key, value): new_dict = dict_obj.copy(); new_dict[key] = value; return new_dict
+def f(dict_obj): return list(dict_obj.keys())
+def f(dict_obj): return list(dict_obj.values())
+def f(list_obj): return not list_obj
+def f(text): return not text
+def f(dict_obj): return not dict_obj
+def f(list_obj, element): return list_obj.count(element)
+def f(list_obj): return sorted(list_obj)
+def f(list_obj): return sorted(list_obj, reverse=True)
+def f(): return True
+def f(): return False
+def f(number): return abs(number)
+def f(number, decimals=0): return round(number, decimals)
+def f(a, b): return a // b if b != 0 else 0
+def f(a, b): return a % b if b != 0 else 0
+def f(a, b): return a and b
+def f(a, b): return a or b
+def f(a): return not a
+def f(a, b): return a == b
+def f(a, b): return a != b
+def f(a, b): return a > b
+def f(a, b): return a < b
+def f(a, b): return a >= b
+def f(a, b): return a <= b
+def f(obj): return type(obj)
+def f(value): return int(value) if isinstance(value, (int, float, str)) and str(value).replace('.', '', 1).isdigit() else 0
+def f(value): return float(value) if isinstance(value, (int, float, str)) and str(value).replace('.', '', 1).isdigit() else 0.0
+def f(value): return str(value)
+def f(items, separator=""): return separator.join(items)
+def f(text, separator=" "): return text.split(separator)
+def f(text): return text.strip()
+def f(text, prefix): return text.startswith(prefix)
+def f(text, suffix): return text.endswith(suffix)
+def f(text, substring): return substring in text
+def f(text, old, new): return text.replace(old, new)
+def f(numbers): return [n*n for n in numbers]
+def f(numbers): return [n for n in numbers if n % 2 == 0]
+def f(keys, values): return dict(zip(keys, values))
+def f(dict_obj): return list(dict_obj.items())
+def f(list_obj): return list_obj[:]
+def f(dict_obj): return dict_obj.copy()
+def f(booleans): return all(booleans)
+def f(booleans): return any(booleans)
+def f(numbers): return [n for n in numbers if n > 0]
+def f(numbers): return [n for n in numbers if n < 0]
+def f(number): return number + 1
+def f(number): return number - 1
+def f(list_obj, element): return list_obj.index(element) if element in list_obj else -1
+def f(list_obj, index1, index2): new_list = list_obj[:]; (new_list[index1], new_list[index2]) = (new_list[index2], new_list[index1]) if 0 <= index1 < len(new_list) and 0 <= index2 < len(new_list) else (0,0) ; return new_list if 0 <= index1 < len(list_obj) and 0 <= index2 < len(list_obj) else list_obj
+def f(text): vowels = "aeiouAEIOU"; return sum(1 for char in text if char in vowels)
+def f(text): vowels = "aeiouAEIOU"; return sum(1 for char in text if char.isalpha() and char not in vowels)
+def f(text): cleaned_text = "".join(char.lower() for char in text if char.isalnum()); return cleaned_text == cleaned_text[::-1]
+def f(list_obj): return [list_obj[i] for i in range(0, len(list_obj), 2)]
+def f(list_obj): return [list_obj[i] for i in range(1, len(list_obj), 2)]
+def f(number): return sum(int(digit) for digit in str(abs(number)))
+def f(list_obj): return list_obj[::-1]
+def f(text): return "".join(sorted(set(text), key=text.index))
+def f(n_terms): fib = [0, 1]; return fib[:n_terms] if n_terms <= 2 else [fib.append(fib[-1] + fib[-2]) or x for x in range(n_terms - 2)] and fib
+def f(n): return 1 if n <= 0 else n * f(n - 1)
+def f(celsius): return (celsius * 9/5) + 32
+def f(fahrenheit): return (fahrenheit - 32) * 5/9
+def f(text, max_length): return text[:max_length] + "..." if len(text) > max_length else text
+def f(): import datetime; return datetime.datetime.now().year
+def f(): import datetime; return datetime.datetime.now().month
+def f(): import datetime; return datetime.datetime.now().day
+def f(year): return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+def f(list1, list2): return list1 + list2
+def f(set1, set2): return list(set1.intersection(set2))
+def f(set1, set2): return list(set1.union(set2))
+def f(list_obj): return [item for item in list_obj if item is not None]
+def f(text, index): return text[index] if 0 <= index < len(text) else ""
+def f(text): return list(text)
+def f(list_obj): return list_obj[len(list_obj)//2] if list_obj else None
+def f(text): return text.isdigit()
+def f(text): return text.isalpha()
+def f(text): return len(text.split())
+def f(text): return "".join(char for char in text if char.lower() not in "aeiou")
+def f(list_obj): return tuple(list_obj)
+def f(tuple_obj): return list(tuple_obj)
+def f(iterable): return set(iterable)
+def f(list1, list2): return list(set(list1) | set(list2))
+def f(list1, list2): return list(set(list1) & set(list2))
+def f(list1, list2): return list(set(list1) - set(list2))
+def f(list1, list2): return list(set(list1) ^ set(list2))
+def f(set1, set2): return set1.issubset(set2)
+def f(set1, set2): return set1.issuperset(set2)
+def f(text): return " ".join(text.split()[::-1])
+def f(list_obj, n): return list_obj[:n]
+def f(list_obj, n): return list_obj[-n:]
+def f(iterable): return [item for item in iterable if item is not None]
+def f(iterable, data_type): return [item for item in iterable if isinstance(item, data_type)]
+def f(numbers): return sum(n for n in numbers if n % 2 == 0)
+def f(numbers): return sum(n for n in numbers if n % 2 != 0)
+def f(numbers): res = 1; [res := res * n for n in numbers]; return res
+def f(numbers): return [n for n in numbers if n % 2 == 0]
+def f(numbers): return [n for n in numbers if n % 2 != 0]
+def f(booleans): return sum(1 for b in booleans if b is True)
+def f(booleans): return sum(1 for b in booleans if b is False)
+def f(amount, currency_symbol="$"): return f"{currency_symbol}{amount:.2f}"
+def f(minutes): return minutes // 60, minutes % 60
+def f(hours): return hours * 60
+def f(filename): return filename.split(".")[-1] if "." in filename else ""
+def f(filename): return ".".join(filename.split(".")[:-1]) if "." in filename else filename
+def f(number): return number > 0
+def f(number): return number < 0
+def f(number): return number == 0
+def f(min_val, max_val): import random; return random.randint(min_val, max_val)
+def f(min_val, max_val): import random; return random.uniform(min_val, max_val)
+def f(list_obj): import random; return random.choice(list_obj) if list_obj else None
+def f(list_obj): import random; new_list = list_obj[:]; random.shuffle(new_list); return new_list
+def f(length): import random, string; return ''.join(random.choice(string.ascii_letters) for _ in range(length))
+def f(weight_kg, height_m): return weight_kg / (height_m ** 2) if height_m > 0 else 0
+def f(kg): return kg * 2.20462
+def f(pounds): return pounds / 2.20462
+def f(cm): return cm / 2.54
+def f(inches): return inches * 2.54
+def f(price, percentage): return price * (1 - percentage / 100)
+def f(value, total): return (value / total) * 100 if total != 0 else 0
+def f(year): return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+def f(year, month, day): import datetime; return datetime.date(year, month, day).strftime("%A")
+def f(year1, month1, day1, year2, month2, day2): import datetime; date1 = datetime.date(year1, month1, day1); date2 = datetime.date(year2, month2, day2); return abs((date2 - date1).days)
+def f(text): import re; return re.sub(r'<[^>]+>', '', text)
+def f(email): import re; return re.match(r"[^@]+@[^@]+.[^@]+", email) is not None
+def f(text): import re; text = text.lower(); text = re.sub(r'[^a-z0-9\s-]', '', text); text = re.sub(r'\s+', '-', text); return text.strip('-')
+def f(text, sub): return [i for i in range(len(text)) if text.startswith(sub, i)]
+def f(text): return text.swapcase()
+def f(text): return text.istitle()
+def f(text): return text.isalnum()
+def f(text): return text.isdecimal()
+def f(text): return text.isspace()
+def f(text): return text.isprintable()
+def f(text): return all(c.isalpha() for c in text)
+def f(text): return all(c.isdigit() for c in text)
+def f(number_str): import re; return re.sub(r'(\d{3})(\d{3})(\d{4})', r'(\1) \2-\3', number_str)
+def f(n): return int(str(abs(n))[::-1]) * (-1 if n < 0 else 1)
+def f(numbers): return sum(n * n for n in numbers)
+def f(numbers): res = 1; [res := res * (n * n) for n in numbers]; return res
+def f(strings): return "".join(char[0] for char in zip(*strings) if all(c == char[0] for c in char))
+def f(words): from collections import defaultdict; d = defaultdict(list); [d[word[0].lower()].append(word) for word in words if word]; return dict(d)
+def f(list_obj, size): return [list_obj[i:i + size] for i in range(0, len(list_obj), size)]
+def f(list_of_lists): return [item for sublist in list_of_lists for item in sublist]
+def f(matrix): return ([matrix[i][i] for i in range(len(matrix))], [matrix[i][len(matrix)-1-i] for i in range(len(matrix))]) if matrix else ([], [])
+def f(matrix): return [list(row) for row in zip(*matrix)] if matrix else []
+def f(vec1, vec2): return sum(x * y for x,y in zip(vec1, vec2)) if len(vec1)==len(vec2) else 0
+def f(n): a, b = 0, 1; [a := b, b := a + b for _ in range(n)]; return a
+def f(n): return sum(1 for i in range(2, n + 1) if all(i % j != 0 for j in range(2, int(i**0.5) + 1)))
+def f(list_obj): return max(set(list_obj), key=list_obj.count) if list_obj else None
+def f(list_obj): return min(set(list_obj), key=list_obj.count) if list_obj else None
+def f(numbers): return sorted(list(set(numbers)), reverse=True)[1] if len(set(numbers)) > 1 else None
+def f(numbers): return sorted(list(set(numbers)))[1] if len(set(numbers)) > 1 else None
+def f(n): return n >= 0 and int(n**0.5)**2 == n
+def f(n): return sum(int(digit)**len(str(n)) for digit in str(n)) == n
+def f(nums): n = len(nums) + 1; return n*(n+1)//2 - sum(nums)
+def f(str1, str2): return sorted(str1.lower()) == sorted(str2.lower())
+def f(text): return " ".join(dict.fromkeys(text.split()))
+def f(name): return "".join(word[0].upper() for word in name.split())
+def f(text): balance = 0; return all((balance := balance + (1 if char == '(' else -1 if char == ')' else 0)) >= 0 for char in text) and balance == 0
+def f(amount, rate): return amount * (rate / 100)
+def f(amount, rate): return amount * (1 + rate / 100)
+def f(dict_obj): return list(dict_obj.items())
+def f(list_of_tuples): return dict(list_of_tuples)
+def f(list_obj, element): return list_obj.index(element) if element in list_obj else -1
+def f(numbers): return [n for n in numbers if n % 2 == 0]
+def f(numbers): return [n for n in numbers if n % 2 != 0]
+def f(booleans): return sum(1 for b in booleans if b is True)
+def f(booleans): return sum(1 for b in booleans if b is False)
+def f(amount, currency_symbol="$"): return f"{currency_symbol}{amount:.2f}"
+def f(minutes): return minutes // 60, minutes % 60
+def f(hours): return hours * 60
+def f(filename): return filename.split(".")[-1] if "." in filename else ""
+def f(filename): return ".".join(filename.split(".")[:-1]) if "." in filename else filename
+def f(number): return number > 0
+def f(number): return number < 0
+def f(number): return number == 0
+def f(min_val, max_val): import random; return random.randint(min_val, max_val)
+def f(min_val, max_val): import random; return random.uniform(min_val, max_val)
+def f(list_obj): import random; return random.choice(list_obj) if list_obj else None
+def f(list_obj): import random; new_list = list_obj[:]; random.shuffle(new_list); return new_list
+def f(length): import random, string; return ''.join(random.choice(string.ascii_letters) for _ in range(length))
+def f(weight_kg, height_m): return weight_kg / (height_m ** 2) if height_m > 0 else 0
+def f(kg): return kg * 2.20462
+def f(pounds): return pounds / 2.20462
+def f(cm): return cm / 2.54
+def f(inches): return inches * 2.54
+def f(price, percentage): return price * (1 - percentage / 100)
+def f(value, total): return (value / total) * 100 if total != 0 else 0
+def f(year): return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+def f(year, month, day): import datetime; return datetime.date(year, month, day).strftime("%A")
+def f(year1, month1, day1, year2, month2, day2): import datetime; date1 = datetime.date(year1, month1, day1); date2 = datetime.date(year2, month2, day2); return abs((date2 - date1).days)
+def f(text): import re; return re.sub(r'<[^>]+>', '', text)
+def f(email): import re; return re.match(r"[^@]+@[^@]+.[^@]+", email) is not None
+def f(text): import re; text = text.lower(); text = re.sub(r'[^a-z0-9\s-]', '', text); text = re.sub(r'\s+', '-', text); return text.strip('-')
+def f(text, sub): return [i for i in range(len(text)) if text.startswith(sub, i)]
+def f(text): return text.swapcase()
+def f(text): return text.istitle()
+def f(text): return text.isalnum()
+def f(text): return text.isdecimal()
+def f(text): return text.isspace()
+def f(text): return text.isprintable()
+def f(text): return all(c.isalpha() for c in text)
+def f(text): return all(c.isdigit() for c in text)
+def f(number_str): import re; return re.sub(r'(\d{3})(\d{3})(\d{4})', r'(\1) \2-\3', number_str)
+def f(n): return int(str(abs(n))[::-1]) * (-1 if n < 0 else 1)
+def f(numbers): return sum(n * n for n in numbers)
+def f(numbers): res = 1; [res := res * (n * n) for n in numbers]; return res
+def f(strings): return "".join(char[0] for char in zip(*strings) if all(c == char[0] for c in char))
+def f(words): from collections import defaultdict; d = defaultdict(list); [d[word[0].lower()].append(word) for word in words if word]; return dict(d)
+def f(list_obj, size): return [list_obj[i:i + size] for i in range(0, len(list_obj), size)]
+def f(list_of_lists): return [item for sublist in list_of_lists for item in sublist]
+def f(matrix): return ([matrix[i][i] for i in range(len(matrix))], [matrix[i][len(matrix)-1-i] for i in range(len(matrix))]) if matrix else ([], [])
+def f(matrix): return [list(row) for row in zip(*matrix)] if matrix else []
+def f(vec1, vec2): return sum(x * y for x,y in zip(vec1, vec2)) if len(vec1)==len(vec2) else 0
+def f(n): a, b = 0, 1; [a := b, b := a + b for _ in range(n)]; return a
+def f(n): return sum(1 for i in range(2, n + 1) if all(i % j != 0 for j in range(2, int(i**0.5) + 1)))
+def f(list_obj): return max(set(list_obj), key=list_obj.count) if list_obj else None
+def f(list_obj): return min(set(list_obj), key=list_obj.count) if list_obj else None
+def f(numbers): return sorted(list(set(numbers)), reverse=True)[1] if len(set(numbers)) > 1 else None
+def f(numbers): return sorted(list(set(numbers)))[1] if len(set(numbers)) > 1 else None
+def f(n): return n >= 0 and int(n**0.5)**2 == n
+def f(n): return sum(int(digit)**len(str(n)) for digit in str(n)) == n
+def f(nums): n = len(nums) + 1; return n*(n+1)//2 - sum(nums)
+def f(str1, str2): return sorted(str1.lower()) == sorted(str2.lower())
+def f(text): return " ".join(dict.fromkeys(text.split()))
+def f(name): return "".join(word[0].upper() for word in name.split())
+def f(text): balance = 0; return all((balance := balance + (1 if char == '(' else -1 if char == ')' else 0)) >= 0 for char in text) and balance == 0
+def f(amount, rate): return amount * (rate / 100)
+def f(amount, rate): return amount * (1 + rate / 100)
+def f(dict_obj): return list(dict_obj.items())
+def f(list_of_tuples): return dict(list_of_tuples)
+def f(list_obj, element): return list_obj.index(element) if element in list_obj else -1
+def f(numbers): return sum(n for n in numbers if n > 0)
+def f(numbers): return sum(n for n in numbers if n < 0)
+def f(text): return text.title()
+def f(number): return f"{number:,}"
+def f(text): return text.upper() == text
+def f(text): return text.lower() == text
+def f(text): return text.count(" ") + 1
+def f(list_obj): return sum(1 for item in list_obj if item)
+def f(list_obj): return sum(1 for item in list_obj if not item)
+def f(text): return text.replace(" ", "")
+def f(x, y): return x if x > y else y
+def f(x, y): return x if x < y else y
+def f(s): return s.strip() == ""
+def f(s): return s.isnumeric()
+def f(s): return s.startswith("http")
+def f(url): from urllib.parse import urlparse; return urlparse(url).hostname
+def f(text): return len(set(text))
+def f(n): return n % 2 == 0 and n > 0
+def f(n): return n % 2 != 0 and n > 0
+def f(text): return text.replace("  ", " ")
+def f(items): return tuple(items)
+def f(items): return list(items)
+def f(a, b): return (a, b)
+def f(pair): return pair[0]
+def f(pair): return pair[1]
+def f(dict_obj, key): return key in dict_obj
+def f(dict_obj, key): return key not in dict_obj
+def f(number): return float(number)
+def f(numbers): return [float(n) for n in numbers]
+def f(text): return text.isupper()
+def f(text): return text.islower()
+def f(text): return text.isdigit()
+def f(text): return text.isalpha()
+def f(list_obj): return list_obj.clear() or []
+def f(list_obj, index): return list_obj.pop(index)
+def f(list_obj, index): return list_obj.insert(index, None) or list_obj
+def f(list_obj, element): return list_obj.remove(element) or list_obj if element in list_obj else list_obj
+def f(list_obj): return list_obj.reverse() or list_obj
+def f(list_obj): return list_obj.sort() or list_obj
+def f(list_obj): return list_obj.sort(reverse=True) or list_obj
+def f(list_obj): return list_obj.copy()
+def f(dict_obj, other_dict): return dict_obj.update(other_dict) or dict_obj
+def f(dict_obj, key): return dict_obj.pop(key)
+def f(dict_obj): return dict_obj.clear() or {}
+def f(dict_obj): return dict_obj.popitem()
+def f(set_obj, element): return set_obj.add(element) or set_obj
+def f(set_obj, element): return set_obj.remove(element) or set_obj if element in set_obj else set_obj
+def f(set_obj, element): return set_obj.discard(element) or set_obj
+def f(set_obj): return set_obj.clear() or set()
+def f(set1, set2): return set1.difference(set2)
+def f(set1, set2): return set1.intersection(set2)
+def f(set1, set2): return set1.union(set2)
+def f(set1, set2): return set1.symmetric_difference(set2)
