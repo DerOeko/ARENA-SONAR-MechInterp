@@ -337,18 +337,24 @@ class SonarEncoderDecoder:
                 ),
                 token_ids,
                 torch.full(
-                    (n_rows, 1), self.tokenizer.vocab_info.eos_idx, device=self.device
+                    (n_rows, 1),
+                    self.tokenizer.vocab_info.eos_idx,
+                    device=self.device,
                 ),
             ],
             dim=1,
         )
-        encoder_output = self.encoder.forward(
-            SequenceBatch(
-                token_ids,
-                None,
+        with torch.no_grad():
+            encoder_output = self.encoder.forward(
+                SequenceBatch(
+                    token_ids,
+                    None,
+                )
             )
+        return (
+            encoder_output.sentence_embeddings.cpu().detach(),
+            encoder_output.encoded_seqs.cpu().detach(),
         )
-        return encoder_output.sentence_embeddings, encoder_output.encoded_seqs
 
     def decode_single(
         self,
@@ -358,6 +364,7 @@ class SonarEncoderDecoder:
         """
         Decode a single sentence embedding into a list of token IDs.
         """
+        embeddings = embeddings.to(self.device)
         if len(embeddings.shape) == 2:
             # if sentence embedding without batch dimension then we need to add a dimension
             embeddings = embeddings.unsqueeze(1)
@@ -372,27 +379,28 @@ class SonarEncoderDecoder:
             device=self.device,
         )
 
-        # autoregressively generate the output sequence
-        for _ in range(max_length):
-            decoder_output = self.decoder.decode(
-                seqs=seq,
-                padding_mask=None,
-                encoder_output=embeddings,
-                encoder_padding_mask=None,
-            )[0]
-            # the decoder output is the output of layernorm, need to project to logits
-            greedy_token = (
-                self.decoder.project(decoder_output, decoder_padding_mask=None)
-                .logits[:, -1, :]  # last embedding of latest token
-                .argmax(dim=-1)  # take the most likely next token
-            )
-            seq = torch.cat(
-                [seq, greedy_token.unsqueeze(0)], dim=1
-            )  # add the new token to the sequence
-            if (
-                greedy_token[-1] == self.tokenizer.vocab_info.eos_idx
-            ):  # if the new token is the end of sequence token, stop
-                break
+        with torch.no_grad():
+            # autoregressively generate the output sequence
+            for _ in range(max_length):
+                decoder_output = self.decoder.decode(
+                    seqs=seq,
+                    padding_mask=None,
+                    encoder_output=embeddings,
+                    encoder_padding_mask=None,
+                )[0]
+                # the decoder output is the output of layernorm, need to project to logits
+                greedy_token = (
+                    self.decoder.project(decoder_output, decoder_padding_mask=None)
+                    .logits[:, -1, :]  # last embedding of latest token
+                    .argmax(dim=-1)  # take the most likely next token
+                )
+                seq = torch.cat(
+                    [seq, greedy_token.unsqueeze(0)], dim=1
+                )  # add the new token to the sequence
+                if (
+                    greedy_token[-1] == self.tokenizer.vocab_info.eos_idx
+                ):  # if the new token is the end of sequence token, stop
+                    break
         return seq.squeeze(0).tolist()
 
     def decode(

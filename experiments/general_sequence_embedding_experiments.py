@@ -1,3 +1,16 @@
+"""
+This file runs many different experiments and is very dirty.
+Main things:
+- Find a way to shift (all instances of) a word to a new word by modifying the sequence embedding
+- Check that if we change the decoder to a different language the shifted meaning is retained
+- A bunch of experiments about positions, we see that the sequence embedding does encode the positional information
+although it's not so easy to directly use this to tweak positions. this is done with filler tokens, depending on the filler token
+the pattern changes, meaning that in real sentences it would be tricky, i.e. no obvious general vector to refer to a given position
+or a given position 1 to position 2 mapping.
+
+todo clean this up and split in to different files
+"""
+
 # %%
 import os
 import random
