@@ -81,7 +81,8 @@ for _ in range(num_samples):
     # Generate a random math expression with 4 digits and basic operations
     digits = [random.randint(1000, 9999) for _ in range(3)]
     X_Y.append(f"{digits[0]} + {digits[1]}")
-    Z.append(f"{digits[0] + digits[1]}")
+
+    Z.append(f"{digits[0] + digits[1] + random.randint(-1000, 1000)}")  # Adding some noise to the result
 
 
 print(f"\n--- Calculating Embedding Similarity for X_Y vs Z ({num_samples} samples) ---")
