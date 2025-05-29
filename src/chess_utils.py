@@ -18,7 +18,7 @@ def make_move_illegal(move: str) -> str:
         final_char = move[-1]
         move = move[:-1]
 
-    if (
+    if len(move) < 2 or (
         move[-2] not in BOARD_POSITION_LETTERS
         and move[-1] not in BOARD_POSITION_NUMBERS
     ):
