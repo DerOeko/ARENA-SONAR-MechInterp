@@ -302,34 +302,46 @@ def generate_pca_plots_from_datasets(
     # Initialize variable for return, to be defined if analysis runs
     correctness_direction_to_return = None 
 
-    # --- Correctness Direction Analysis ---
+    # --- Binary Label Direction Analysis ---
     if enable_correctness_direction_analysis:
-        correctness_binary_labels = []
-        has_correctness_labels = False
+        binary_labels = []
+        has_binary_labels = False
 
-        for label in labels_vec:
-            lower_label = label.lower()
-            if lower_label.startswith("correct"):
-                correctness_binary_labels.append(1)  # Correct
-                has_correctness_labels = True
-            elif lower_label.startswith("incorrect"):
-                correctness_binary_labels.append(0)  # Incorrect
-                has_correctness_labels = True
-            else:
-                correctness_binary_labels.append(-1)  # Neutral/Other
+        label_set = set(labels_vec)  # Use set to avoid duplicates
+        if len(label_set) < 2:
+            print("\nSkipping binary direction analysis: Not enough unique labels found.")
+            return reduced_embeddings, df, fig_interactive, None, None
+        elif len(label_set) > 2:
+            print("\nWarning: More than 2 unique labels found. Not implemented yet")
+            print("Binary direction analysis is designed for exactly 2 labels.")
+        else:
+            # Get the two unique labels
+            unique_labels = list(label_set)
+            label_1, label_2 = unique_labels[0], unique_labels[1]
+            print(f"\nFound exactly 2 unique labels: '{label_1}' and '{label_2}', proceeding with binary direction analysis.")
+            
+            # Convert labels to binary (0/1)
+            binary_labels = []
+            for label in labels_vec:
+                if label == label_1:
+                    binary_labels.append(1)
+                else:
+                    binary_labels.append(0)
+            
+            has_binary_labels = True
 
-        if has_correctness_labels and len(set(correctness_binary_labels) - {-1}) == 2:
-            print("\n--- Performing Correctness Direction Analysis ---")
+        if has_binary_labels and len(set(binary_labels) - {-1}) == 2:
+            print(f"\n--- Performing Binary Direction Analysis ({label_1} vs {label_2}) ---")
 
-            # Filter out entries that are not correct/incorrect
-            valid_indices = [i for i, val in enumerate(correctness_binary_labels) if val != -1]
+            # Filter out entries that are not in our binary classification
+            valid_indices = [i for i, val in enumerate(binary_labels) if val != -1]
             X_filtered = combined_raw_embeddings[valid_indices]
-            y_filtered = np.array([corr for corr in correctness_binary_labels if corr != -1])
+            y_filtered = np.array([label for label in binary_labels if label != -1])
 
             if len(set(y_filtered)) < 2:
-                print("Warning: Not enough unique correct/incorrect classes found for direction analysis.")
+                print("Warning: Not enough unique classes found for direction analysis.")
             elif len(X_filtered) < 2:
-                print("Warning: Not enough data points after filtering for correctness direction analysis.")
+                print("Warning: Not enough data points after filtering for binary direction analysis.")
             else:
                 try:
                     # Train-test split to avoid overfitting
@@ -358,30 +370,30 @@ def generate_pca_plots_from_datasets(
 
                     # Optional: Add more detailed metrics (on test set)
                     print(f"\nTest Set Classification Report:")
-                    print(classification_report(y_test, y_test_pred, target_names=['incorrect', 'correct']))
+                    print(classification_report(y_test, y_test_pred, target_names=[label_2, label_1]))
 
                     print(f"\nTest Set Confusion Matrix:")
                     cm = confusion_matrix(y_test, y_test_pred)
                     print(cm)
                     print("(rows: actual, columns: predicted)")
 
-                    correctness_direction_unnormalized = log_reg_model.coef_[0]
-                    correctness_direction_normalized = correctness_direction_unnormalized / np.linalg.norm(correctness_direction_unnormalized)
-                    correctness_direction_to_return = correctness_direction_normalized
+                    direction_unnormalized = log_reg_model.coef_[0]
+                    direction_normalized = direction_unnormalized / np.linalg.norm(direction_unnormalized)
+                    direction_to_return = direction_normalized
 
-                    print(f"\nLearned Normalized Correctness Direction (Logistic Regression coefficients):\n{correctness_direction_normalized[:10]}... (showing first 10 dims)")
-                    print("This vector is in the original embedding space. A higher dot product with this vector generally means more correct.")
+                    print(f"\nLearned Normalized Direction Vector (Logistic Regression coefficients):\n{direction_normalized[:10]}... (showing first 10 dims)")
+                    print(f"This vector is in the original embedding space. A higher dot product with this vector generally means more '{label_1}'-like.")
 
-                    # Calculate correctness scores for ALL filtered data (not just test set)
-                    correctness_scores = np.dot(X_filtered, correctness_direction_normalized)
+                    # Calculate direction scores for ALL filtered data (not just test set)
+                    direction_scores = np.dot(X_filtered, direction_normalized)
 
-                    print("\nExample Correctness Scores (from test set):")
+                    print(f"\nExample Direction Scores (from test set):")
                     # Show examples from test set
-                    test_scores = np.dot(X_test, correctness_direction_normalized)
+                    test_scores = np.dot(X_test, direction_normalized)
                     for i in range(min(5, len(test_scores))):
                         text_index = test_indices[i]
-                        predicted_label = 'correct' if y_test_pred[i] == 1 else 'incorrect'
-                        actual_label = 'correct' if y_test[i] == 1 else 'incorrect'
+                        predicted_label = label_1 if y_test_pred[i] == 1 else label_2
+                        actual_label = label_1 if y_test[i] == 1 else label_2
                         correct = "✓" if y_test_pred[i] == y_test[i] else "✗"
                         
                         if text_index < len(combined_raw_texts):
@@ -390,72 +402,72 @@ def generate_pca_plots_from_datasets(
                         else:
                             print(f"  Score: {test_scores[i]:.4f} (Actual: {actual_label}, Predicted: {predicted_label} {correct}) (Text index out of bounds)")
 
-                    # --- Histogram of Correctness Scores ---
-                    print("\n--- Correctness Scores Distribution ---")
+                    # --- Histogram of Direction Scores ---
+                    print(f"\n--- Direction Scores Distribution ({label_1} vs {label_2}) ---")
                     import matplotlib.pyplot as plt
                     
-                    correct_scores_list = correctness_scores[y_filtered == 1]
-                    incorrect_scores_list = correctness_scores[y_filtered == 0]
+                    label_1_scores = direction_scores[y_filtered == 1]
+                    label_2_scores = direction_scores[y_filtered == 0]
                     
                     plt.figure(figsize=(10, 6))
-                    plt.hist(incorrect_scores_list, bins=20, alpha=0.7, label='Incorrect', color='red', density=True)
-                    plt.hist(correct_scores_list, bins=20, alpha=0.7, label='Correct', color='green', density=True)
-                    plt.xlabel('Correctness Score')
+                    plt.hist(label_2_scores, bins=20, alpha=0.7, label=label_2, color='red', density=True)
+                    plt.hist(label_1_scores, bins=20, alpha=0.7, label=label_1, color='green', density=True)
+                    plt.xlabel('Direction Score')
                     plt.ylabel('Density')
-                    plt.title('Distribution of Correctness Scores')
+                    plt.title(f'Distribution of Direction Scores ({label_1} vs {label_2})')
                     plt.legend()
                     plt.grid(True, alpha=0.3)
                     
                     # Save histogram
-                    hist_filename = f"correctness_scores_histogram_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.png"
+                    hist_filename = f"direction_scores_histogram_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.png"
                     hist_filepath = os.path.join(output_dir, hist_filename)
                     plt.savefig(hist_filepath, dpi=300, bbox_inches='tight')
-                    print(f"Correctness scores histogram saved to: {hist_filepath}")
+                    print(f"Direction scores histogram saved to: {hist_filepath}")
                     plt.close()
                     
                     # Print some statistics about the distributions
-                    print(f"\nCorrect scores - Mean: {np.mean(correct_scores_list):.4f}, Std: {np.std(correct_scores_list):.4f}")
-                    print(f"Incorrect scores - Mean: {np.mean(incorrect_scores_list):.4f}, Std: {np.std(incorrect_scores_list):.4f}")
-                    print(f"Separation (difference in means): {np.mean(correct_scores_list) - np.mean(incorrect_scores_list):.4f}")
+                    print(f"\n{label_1} scores - Mean: {np.mean(label_1_scores):.4f}, Std: {np.std(label_1_scores):.4f}")
+                    print(f"{label_2} scores - Mean: {np.mean(label_2_scores):.4f}, Std: {np.std(label_2_scores):.4f}")
+                    print(f"Separation (difference in means): {np.mean(label_1_scores) - np.mean(label_2_scores):.4f}")
 
-                    # --- Sanity Check: Average Correctness Scores ---
-                    print("\n--- Sanity Check: Average Correctness Scores ---")
-                    avg_correct_score = None  # Initialize
-                    if len(correct_scores_list) > 0:
-                        avg_correct_score = np.mean(correct_scores_list)
-                        print(f"Average score for 'correct' sentences: {avg_correct_score:.4f}")
+                    # --- Sanity Check: Average Direction Scores ---
+                    print(f"\n--- Sanity Check: Average Direction Scores ---")
+                    avg_label_1_score = None  # Initialize
+                    if len(label_1_scores) > 0:
+                        avg_label_1_score = np.mean(label_1_scores)
+                        print(f"Average score for '{label_1}' sentences: {avg_label_1_score:.4f}")
                     else:
-                        print("No 'correct' sentences found for average score calculation.")
+                        print(f"No '{label_1}' sentences found for average score calculation.")
 
-                    avg_incorrect_score = None  # Initialize
-                    if len(incorrect_scores_list) > 0:
-                        avg_incorrect_score = np.mean(incorrect_scores_list)
-                        print(f"Average score for 'incorrect' sentences: {avg_incorrect_score:.4f}")
+                    avg_label_2_score = None  # Initialize
+                    if len(label_2_scores) > 0:
+                        avg_label_2_score = np.mean(label_2_scores)
+                        print(f"Average score for '{label_2}' sentences: {avg_label_2_score:.4f}")
                     else:
-                        print("No 'incorrect' sentences found for average score calculation.")
+                        print(f"No '{label_2}' sentences found for average score calculation.")
 
-                    if avg_correct_score is not None and avg_incorrect_score is not None:
-                        if avg_incorrect_score < avg_correct_score:
-                            print("Observation: Average score for incorrect sentences is lower than for correct ones, as expected.")
+                    if avg_label_1_score is not None and avg_label_2_score is not None:
+                        if avg_label_2_score < avg_label_1_score:
+                            print(f"Observation: Average score for '{label_2}' sentences is lower than for '{label_1}' ones, as expected.")
                         else:
-                            print("Observation: Average score for incorrect sentences is NOT lower. This may indicate issues or interesting properties.")
+                            print(f"Observation: Average score for '{label_2}' sentences is NOT lower than '{label_1}'. This may indicate issues or interesting properties.")
                     
 
-                    # --- Sanity Check: Cosine Similarity (PCA PC1 vs Correctness Direction) ---
+                    # --- Sanity Check: Cosine Similarity (PCA PC1 vs Direction Vector) ---
                     if return_eigenvectors and reduction_method == "PCA" and hasattr(operator, 'components_') and operator.components_ is not None:
                         pc1 = operator.components_[0]  # PC1 from PCA
-                        if pc1.shape == correctness_direction_normalized.shape and pc1.ndim == 1:
+                        if pc1.shape == direction_normalized.shape and pc1.ndim == 1:
                             # PC1 from sklearn.decomposition.PCA is already a unit vector.
-                            # correctness_direction_normalized is also a unit vector.
-                            cosine_sim = np.dot(pc1, correctness_direction_normalized)
-                            print(f"\n--- Sanity Check: Cosine Similarity (PC1 vs Normalized Correctness Direction) ---")
+                            # direction_normalized is also a unit vector.
+                            cosine_sim = np.dot(pc1, direction_normalized)
+                            print(f"\n--- Sanity Check: Cosine Similarity (PC1 vs Normalized Direction Vector) ---")
                             print(f"Cosine similarity: {cosine_sim:.4f}")
                             print("Interpretation: A high absolute value (close to 1 or -1) suggests PC1 (direction of max variance)")
-                            print("aligns with the learned correctness direction. A value close to 0 suggests they are orthogonal.")
-                            print("This alignment is plausible if correctness is a primary driver of variance captured by PC1.")
+                            print(f"aligns with the learned direction vector ({label_1} vs {label_2}). A value close to 0 suggests they are orthogonal.")
+                            print(f"This alignment is plausible if the '{label_1}' vs '{label_2}' distinction is a primary driver of variance captured by PC1.")
                         else:
-                            print("\nSkipping cosine similarity check: PC1 or correctness direction has unexpected shape or dimensions.")
-                            print(f"PC1 shape: {pc1.shape}, Norm Correctness Dir shape: {correctness_direction_normalized.shape}")
+                            print("\nSkipping cosine similarity check: PC1 or direction vector has unexpected shape or dimensions.")
+                            print(f"PC1 shape: {pc1.shape}, Norm Direction Vec shape: {direction_normalized.shape}")
                     elif reduction_method != "PCA":
                         print("\nCosine similarity check with eigenvectors is specific to PCA; current method is not PCA.")
                     elif not return_eigenvectors:
@@ -464,10 +476,10 @@ def generate_pca_plots_from_datasets(
                         print("\nSkipping cosine similarity check: PCA components not available.")
 
                 except Exception as e:
-                    print(f"Error during correctness direction analysis: {e}")
-                    print("Ensure sufficient data points for both correct and incorrect classes.")
+                    print(f"Error during binary direction analysis: {e}")
+                    print("Ensure sufficient data points for both label classes.")
         else:
-            print("\nCorrectness direction analysis skipped: Labels do not contain 'correct' and 'incorrect' categories, or only one category was found after filtering, or not enough data.")
+            print(f"\nBinary direction analysis skipped: Labels do not contain exactly 2 categories, or only one category was found after filtering, or not enough data.")
 
     # Prepare components for return (specific to PCA)
     pca_components_to_return = None
@@ -534,16 +546,16 @@ def generate_pca_plots_from_datasets(
         np.save(os.path.join(output_dir, pca_filename), pca_components_to_return)
         print(f"PCA eigenvectors saved to: {os.path.join(output_dir, pca_filename)}")
 
-    # Save correctness direction if available (using filename from your example)
-    # The variable in your function for correctness direction is 'correctness_direction_to_return'
-    if correctness_direction_to_return is not None:
-        correctness_direction_filename = f"correctness_direction_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
-        np.save(os.path.join(output_dir, correctness_direction_filename), correctness_direction_to_return)
-        print(f"Correctness direction saved to: {os.path.join(output_dir, correctness_direction_filename)}")
+    # Save direction vector if available (using filename from your example)
+    # The variable in your function for direction vector is 'direction_to_return'
+    if direction_to_return is not None:
+        direction_filename = f"direction_vector_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
+        np.save(os.path.join(output_dir, direction_filename), direction_to_return)
+        print(f"Direction vector saved to: {os.path.join(output_dir, direction_filename)}")
 
     print(f"Results saved to output directory: {output_dir}")
 
-    return reduced_embeddings, df, fig_interactive, pca_components_to_return, correctness_direction_to_return
+    return reduced_embeddings, df, fig_interactive, pca_components_to_return, direction_to_return
 #%%
 
 # reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_maths", "agrammar_maths"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
