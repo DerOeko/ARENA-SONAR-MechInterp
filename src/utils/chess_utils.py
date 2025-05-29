@@ -9,7 +9,6 @@ BOARD_POSITIONS = [
     for number in BOARD_POSITION_NUMBERS
 ]
 
-
 def make_move_illegal(move: str) -> str:
     """
     Make a move illegal by randomising the destination position.
@@ -47,9 +46,6 @@ def make_sequence_illegal(move_steps: list[str]) -> list[str]:
     for game in move_steps:
         game_strings.append(" ".join(map(make_move_illegal, game.split(" "))))
     return game_strings
-
-import chess
-import random
 
 def generate_legal_chess_sequences(num_sequences: int, max_moves_per_sequence: int, use_san: bool = False) -> list[str]:
     """
@@ -89,13 +85,6 @@ def generate_legal_chess_sequences(num_sequences: int, max_moves_per_sequence: i
     return generated_sequences
 
 
-BOARD_POSITION_LETTERS = "abcdefgh"
-BOARD_POSITION_NUMBERS = "12345678"
-BOARD_POSITIONS = [
-    f"{letter}{number}"
-    for letter in BOARD_POSITION_LETTERS
-    for number in BOARD_POSITION_NUMBERS
-]
 
 def make_one_san_move_illegal_by_random_destination(move_san: str) -> str:
     """
