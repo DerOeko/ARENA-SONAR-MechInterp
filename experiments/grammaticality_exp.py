@@ -240,6 +240,9 @@ def generate_pca_plots_from_datasets(
     else:
         print("Silhouette Score requires at least 2 components for calculation.")
 
+    # Initialize variable for return, to be defined if analysis runs
+    grammaticality_direction_to_return = None 
+    
         # --- Grammaticality Direction Analysis ---
     if enable_grammaticality_direction_analysis:
         grammaticality_binary_labels = []
@@ -247,14 +250,14 @@ def generate_pca_plots_from_datasets(
 
         for label in labels_vec:
             lower_label = label.lower()
-            if lower_label.split('_')[0] == "grammatical":
+            if lower_label.startswith("grammatical"):
                 grammaticality_binary_labels.append(1) # Grammatical
                 has_grammatical_labels = True
-            elif lower_label.split('_')[0] == "ungrammatical":
+            elif lower_label.startswith("ungrammatical") or lower_label.startswith("agrammar"):
                 grammaticality_binary_labels.append(0) # Ungrammatical
                 has_grammatical_labels = True
             else:
-                grammaticality_binary_labels.append(-1) # Neutral/Other (will be filtered)
+                grammaticality_binary_labels.append(-1) # Neutral/Other
 
         if has_grammatical_labels and len(set(grammaticality_binary_labels) - {-1}) == 2:
             print("\n--- Performing Grammaticality Direction Analysis ---")
@@ -273,38 +276,157 @@ def generate_pca_plots_from_datasets(
                     # Using Logistic Regression to find the separating hyperplane/direction
                     log_reg_model = LogisticRegression(random_state=RANDOM_STATE, solver='liblinear', C=1.0, max_iter=1000)
                     log_reg_model.fit(X_filtered, y_filtered)
-
-                    # The coefficient vector represents the normal to the decision boundary,
-                    # which is the direction that best separates the classes.
-                    grammaticality_direction = log_reg_model.coef_[0]
-                    grammaticality_direction_normalized = grammaticality_direction / np.linalg.norm(grammaticality_direction)
-
-                    print(f"\nLearned Grammaticality Direction (Logistic Regression coefficients):\n{grammaticality_direction_normalized}")
+                    grammaticality_direction_unnormalized = log_reg_model.coef_[0]
+                    grammaticality_direction_normalized = grammaticality_direction_unnormalized / np.linalg.norm(grammaticality_direction_unnormalized)
+                    grammaticality_direction_to_return = grammaticality_direction_normalized
+                    
+                    print(f"\nLearned Normalized Grammaticality Direction (Logistic Regression coefficients):\n{grammaticality_direction_normalized[:10]}... (showing first 10 dims)") # Print only a snippet
                     print("This vector is in the original embedding space. A higher dot product with this vector generally means more grammatical.")
 
-                    # Optional: Project reduced embeddings onto this direction for visualization
-                    # (This is more complex as the direction is in high-D space, but could be visualized)
-                    # For a simple check, you can project the original embeddings onto this direction
-                    # to get a "grammaticality score"
                     grammaticality_scores = np.dot(X_filtered, grammaticality_direction_normalized)
                     
                     print("\nExample Grammaticality Scores:")
+                    # Ensure combined_raw_texts and valid_indices align
                     for i in range(min(5, len(grammaticality_scores))):
-                        print(f"  Sentence: '{combined_raw_texts[valid_indices[i]]}' -> Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'})")
+                        text_index = valid_indices[i]
+                        if text_index < len(combined_raw_texts):
+                            print(f"  Sentence: '{combined_raw_texts[text_index][:50]}...' -> Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'})")
+                        else:
+                            print(f"  Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'}) (Text index out of bounds)")
+                            
+                    # --- Sanity Check: Average Grammaticality Scores ---
+                    print("\n--- Sanity Check: Average Grammaticality Scores ---")
+                    grammatical_scores_list = grammaticality_scores[y_filtered == 1]
+                    ungrammatical_scores_list = grammaticality_scores[y_filtered == 0]
                     
-                    for i in reversed(range(min(5, len(grammaticality_scores)), -1)):
-                        print(f"  Sentence: '{combined_raw_texts[valid_indices[i]]}' -> Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'})")
+                    avg_grammatical_score = None # Initialize
+                    if len(grammatical_scores_list) > 0:
+                        avg_grammatical_score = np.mean(grammatical_scores_list)
+                        print(f"Average score for 'grammatical' sentences: {avg_grammatical_score:.4f}")
+                    else:
+                        print("No 'grammatical' sentences found for average score calculation.")
+
+                    avg_ungrammatical_score = None # Initialize
+                    if len(ungrammatical_scores_list) > 0:
+                        avg_ungrammatical_score = np.mean(ungrammatical_scores_list)
+                        print(f"Average score for 'ungrammatical' sentences: {avg_ungrammatical_score:.4f}")
+                    else:
+                        print("No 'ungrammatical' sentences found for average score calculation.")
+
+                    if avg_grammatical_score is not None and avg_ungrammatical_score is not None:
+                        if avg_ungrammatical_score < avg_grammatical_score:
+                            print("Observation: Average score for ungrammatical sentences is lower than for grammatical ones, as expected.")
+                        else:
+                            print("Observation: Average score for ungrammatical sentences is NOT lower. This may indicate issues or interesting properties.")
+                    
+                    # --- Sanity Check: Cosine Similarity (PCA PC1 vs Grammaticality Direction) ---
+                    if return_eigenvectors and reduction_method == "PCA" and hasattr(operator, 'components_') and operator.components_ is not None:
+                        pc1 = operator.components_[0] # PC1 from PCA
+                        if pc1.shape == grammaticality_direction_normalized.shape and pc1.ndim == 1:
+                            # PC1 from sklearn.decomposition.PCA is already a unit vector.
+                            # grammaticality_direction_normalized is also a unit vector.
+                            cosine_sim = np.dot(pc1, grammaticality_direction_normalized)
+                            print(f"\n--- Sanity Check: Cosine Similarity (PC1 vs Normalized Grammaticality Direction) ---")
+                            print(f"Cosine similarity: {cosine_sim:.4f}")
+                            print("Interpretation: A high absolute value (close to 1 or -1) suggests PC1 (direction of max variance)")
+                            print("aligns with the learned grammaticality direction. A value close to 0 suggests they are orthogonal.")
+                            print("This alignment is plausible if grammaticality is a primary driver of variance captured by PC1.")
+                        else:
+                            print("\nSkipping cosine similarity check: PC1 or grammaticality direction has unexpected shape or dimensions.")
+                            print(f"PC1 shape: {pc1.shape}, Norm Grammaticality Dir shape: {grammaticality_direction_normalized.shape}")
+                    elif reduction_method != "PCA":
+                        print("\nCosine similarity check with eigenvectors is specific to PCA; current method is not PCA.")
+                    elif not return_eigenvectors:
+                        print("\nSkipping cosine similarity check: Eigenvectors (PCA components) were not requested to be returned.")
+                    else: # operator.components_ is None or not available
+                        print("\nSkipping cosine similarity check: PCA components not available.")
 
                 except Exception as e:
                     print(f"Error during grammaticality direction analysis: {e}")
                     print("Ensure sufficient data points for both grammatical and ungrammatical classes.")
         else:
-            print("\nGrammaticality direction analysis skipped: Labels do not contain 'grammatical' and 'ungrammatical' (or 'agrammar') categories, or only one category was found after filtering.")
-            
-    return reduced_embeddings, df, fig_interactive, operator.components_ if return_eigenvectors else None, grammaticality_direction if enable_grammaticality_direction_analysis else None
+            print("\nGrammaticality direction analysis skipped: Labels do not contain 'grammatical' and 'ungrammatical' (or similar) categories, or only one category was found after filtering, or not enough data.")
+    
+    # Prepare components for return (specific to PCA)
+    pca_components_to_return = None
+    if return_eigenvectors and reduction_method == "PCA" and hasattr(operator, 'components_'):
+        pca_components_to_return = operator.components_
+        
+        
+        # --- Saving results before returning ---
+    # Make sure 'os' module is imported at the top of your script (e.g., import os)
+    # Make sure 'numpy' is imported (e.g., import numpy as np)
+    # pandas and plotly.express are assumed to be imported as they are used earlier.
+
+    print(f"\n--- Saving Results to {output_dir} ---")
+    os.makedirs(output_dir, exist_ok=True)  # Ensure output directory exists
+
+    # Save reduced embeddings (using filename structure from your example)
+    reduced_filename = f"reduced_embeddings_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
+    np.save(os.path.join(output_dir, reduced_filename), reduced_embeddings)
+    print(f'Reduced embeddings saved to: {os.path.join(output_dir, reduced_filename)}')
+
+    # Save DataFrame (using filename structure from your example)
+    df_filename = f"plot_dataframe_{labels[0].split('_')[1]}_{n_components}_{reduction_method}.csv"
+    df.to_csv(os.path.join(output_dir, df_filename), index=False)
+    print(f"Plot dataframe saved to: {os.path.join(output_dir, df_filename)}")
+
+    # Create a descriptive filename for the interactive plot (as per your request)
+    # The 'title' variable is: f'{reduction_method} of {" vs ".join(labels)} Embeddings ({n_components}D)'
+    
+    # Sanitize the title string to create a valid filename component
+    # First, replace common separators and problematic characters with underscores
+    plot_filename_base_intermediate = title.replace(' ', '_').replace(':', '_').replace('/', '_').replace('\\', '_')
+    plot_filename_base_intermediate = plot_filename_base_intermediate.replace('(', '_').replace(')', '_').replace('[', '_').replace(']', '_')
+    
+    # Define a set of allowed characters for filenames (alphanumeric, underscore, hyphen)
+    # Dot is generally for extension, so avoid in base name unless intended.
+    allowed_chars = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-')
+    sanitized_plot_filename_base = "".join(c if c in allowed_chars else '_' for c in plot_filename_base_intermediate)
+    
+    # Consolidate multiple underscores that might result from replacements and remove leading/trailing ones
+    sanitized_plot_filename_base = '_'.join(filter(None, sanitized_plot_filename_base.split('_')))
+    
+    if not sanitized_plot_filename_base:  # Fallback if title becomes empty or invalid after sanitization
+        sanitized_plot_filename_base = f"{reduction_method.lower()}_{'_'.join(labels)}_{n_components}D_interactive_plot"
+    plot_html_filename = f"{sanitized_plot_filename_base}.html"
+    
+    fig_interactive.write_html(os.path.join(output_dir, plot_html_filename))
+    print(f"Interactive plot saved to: {os.path.join(output_dir, plot_html_filename)}")
+    
+    plot_png_filename = "static_" + plot_html_filename.replace(".html", ".png")
+    png_filepath = os.path.join(output_dir, plot_png_filename)
+
+    try:
+        fig_interactive.write_image(png_filepath)
+        print(f"Static PNG plot saved to: {png_filepath}")
+    except ValueError as e:
+        print(f"Error saving PNG: {e}")
+        print("Please ensure you have either 'kaleido' or 'orca' installed and in your PATH.")
+        print("You can install kaleido with: pip install kaleido")
+        print("Or for orca (more complex): https://plotly.com/python/static-image-export/")
+
+    # Save PCA components (eigenvectors) if available (using filename from your example)
+    # The variable in your function for eigenvectors is 'pca_components_to_return'
+    if pca_components_to_return is not None:
+        pca_filename = f"pca_eigenvectors_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
+        np.save(os.path.join(output_dir, pca_filename), pca_components_to_return)
+        print(f"PCA eigenvectors saved to: {os.path.join(output_dir, pca_filename)}")
+
+    # Save grammaticality direction if available (using filename from your example)
+    # The variable in your function for grammaticality direction is 'grammaticality_direction_to_return'
+    if grammaticality_direction_to_return is not None:
+        grammaticality_direction_filename = f"grammaticality_direction_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
+        np.save(os.path.join(output_dir, grammaticality_direction_filename), grammaticality_direction_to_return)
+        print(f"Grammaticality direction saved to: {os.path.join(output_dir, grammaticality_direction_filename)}")
+
+    print(f"Results saved to output directory: {output_dir}")
+    
+    return reduced_embeddings, df, fig_interactive, pca_components_to_return, grammaticality_direction_to_return
 
 #%%
 
-reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_math", "agrammatical_math"], n_components=3, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_maths", "agrammar_maths"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
+
 
 # %%
