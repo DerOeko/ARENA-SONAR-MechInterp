@@ -1,4 +1,5 @@
 # %%
+from sklearn.metrics import classification_report, confusion_matrix
 import torch
 import random
 import sys
@@ -13,6 +14,7 @@ import torch
 from sklearn.metrics import silhouette_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.model_selection import train_test_split
 
 from tqdm.auto import tqdm
 import umap
@@ -45,10 +47,11 @@ OUTPUT_DIR = "../data/"
 def generate_pca_plots_from_datasets(
     datasets: list,
     labels: list,
+    datasets_paths: list = None,
     output_dir: str = OUTPUT_DIR,
     n_components: int = 3,
     reduction_method: str = "PCA", # Added parameter for dimensionality reduction method
-    enable_grammaticality_direction_analysis: bool = True, # Enable or disable grammaticality direction analysis
+    enable_correctness_direction_analysis: bool = True, # Enable or disable grammaticality direction analysis
     return_eigenvectors: bool = False,
 ):
     """
@@ -61,7 +64,26 @@ def generate_pca_plots_from_datasets(
         n_components (int): Number of components for dimensionality reduction (2 or 3).
         reduction_method (str): Method for dimensionality reduction ('PCA', 'PHATE', or 'UMAP').
     """
+    if labels is None:
+        raise ValueError("Labels must be provided.")
+    if datasets is None and datasets_paths is None:
+        raise ValueError("Either 'datasets' (list of texts) or 'datasets_paths' (list of file paths) must be provided.")
+    if datasets is not None and datasets_paths is not None:
+        raise ValueError("Provide either 'datasets' or 'datasets_paths', not both.")
+    if datasets is not None and len(datasets) != len(labels):
+        raise ValueError("Length of 'datasets' and 'labels' must match.")
+    if datasets_paths is not None and len(datasets_paths) != len(labels):
+        raise ValueError("Length of 'datasets_paths' and 'labels' must match.")
 
+    # --- Custom Text to Embedding Pipeline & Model Max Sequence Length ---
+    token2vec = CustomTextToEmbeddingPipeline(
+        encoder=MODEL_NAME,
+        tokenizer=MODEL_NAME,
+        device=DEVICE,
+    )
+    
+    max_seq_len = token2vec.model.encoder_frontend.pos_encoder.max_seq_len
+    
     # Seed for reproducibility
     random.seed(RANDOM_STATE)
     np.random.seed(RANDOM_STATE)
@@ -71,7 +93,6 @@ def generate_pca_plots_from_datasets(
 
     orig_sonar_tokenizer = load_sonar_tokenizer(MODEL_NAME)
     tokenizer_encoder = orig_sonar_tokenizer.create_encoder()
-    tokenizer_decoder = orig_sonar_tokenizer.create_decoder() # Added for decoding tokens back to text
 
     VOCAB_INFO = orig_sonar_tokenizer.vocab_info
     PAD_IDX = VOCAB_INFO.pad_idx
@@ -80,23 +101,68 @@ def generate_pca_plots_from_datasets(
     max_len_overall = 0
 
     print("--- Loading and Tokenizing Datasets ---")
-    for i in range(len(datasets)):
-        dataset_path = datasets[i]
-        label = labels[i]
-        
-        with open(dataset_path, "r") as f:
-            texts = [line for line in f.read().split("\n") if line.strip()] # Remove empty lines
+    if datasets_paths is not None:
+        for i in range(len(datasets_paths)):
+            dataset_path = datasets_paths[i]
+            label = labels[i]
+            
+            with open(dataset_path, "r") as f:
+                texts = [line for line in f.read().split("\n") if line.strip()] # Remove empty lines
 
-        print(f"Processing {label} dataset ({len(texts)} sentences)...")
-        tokenized_sentences_for_label = []
-        for text in tqdm(texts, desc=f"Tokenizing {label}"):
-            tokenized = tokenizer_encoder(text)
-            tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
-            tokenized_sentences_for_label.append(tokenized_tensor)
-            if tokenized_tensor.shape[0] > max_len_overall:
-                max_len_overall = tokenized_tensor.shape[0]
-        dataset_texts[label] = {"raw_texts": texts, "tokenized_tensors": tokenized_sentences_for_label}
-
+            print(f"Processing {label} dataset ({len(texts)} sentences)...")
+            tokenized_sentences_for_label = []
+            filtered_texts_for_label = []  # NEW: Keep track of filtered texts
+            filtered_count = 0
+            
+            for text in tqdm(texts, desc=f"Tokenizing {label}"):
+                tokenized = tokenizer_encoder(text)
+                tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+                
+                # Filter out sequences that are too long
+                if tokenized_tensor.shape[0] <= max_seq_len:
+                    tokenized_sentences_for_label.append(tokenized_tensor)
+                    filtered_texts_for_label.append(text)  # Keep corresponding text
+                    if tokenized_tensor.shape[0] > max_len_overall:
+                        max_len_overall = tokenized_tensor.shape[0]
+                else:
+                    filtered_count += 1
+                    
+            if filtered_count > 0:
+                print(f"Filtered out {filtered_count} sequences longer than {max_seq_len} tokens for {label}")
+                
+            dataset_texts[label] = {"raw_texts": filtered_texts_for_label, "tokenized_tensors": tokenized_sentences_for_label}
+    elif datasets is not None:
+        for i in range(len(datasets)):
+            texts = datasets[i]
+            label = labels[i]
+            
+            print(f"Processing {label} dataset ({len(texts)} sentences)...")
+            tokenized_sentences_for_label = []
+            filtered_texts_for_label = []  # NEW: Keep track of filtered texts
+            filtered_count = 0
+            
+            for text in tqdm(texts, desc=f"Tokenizing {label}"):
+                tokenized = tokenizer_encoder(text)
+                tokenized_tensor = torch.tensor(tokenized, dtype=torch.long, device=DEVICE)
+                
+                # Filter out sequences that are too long
+                if tokenized_tensor.shape[0] <= max_seq_len:
+                    tokenized_sentences_for_label.append(tokenized_tensor)
+                    filtered_texts_for_label.append(text)  # Keep corresponding text
+                    if tokenized_tensor.shape[0] > max_len_overall:
+                        max_len_overall = tokenized_tensor.shape[0]
+                else:
+                    filtered_count += 1
+                    
+            if filtered_count > 0:
+                print(f"Filtered out {filtered_count} sequences longer than {max_seq_len} tokens for {label}")
+                
+            dataset_texts[label] = {"raw_texts": filtered_texts_for_label, "tokenized_tensors": tokenized_sentences_for_label}
+    else:
+        raise ValueError("Either datasets_paths or datasets must be provided.")
+            
+    max_len_overall = min(max_len_overall, max_seq_len)  # Ensure we don't exceed max_seq_len
+    
     print(f"Maximum sequence length observed across all datasets: {max_len_overall}")
 
     # --- Padding ---
@@ -114,15 +180,10 @@ def generate_pca_plots_from_datasets(
         tokenized_padded_tensors[label] = torch.stack(padded_tensors)
         print(f"Shape of padded tokenized tensor for {label}: {tokenized_padded_tensors[label].shape}")
 
-    # --- Custom Text to Embedding Pipeline ---
-    token2vec = CustomTextToEmbeddingPipeline(
-        encoder=MODEL_NAME,
-        tokenizer=MODEL_NAME,
-        device=DEVICE
-    )
+
 
     all_embeddings = {label: [] for label in labels}
-    INFERENCE_BATCH_SIZE = 512
+    INFERENCE_BATCH_SIZE = 128
 
     print("--- Generating Embeddings ---")
     for label, tokenized_tensor in tokenized_padded_tensors.items():
@@ -154,8 +215,6 @@ def generate_pca_plots_from_datasets(
     combined_raw_embeddings = np.concatenate(combined_raw_embeddings, axis=0)
     print(f"Shape of combined raw embeddings for reduction: {combined_raw_embeddings.shape}")
 
-    
-    
     # --- Perform Dimensionality Reduction ---
     print(f"--- Performing {reduction_method} with {n_components} components ---")
     reduced_embeddings = None
@@ -241,119 +300,181 @@ def generate_pca_plots_from_datasets(
         print("Silhouette Score requires at least 2 components for calculation.")
 
     # Initialize variable for return, to be defined if analysis runs
-    grammaticality_direction_to_return = None 
-    
-        # --- Grammaticality Direction Analysis ---
-    if enable_grammaticality_direction_analysis:
-        grammaticality_binary_labels = []
-        has_grammatical_labels = False
+    correctness_direction_to_return = None 
+
+    # --- Correctness Direction Analysis ---
+    if enable_correctness_direction_analysis:
+        correctness_binary_labels = []
+        has_correctness_labels = False
 
         for label in labels_vec:
             lower_label = label.lower()
-            if lower_label.startswith("grammatical"):
-                grammaticality_binary_labels.append(1) # Grammatical
-                has_grammatical_labels = True
-            elif lower_label.startswith("ungrammatical") or lower_label.startswith("agrammar"):
-                grammaticality_binary_labels.append(0) # Ungrammatical
-                has_grammatical_labels = True
+            if lower_label.startswith("correct"):
+                correctness_binary_labels.append(1)  # Correct
+                has_correctness_labels = True
+            elif lower_label.startswith("incorrect"):
+                correctness_binary_labels.append(0)  # Incorrect
+                has_correctness_labels = True
             else:
-                grammaticality_binary_labels.append(-1) # Neutral/Other
+                correctness_binary_labels.append(-1)  # Neutral/Other
 
-        if has_grammatical_labels and len(set(grammaticality_binary_labels) - {-1}) == 2:
-            print("\n--- Performing Grammaticality Direction Analysis ---")
+        if has_correctness_labels and len(set(correctness_binary_labels) - {-1}) == 2:
+            print("\n--- Performing Correctness Direction Analysis ---")
 
-            # Filter out entries that are not grammatical/ungrammatical
-            valid_indices = [i for i, val in enumerate(grammaticality_binary_labels) if val != -1]
+            # Filter out entries that are not correct/incorrect
+            valid_indices = [i for i, val in enumerate(correctness_binary_labels) if val != -1]
             X_filtered = combined_raw_embeddings[valid_indices]
-            y_filtered = np.array([gram for gram in grammaticality_binary_labels if gram != -1])
+            y_filtered = np.array([corr for corr in correctness_binary_labels if corr != -1])
 
             if len(set(y_filtered)) < 2:
-                print("Warning: Not enough unique grammatical/ungrammatical classes found for direction analysis.")
+                print("Warning: Not enough unique correct/incorrect classes found for direction analysis.")
             elif len(X_filtered) < 2:
-                print("Warning: Not enough data points after filtering for grammaticality direction analysis.")
+                print("Warning: Not enough data points after filtering for correctness direction analysis.")
             else:
                 try:
+                    # Train-test split to avoid overfitting
+                    X_train, X_test, y_train, y_test, train_indices, test_indices = train_test_split(
+                        X_filtered, y_filtered, valid_indices, test_size=0.2, random_state=RANDOM_STATE, 
+                        stratify=y_filtered if len(np.unique(y_filtered)) > 1 else None
+                    )
+                    
+                    print(f"Training set size: {len(X_train)}, Test set size: {len(X_test)}")
+                    
                     # Using Logistic Regression to find the separating hyperplane/direction
                     log_reg_model = LogisticRegression(random_state=RANDOM_STATE, solver='liblinear', C=1.0, max_iter=1000)
-                    log_reg_model.fit(X_filtered, y_filtered)
-                    grammaticality_direction_unnormalized = log_reg_model.coef_[0]
-                    grammaticality_direction_normalized = grammaticality_direction_unnormalized / np.linalg.norm(grammaticality_direction_unnormalized)
-                    grammaticality_direction_to_return = grammaticality_direction_normalized
-                    
-                    print(f"\nLearned Normalized Grammaticality Direction (Logistic Regression coefficients):\n{grammaticality_direction_normalized[:10]}... (showing first 10 dims)") # Print only a snippet
-                    print("This vector is in the original embedding space. A higher dot product with this vector generally means more grammatical.")
+                    log_reg_model.fit(X_train, y_train)
 
-                    grammaticality_scores = np.dot(X_filtered, grammaticality_direction_normalized)
+                    # Calculate accuracy on both training and test sets
+                    train_accuracy = log_reg_model.score(X_train, y_train)
+                    test_accuracy = log_reg_model.score(X_test, y_test)
+                    print(f"\nTraining Accuracy: {train_accuracy:.4f} ({train_accuracy*100:.2f}%)")
+                    print(f"Test Accuracy: {test_accuracy:.4f} ({test_accuracy*100:.2f}%)")
                     
-                    print("\nExample Grammaticality Scores:")
-                    # Ensure combined_raw_texts and valid_indices align
-                    for i in range(min(5, len(grammaticality_scores))):
-                        text_index = valid_indices[i]
+                    if train_accuracy - test_accuracy > 0.1:
+                        print("⚠️  Warning: Large gap between training and test accuracy suggests overfitting")
+
+                    # Get predictions for test set
+                    y_test_pred = log_reg_model.predict(X_test)
+
+                    # Optional: Add more detailed metrics (on test set)
+                    print(f"\nTest Set Classification Report:")
+                    print(classification_report(y_test, y_test_pred, target_names=['incorrect', 'correct']))
+
+                    print(f"\nTest Set Confusion Matrix:")
+                    cm = confusion_matrix(y_test, y_test_pred)
+                    print(cm)
+                    print("(rows: actual, columns: predicted)")
+
+                    correctness_direction_unnormalized = log_reg_model.coef_[0]
+                    correctness_direction_normalized = correctness_direction_unnormalized / np.linalg.norm(correctness_direction_unnormalized)
+                    correctness_direction_to_return = correctness_direction_normalized
+
+                    print(f"\nLearned Normalized Correctness Direction (Logistic Regression coefficients):\n{correctness_direction_normalized[:10]}... (showing first 10 dims)")
+                    print("This vector is in the original embedding space. A higher dot product with this vector generally means more correct.")
+
+                    # Calculate correctness scores for ALL filtered data (not just test set)
+                    correctness_scores = np.dot(X_filtered, correctness_direction_normalized)
+
+                    print("\nExample Correctness Scores (from test set):")
+                    # Show examples from test set
+                    test_scores = np.dot(X_test, correctness_direction_normalized)
+                    for i in range(min(5, len(test_scores))):
+                        text_index = test_indices[i]
+                        predicted_label = 'correct' if y_test_pred[i] == 1 else 'incorrect'
+                        actual_label = 'correct' if y_test[i] == 1 else 'incorrect'
+                        correct = "✓" if y_test_pred[i] == y_test[i] else "✗"
+                        
                         if text_index < len(combined_raw_texts):
-                            print(f"  Sentence: '{combined_raw_texts[text_index][:50]}...' -> Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'})")
+                            print(f"  Sentence: '{combined_raw_texts[text_index][:50]}...' -> Score: {test_scores[i]:.4f}")
+                            print(f"    Actual: {actual_label}, Predicted: {predicted_label} {correct}")
                         else:
-                            print(f"  Score: {grammaticality_scores[i]:.4f} (Label: {'grammatical' if y_filtered[i] == 1 else 'ungrammatical'}) (Text index out of bounds)")
-                            
-                    # --- Sanity Check: Average Grammaticality Scores ---
-                    print("\n--- Sanity Check: Average Grammaticality Scores ---")
-                    grammatical_scores_list = grammaticality_scores[y_filtered == 1]
-                    ungrammatical_scores_list = grammaticality_scores[y_filtered == 0]
+                            print(f"  Score: {test_scores[i]:.4f} (Actual: {actual_label}, Predicted: {predicted_label} {correct}) (Text index out of bounds)")
+
+                    # --- Histogram of Correctness Scores ---
+                    print("\n--- Correctness Scores Distribution ---")
+                    import matplotlib.pyplot as plt
                     
-                    avg_grammatical_score = None # Initialize
-                    if len(grammatical_scores_list) > 0:
-                        avg_grammatical_score = np.mean(grammatical_scores_list)
-                        print(f"Average score for 'grammatical' sentences: {avg_grammatical_score:.4f}")
-                    else:
-                        print("No 'grammatical' sentences found for average score calculation.")
+                    correct_scores_list = correctness_scores[y_filtered == 1]
+                    incorrect_scores_list = correctness_scores[y_filtered == 0]
+                    
+                    plt.figure(figsize=(10, 6))
+                    plt.hist(incorrect_scores_list, bins=20, alpha=0.7, label='Incorrect', color='red', density=True)
+                    plt.hist(correct_scores_list, bins=20, alpha=0.7, label='Correct', color='green', density=True)
+                    plt.xlabel('Correctness Score')
+                    plt.ylabel('Density')
+                    plt.title('Distribution of Correctness Scores')
+                    plt.legend()
+                    plt.grid(True, alpha=0.3)
+                    
+                    # Save histogram
+                    hist_filename = f"correctness_scores_histogram_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.png"
+                    hist_filepath = os.path.join(output_dir, hist_filename)
+                    plt.savefig(hist_filepath, dpi=300, bbox_inches='tight')
+                    print(f"Correctness scores histogram saved to: {hist_filepath}")
+                    plt.close()
+                    
+                    # Print some statistics about the distributions
+                    print(f"\nCorrect scores - Mean: {np.mean(correct_scores_list):.4f}, Std: {np.std(correct_scores_list):.4f}")
+                    print(f"Incorrect scores - Mean: {np.mean(incorrect_scores_list):.4f}, Std: {np.std(incorrect_scores_list):.4f}")
+                    print(f"Separation (difference in means): {np.mean(correct_scores_list) - np.mean(incorrect_scores_list):.4f}")
 
-                    avg_ungrammatical_score = None # Initialize
-                    if len(ungrammatical_scores_list) > 0:
-                        avg_ungrammatical_score = np.mean(ungrammatical_scores_list)
-                        print(f"Average score for 'ungrammatical' sentences: {avg_ungrammatical_score:.4f}")
+                    # --- Sanity Check: Average Correctness Scores ---
+                    print("\n--- Sanity Check: Average Correctness Scores ---")
+                    avg_correct_score = None  # Initialize
+                    if len(correct_scores_list) > 0:
+                        avg_correct_score = np.mean(correct_scores_list)
+                        print(f"Average score for 'correct' sentences: {avg_correct_score:.4f}")
                     else:
-                        print("No 'ungrammatical' sentences found for average score calculation.")
+                        print("No 'correct' sentences found for average score calculation.")
 
-                    if avg_grammatical_score is not None and avg_ungrammatical_score is not None:
-                        if avg_ungrammatical_score < avg_grammatical_score:
-                            print("Observation: Average score for ungrammatical sentences is lower than for grammatical ones, as expected.")
+                    avg_incorrect_score = None  # Initialize
+                    if len(incorrect_scores_list) > 0:
+                        avg_incorrect_score = np.mean(incorrect_scores_list)
+                        print(f"Average score for 'incorrect' sentences: {avg_incorrect_score:.4f}")
+                    else:
+                        print("No 'incorrect' sentences found for average score calculation.")
+
+                    if avg_correct_score is not None and avg_incorrect_score is not None:
+                        if avg_incorrect_score < avg_correct_score:
+                            print("Observation: Average score for incorrect sentences is lower than for correct ones, as expected.")
                         else:
-                            print("Observation: Average score for ungrammatical sentences is NOT lower. This may indicate issues or interesting properties.")
+                            print("Observation: Average score for incorrect sentences is NOT lower. This may indicate issues or interesting properties.")
                     
-                    # --- Sanity Check: Cosine Similarity (PCA PC1 vs Grammaticality Direction) ---
+
+                    # --- Sanity Check: Cosine Similarity (PCA PC1 vs Correctness Direction) ---
                     if return_eigenvectors and reduction_method == "PCA" and hasattr(operator, 'components_') and operator.components_ is not None:
-                        pc1 = operator.components_[0] # PC1 from PCA
-                        if pc1.shape == grammaticality_direction_normalized.shape and pc1.ndim == 1:
+                        pc1 = operator.components_[0]  # PC1 from PCA
+                        if pc1.shape == correctness_direction_normalized.shape and pc1.ndim == 1:
                             # PC1 from sklearn.decomposition.PCA is already a unit vector.
-                            # grammaticality_direction_normalized is also a unit vector.
-                            cosine_sim = np.dot(pc1, grammaticality_direction_normalized)
-                            print(f"\n--- Sanity Check: Cosine Similarity (PC1 vs Normalized Grammaticality Direction) ---")
+                            # correctness_direction_normalized is also a unit vector.
+                            cosine_sim = np.dot(pc1, correctness_direction_normalized)
+                            print(f"\n--- Sanity Check: Cosine Similarity (PC1 vs Normalized Correctness Direction) ---")
                             print(f"Cosine similarity: {cosine_sim:.4f}")
                             print("Interpretation: A high absolute value (close to 1 or -1) suggests PC1 (direction of max variance)")
-                            print("aligns with the learned grammaticality direction. A value close to 0 suggests they are orthogonal.")
-                            print("This alignment is plausible if grammaticality is a primary driver of variance captured by PC1.")
+                            print("aligns with the learned correctness direction. A value close to 0 suggests they are orthogonal.")
+                            print("This alignment is plausible if correctness is a primary driver of variance captured by PC1.")
                         else:
-                            print("\nSkipping cosine similarity check: PC1 or grammaticality direction has unexpected shape or dimensions.")
-                            print(f"PC1 shape: {pc1.shape}, Norm Grammaticality Dir shape: {grammaticality_direction_normalized.shape}")
+                            print("\nSkipping cosine similarity check: PC1 or correctness direction has unexpected shape or dimensions.")
+                            print(f"PC1 shape: {pc1.shape}, Norm Correctness Dir shape: {correctness_direction_normalized.shape}")
                     elif reduction_method != "PCA":
                         print("\nCosine similarity check with eigenvectors is specific to PCA; current method is not PCA.")
                     elif not return_eigenvectors:
                         print("\nSkipping cosine similarity check: Eigenvectors (PCA components) were not requested to be returned.")
-                    else: # operator.components_ is None or not available
+                    else:  # operator.components_ is None or not available
                         print("\nSkipping cosine similarity check: PCA components not available.")
 
                 except Exception as e:
-                    print(f"Error during grammaticality direction analysis: {e}")
-                    print("Ensure sufficient data points for both grammatical and ungrammatical classes.")
+                    print(f"Error during correctness direction analysis: {e}")
+                    print("Ensure sufficient data points for both correct and incorrect classes.")
         else:
-            print("\nGrammaticality direction analysis skipped: Labels do not contain 'grammatical' and 'ungrammatical' (or similar) categories, or only one category was found after filtering, or not enough data.")
-    
+            print("\nCorrectness direction analysis skipped: Labels do not contain 'correct' and 'incorrect' categories, or only one category was found after filtering, or not enough data.")
+
     # Prepare components for return (specific to PCA)
     pca_components_to_return = None
     if return_eigenvectors and reduction_method == "PCA" and hasattr(operator, 'components_'):
         pca_components_to_return = operator.components_
-        
-        
-        # --- Saving results before returning ---
+
+    # --- Saving results before returning ---
     # Make sure 'os' module is imported at the top of your script (e.g., import os)
     # Make sure 'numpy' is imported (e.g., import numpy as np)
     # pandas and plotly.express are assumed to be imported as they are used earlier.
@@ -373,27 +494,27 @@ def generate_pca_plots_from_datasets(
 
     # Create a descriptive filename for the interactive plot (as per your request)
     # The 'title' variable is: f'{reduction_method} of {" vs ".join(labels)} Embeddings ({n_components}D)'
-    
+
     # Sanitize the title string to create a valid filename component
     # First, replace common separators and problematic characters with underscores
     plot_filename_base_intermediate = title.replace(' ', '_').replace(':', '_').replace('/', '_').replace('\\', '_')
     plot_filename_base_intermediate = plot_filename_base_intermediate.replace('(', '_').replace(')', '_').replace('[', '_').replace(']', '_')
-    
+
     # Define a set of allowed characters for filenames (alphanumeric, underscore, hyphen)
     # Dot is generally for extension, so avoid in base name unless intended.
     allowed_chars = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-')
     sanitized_plot_filename_base = "".join(c if c in allowed_chars else '_' for c in plot_filename_base_intermediate)
-    
+
     # Consolidate multiple underscores that might result from replacements and remove leading/trailing ones
     sanitized_plot_filename_base = '_'.join(filter(None, sanitized_plot_filename_base.split('_')))
-    
+
     if not sanitized_plot_filename_base:  # Fallback if title becomes empty or invalid after sanitization
         sanitized_plot_filename_base = f"{reduction_method.lower()}_{'_'.join(labels)}_{n_components}D_interactive_plot"
     plot_html_filename = f"{sanitized_plot_filename_base}.html"
-    
+
     fig_interactive.write_html(os.path.join(output_dir, plot_html_filename))
     print(f"Interactive plot saved to: {os.path.join(output_dir, plot_html_filename)}")
-    
+
     plot_png_filename = "static_" + plot_html_filename.replace(".html", ".png")
     png_filepath = os.path.join(output_dir, plot_png_filename)
 
@@ -413,20 +534,18 @@ def generate_pca_plots_from_datasets(
         np.save(os.path.join(output_dir, pca_filename), pca_components_to_return)
         print(f"PCA eigenvectors saved to: {os.path.join(output_dir, pca_filename)}")
 
-    # Save grammaticality direction if available (using filename from your example)
-    # The variable in your function for grammaticality direction is 'grammaticality_direction_to_return'
-    if grammaticality_direction_to_return is not None:
-        grammaticality_direction_filename = f"grammaticality_direction_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
-        np.save(os.path.join(output_dir, grammaticality_direction_filename), grammaticality_direction_to_return)
-        print(f"Grammaticality direction saved to: {os.path.join(output_dir, grammaticality_direction_filename)}")
+    # Save correctness direction if available (using filename from your example)
+    # The variable in your function for correctness direction is 'correctness_direction_to_return'
+    if correctness_direction_to_return is not None:
+        correctness_direction_filename = f"correctness_direction_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
+        np.save(os.path.join(output_dir, correctness_direction_filename), correctness_direction_to_return)
+        print(f"Correctness direction saved to: {os.path.join(output_dir, correctness_direction_filename)}")
 
     print(f"Results saved to output directory: {output_dir}")
-    
-    return reduced_embeddings, df, fig_interactive, pca_components_to_return, grammaticality_direction_to_return
 
+    return reduced_embeddings, df, fig_interactive, pca_components_to_return, correctness_direction_to_return
 #%%
 
-reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_maths", "agrammar_maths"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
-
+# reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_maths", "agrammar_maths"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
 
 # %%
