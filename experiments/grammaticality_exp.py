@@ -558,6 +558,62 @@ def generate_pca_plots_from_datasets(
     return reduced_embeddings, df, fig_interactive, pca_components_to_return, direction_to_return
 #%%
 
-# reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=["../data/simple_maths.txt", "../data/incorrect_simple_maths.txt"], labels=["grammatical_maths", "agrammar_maths"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_grammaticality_direction_analysis=True)
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets= None, datasets_paths=["../data/grammar_english.txt", "../data/grammar_german.txt", "../data/grammar_catalan.txt", "../data/agrammar_english.txt", "../data/agrammar_german.txt", "../data/agrammar_catalan.txt"], labels=["grammatical_language", "grammatical_language", "grammatical_language", "agrammatical_language", "agrammatical_language", "agrammatical_language"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_correctness_direction_analysis=True)
+
+# %%
+import random
+
+def create_agrammatical_sentences(input_file, output_file):
+    # Read grammatical sentences from the file
+    with open(input_file, "r") as f:
+        grammatical_sentences = [line.strip() for line in f if line.strip()]
+    
+    print(f"Read {len(grammatical_sentences)} grammatical sentences")
+    
+    # Create agrammatical sentences by shuffling words
+    agrammatical_sentences = []
+    for sentence in grammatical_sentences:
+        # Remove the period at the end
+        if sentence.endswith('.'):
+            base_sentence = sentence[:-1]
+        else:
+            base_sentence = sentence
+            
+        # Split into words and lowercase all words
+        words = [word.lower() for word in base_sentence.split()]
+        
+        # Shuffle the words
+        random.shuffle(words)
+        
+        # Capitalize the first word
+        if words:
+            words[0] = words[0].capitalize()
+        
+        # Join words back together and add period
+        agrammatical_sentence = ' '.join(words) + '.'
+        agrammatical_sentences.append(agrammatical_sentence)
+    
+    # Write agrammatical sentences to a new file
+    with open(output_file, "w") as f:
+        f.write('\n'.join(agrammatical_sentences))
+    
+    print(f"Successfully wrote {len(agrammatical_sentences)} agrammatical sentences to {output_file}")
+    
+    # Print a few examples for verification
+    print("\nSample comparison:")
+    for i in range(min(5, len(grammatical_sentences))):
+        print(f"Original: {grammatical_sentences[i]}")
+        print(f"Shuffled: {agrammatical_sentences[i]}")
+        print()
+
+# Set random seed for reproducibility
+random.seed(42)
+
+# Process the file
+create_agrammatical_sentences("../data/grammar_english.txt", "../data/agrammar_english_shuffled.txt")
+# %%
+
+
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets= None, datasets_paths=["../data/grammar_english.txt", "../data/agrammar_english_shuffled.txt"], labels=["grammar_english", "agrammar_english"], n_components=2, reduction_method="UMAP", return_eigenvectors=True, enable_correctness_direction_analysis=True)
 
 # %%

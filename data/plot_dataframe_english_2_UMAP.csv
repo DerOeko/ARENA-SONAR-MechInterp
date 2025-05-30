@@ -1,0 +1,659 @@
+UMAP1,UMAP2,label,sentence
+1.0984219,1.8323629,grammar_english,A small tree swims.
+-0.0831743,5.002064,grammar_english,One bright dog jumps.
+-0.55289,5.00447,grammar_english,Some cat jumps.
+2.8750336,4.5063004,grammar_english,The small car runs.
+1.6314762,4.6314726,grammar_english,One blue book runs.
+-0.6147519,5.224574,grammar_english,A big car jumps.
+4.8075585,3.2559307,grammar_english,Some small book sleeps.
+1.5837677,3.2698078,grammar_english,Some big dog flies.
+2.0893533,3.6140683,grammar_english,A big car flies.
+3.0934448,6.7783084,grammar_english,One small tree thinks.
+4.4149837,2.6488671,grammar_english,One big car sleeps.
+-0.34517172,5.408395,grammar_english,The big book jumps.
+1.5833226,3.2235355,grammar_english,A small dog flies.
+1.8747286,1.7039704,grammar_english,One red house swims.
+3.5332096,2.7800062,grammar_english,A slow cat sleeps.
+1.7007077,6.741458,grammar_english,One green idea flies.
+6.4872427,5.8707085,grammar_english,One slow scientist works.
+0.6095695,1.9579432,grammar_english,The small river swims.
+3.1186419,7.4167128,grammar_english,Some red cat thinks.
+4.7046113,5.101686,grammar_english,A happy computer jumps.
+3.0405574,6.60609,grammar_english,The big book thinks.
+2.1559403,3.9357073,grammar_english,One green house flies.
+0.8507621,7.7779937,grammar_english,Some big idea swims.
+0.5869393,7.140142,grammar_english,A quick idea runs.
+2.997687,4.064081,grammar_english,The house runs.
+4.4560447,4.567813,grammar_english,The slow computer runs.
+4.5237155,2.7653139,grammar_english,Some big dog sleeps.
+7.010222,5.730322,grammar_english,Any scientist flies.
+2.647683,2.0339713,grammar_english,One cat swims.
+6.7168903,5.984722,grammar_english,One sad scientist runs.
+6.143341,5.607773,grammar_english,One big scientist thinks.
+3.9203928,5.1337385,grammar_english,One big computer works.
+2.7512136,2.9374952,grammar_english,The cat runs.
+2.9483533,4.9997563,grammar_english,Some green car runs.
+0.21439496,7.54553,grammar_english,One sad idea jumps.
+3.679688,1.4131318,grammar_english,A sad car swims.
+4.162001,1.5138955,grammar_english,The sad car works.
+2.7406945,3.7983804,grammar_english,One slow house flies.
+6.9997015,5.9518285,grammar_english,The happy scientist flies.
+0.64634424,1.9103029,grammar_english,One small river swims.
+3.2638793,3.823582,grammar_english,The slow house works.
+-0.32890517,5.416691,grammar_english,The book jumps.
+1.3462353,6.837354,grammar_english,A blue idea works.
+2.8134587,2.2271018,grammar_english,A quick cat swims.
+1.6464152,4.342879,grammar_english,Some blue house runs.
+4.8056855,4.9304786,grammar_english,Some blue computer runs.
+5.1930203,1.7866098,grammar_english,The sad river sleeps.
+2.9746683,1.3774538,grammar_english,A big car swims.
+5.0881853,1.532716,grammar_english,A sad tree sleeps.
+7.040318,5.727989,grammar_english,The scientist flies.
+5.183649,2.217328,grammar_english,The green tree sleeps.
+3.3743808,6.877818,grammar_english,A red dog thinks.
+4.409234,6.0195074,grammar_english,A computer thinks.
+3.0643535,6.64837,grammar_english,The quick house thinks.
+1.6610895,6.9405503,grammar_english,A blue idea sleeps.
+4.103361,4.8449726,grammar_english,A small computer flies.
+3.7006161,5.250627,grammar_english,Some red computer works.
+6.5304084,5.856194,grammar_english,The slow scientist works.
+3.5930028,7.537845,grammar_english,A sad cat thinks.
+4.672383,3.3079364,grammar_english,Some quick book sleeps.
+2.0635815,4.8000875,grammar_english,Some quick dog works.
+1.9983503,4.866845,grammar_english,A bright dog works.
+1.6100174,3.2867424,grammar_english,A dog flies.
+4.694087,5.1370687,grammar_english,A green computer jumps.
+3.3504164,7.407702,grammar_english,One small cat thinks.
+2.1200047,4.9097924,grammar_english,The blue dog works.
+3.2710528,3.8368654,grammar_english,The slow car works.
+3.1493013,6.241428,grammar_english,A green house thinks.
+-0.5586378,4.79796,grammar_english,A red cat jumps.
+0.17883334,4.227838,grammar_english,A blue tree jumps.
+2.0920954,5.336851,grammar_english,One small book works.
+2.6874876,3.7972915,grammar_english,The quick house flies.
+-0.31531224,5.6889744,grammar_english,A small scientist jumps.
+6.299849,4.495868,grammar_english,One bright scientist sleeps.
+2.563382,2.1207025,grammar_english,One red cat swims.
+6.436908,5.9351945,grammar_english,One happy scientist thinks.
+2.804327,6.4271817,grammar_english,The bright book thinks.
+2.8593225,5.165511,grammar_english,Some green car works.
+4.3367558,2.6506033,grammar_english,The big car sleeps.
+4.8226247,1.4053074,grammar_english,One sad tree works.
+4.383406,4.9146967,grammar_english,One sad computer runs.
+-0.45904723,4.349049,grammar_english,A red house jumps.
+0.42628342,7.6972737,grammar_english,One sad idea flies.
+2.412377,1.0406142,grammar_english,One slow book swims.
+2.7061548,2.0150561,grammar_english,One green cat swims.
+4.5842743,3.3892674,grammar_english,One blue dog sleeps.
+-0.011832201,4.645231,grammar_english,One big tree jumps.
+1.7536281,3.9746127,grammar_english,Some blue house flies.
+-0.1484071,2.9438267,grammar_english,A quick river works.
+5.199972,1.5388045,grammar_english,The sad tree sleeps.
+5.234583,2.6329703,grammar_english,The red tree sleeps.
+1.5129216,2.3159337,grammar_english,The small dog swims.
+0.5978501,4.5887427,grammar_english,One slow tree runs.
+4.034734,7.1859508,grammar_english,A happy car thinks.
+3.136059,5.032008,grammar_english,The red car works.
+1.5518903,5.3484225,grammar_english,The bright book runs.
+1.5227234,2.073485,grammar_english,Any dog swims.
+6.6489224,5.1344543,grammar_english,The blue scientist runs.
+1.4385716,6.9536886,grammar_english,A blue idea runs.
+1.5584565,5.476018,grammar_english,A quick book runs.
+1.2485526,6.7618604,grammar_english,Some blue idea works.
+0.072145075,4.679636,grammar_english,One slow tree jumps.
+1.432238,7.5422335,grammar_english,The red idea swims.
+2.0923746,1.5485659,grammar_english,One house swims.
+3.3354802,3.0328588,grammar_english,The slow cat works.
+3.0087802,1.3729206,grammar_english,The slow car swims.
+4.657315,1.2631196,grammar_english,One sad river runs.
+-0.5116874,3.9924483,grammar_english,The red river jumps.
+4.8471045,3.7677102,grammar_english,One slow idea sleeps.
+-0.056876004,2.513815,grammar_english,The quick river flies.
+4.277728,2.9030678,grammar_english,A bright dog sleeps.
+6.2452784,4.4577117,grammar_english,A big scientist sleeps.
+2.8363488,3.1164858,grammar_english,Any cat runs.
+1.2143226,3.5409963,grammar_english,The tree flies.
+5.419588,2.5675404,grammar_english,The red river sleeps.
+0.20110215,2.7407322,grammar_english,The bright river runs.
+0.10422596,7.316597,grammar_english,The quick idea jumps.
+1.6285743,3.4240072,grammar_english,One red dog flies.
+2.3469744,2.1993206,grammar_english,Some small cat swims.
+4.712039,4.3604507,grammar_english,The slow computer sleeps.
+0.6147474,6.7509484,grammar_english,Some big idea works.
+2.267414,1.1997588,grammar_english,A blue book swims.
+3.9212146,1.5672655,grammar_english,One sad car flies.
+4.9895988,4.4001737,grammar_english,A blue computer sleeps.
+0.49438047,7.6092496,grammar_english,The sad idea flies.
+4.8229656,4.9327536,grammar_english,One blue computer jumps.
+3.2770956,7.40773,grammar_english,A blue cat thinks.
+5.121451,2.9384587,grammar_english,A red dog sleeps.
+3.1967018,3.8323207,grammar_english,The slow house runs.
+-0.5533644,5.34063,grammar_english,A small car jumps.
+3.0019383,4.858425,grammar_english,One red car runs.
+2.6586852,2.1925342,grammar_english,One bright cat swims.
+0.8244997,7.7707224,grammar_english,One bright idea swims.
+3.4031103,7.5078397,grammar_english,A small cat thinks.
+1.6562487,7.4295087,grammar_english,A red idea runs.
+2.7982106,4.557481,grammar_english,A car runs.
+1.4432977,3.1928093,grammar_english,The sad dog flies.
+1.0811743,4.705913,grammar_english,Any tree works.
+6.7017765,4.984373,grammar_english,The red scientist runs.
+6.4794664,4.657297,grammar_english,A red scientist sleeps.
+2.50407,3.5098085,grammar_english,Some happy car flies.
+4.204451,1.5064117,grammar_english,The sad car sleeps.
+3.082115,6.3773637,grammar_english,A green tree thinks.
+4.1482515,6.0517764,grammar_english,The green computer thinks.
+1.0906371,3.8735847,grammar_english,The bright tree flies.
+1.5977464,3.3311226,grammar_english,One big dog flies.
+1.0245385,4.1279855,grammar_english,The bright tree runs.
+3.4062946,7.579561,grammar_english,Any cat thinks.
+1.3787367,1.7680681,grammar_english,One red tree swims.
+2.3898342,1.2861829,grammar_english,A green book swims.
+2.9027147,1.3925359,grammar_english,One car swims.
+1.5630654,3.166407,grammar_english,The small dog flies.
+2.1308923,5.3754787,grammar_english,One big book works.
+2.6293125,4.9762073,grammar_english,One car works.
+2.4200795,3.3805087,grammar_english,One happy book flies.
+1.389748,3.6330261,grammar_english,One bright dog flies.
+6.294867,4.4757833,grammar_english,A small scientist sleeps.
+1.9661112,0.92720026,grammar_english,The happy book swims.
+3.7361553,5.2125483,grammar_english,A red computer works.
+-0.2191193,3.1398587,grammar_english,Some big river works.
+3.8487332,4.7547913,grammar_english,The red computer swims.
+-0.030765863,2.486545,grammar_english,A quick river flies.
+-0.71812147,5.46383,grammar_english,The car jumps.
+-0.38164055,5.5749326,grammar_english,A small book jumps.
+0.55543035,1.9774675,grammar_english,A small river swims.
+1.5749594,5.422742,grammar_english,The book runs.
+2.1971402,5.041915,grammar_english,A green dog works.
+2.10651,3.851465,grammar_english,A green house flies.
+6.2769055,5.648683,grammar_english,Some big scientist works.
+1.4941577,7.4689393,grammar_english,The red idea flies.
+0.2085239,7.4052815,grammar_english,One big idea jumps.
+2.74029,4.639745,grammar_english,One small car runs.
+5.195,1.4421709,grammar_english,The sad tree thinks.
+1.3912624,1.6968803,grammar_english,Some red tree swims.
+5.2220135,1.3746603,grammar_english,One sad tree sleeps.
+1.075719,4.721626,grammar_english,Some tree works.
+0.4906362,7.139622,grammar_english,Some happy idea runs.
+0.009882279,3.4008718,grammar_english,One blue river works.
+4.0987225,7.1539345,grammar_english,Some happy car thinks.
+6.52302,4.7269387,grammar_english,One red scientist sleeps.
+2.587615,7.4818945,grammar_english,Some red house thinks.
+4.5620723,1.5005431,grammar_english,One sad book works.
+1.7919565,1.4517139,grammar_english,Some small book swims.
+4.9052863,4.618777,grammar_english,One happy computer sleeps.
+0.08521244,3.1776514,grammar_english,One green river runs.
+3.9658222,7.095937,grammar_english,One happy house thinks.
+1.211427,1.8350766,grammar_english,A bright tree swims.
+2.1473043,3.054037,grammar_english,Some green cat flies.
+5.2840447,2.9354124,grammar_english,The red book sleeps.
+6.963538,5.9371204,grammar_english,One happy scientist flies.
+3.6081364,6.9407086,grammar_english,One slow dog thinks.
+0.66513693,4.058084,grammar_english,A blue tree runs.
+5.4944506,2.517067,grammar_english,The blue river sleeps.
+4.224457,2.9722304,grammar_english,A quick dog sleeps.
+4.7819376,3.5289156,grammar_english,One slow book sleeps.
+-0.5892269,5.420665,grammar_english,One small car jumps.
+1.9407027,7.22007,grammar_english,One red idea sleeps.
+0.91722584,7.007617,grammar_english,The quick idea thinks.
+6.905088,6.0798173,grammar_english,The happy scientist swims.
+3.0362103,2.3085546,grammar_english,A slow cat swims.
+0.7096291,6.689286,grammar_english,A small idea works.
+4.5309606,2.8449905,grammar_english,The small house sleeps.
+3.8579905,4.6722116,grammar_english,One big computer swims.
+0.6535169,6.8586154,grammar_english,The quick idea works.
+4.556765,2.9350884,grammar_english,One house sleeps.
+4.0809135,5.3541718,grammar_english,A computer works.
+5.3259225,2.9885135,grammar_english,A red book sleeps.
+4.265374,6.1042237,grammar_english,One bright computer thinks.
+0.17204463,3.3774593,grammar_english,A blue river flies.
+1.6722635,2.0165303,grammar_english,Some small dog swims.
+-0.69432604,5.413186,grammar_english,The small car jumps.
+0.07402324,4.709528,grammar_english,The sad tree jumps.
+0.060743757,7.2640576,grammar_english,Some small idea jumps.
+2.22911,2.8986466,grammar_english,The green cat flies.
+2.012774,3.4634092,grammar_english,Some big car flies.
+5.4190183,3.794646,grammar_english,A big idea sleeps.
+3.1870182,5.106853,grammar_english,Some red car works.
+6.27456,4.470932,grammar_english,The big scientist sleeps.
+3.910992,7.1346865,grammar_english,One happy dog thinks.
+0.14661874,7.4595027,grammar_english,One happy idea jumps.
+3.3819017,7.31031,grammar_english,One big cat thinks.
+5.0060425,4.232653,grammar_english,A computer sleeps.
+4.1315665,3.165143,grammar_english,A quick house sleeps.
+1.9637206,6.890143,grammar_english,One green idea sleeps.
+-0.43791628,3.982056,grammar_english,A big river jumps.
+1.9206363,1.0182598,grammar_english,Some happy book swims.
+0.65792793,6.9196396,grammar_english,One quick idea works.
+0.28045946,2.6734915,grammar_english,A bright river thinks.
+4.6228423,1.3023922,grammar_english,A sad river works.
+5.1592684,2.882488,grammar_english,The red house sleeps.
+5.110745,4.5412326,grammar_english,Some green computer sleeps.
+0.9075809,3.7830584,grammar_english,The blue tree flies.
+0.000675849,7.4155626,grammar_english,The idea jumps.
+4.0771346,3.1371777,grammar_english,The quick house sleeps.
+1.787702,1.8025254,grammar_english,Some small scientist swims.
+6.6826406,6.000792,grammar_english,One happy scientist works.
+4.5534267,4.6557155,grammar_english,The slow computer jumps.
+5.449833,2.5784218,grammar_english,A red river sleeps.
+0.9114726,7.7499924,grammar_english,A bright idea swims.
+0.043319885,4.7660513,grammar_english,One happy tree jumps.
+6.5657754,4.970051,grammar_english,The red scientist thinks.
+4.397562,5.9723773,grammar_english,The computer thinks.
+4.927924,4.938553,grammar_english,Some blue computer jumps.
+6.6407223,5.968907,grammar_english,A sad scientist works.
+5.3326864,2.3757753,grammar_english,The slow river sleeps.
+2.068578,5.4360256,grammar_english,One green book works.
+-0.12550347,3.230125,grammar_english,One big river works.
+4.1447244,1.6148685,grammar_english,Some sad car sleeps.
+6.647762,4.943414,grammar_english,The red scientist jumps.
+0.1540389,2.356066,grammar_english,A small river flies.
+3.4439917,6.9099717,grammar_english,One big car thinks.
+3.6525717,7.5218306,grammar_english,A happy cat thinks.
+1.1795373,1.7388211,grammar_english,The tree swims.
+2.3985162,4.8606725,grammar_english,A small house works.
+2.2887483,3.7910266,grammar_english,One small house flies.
+0.3815115,7.1152987,grammar_english,Some small idea runs.
+0.10294329,3.4793248,grammar_english,Some blue river runs.
+2.6657562,2.1910546,grammar_english,A blue cat swims.
+5.2570004,1.6085931,grammar_english,The happy tree sleeps.
+0.8035194,4.42089,grammar_english,One green tree runs.
+5.351699,2.4771788,grammar_english,Some small river sleeps.
+6.3137817,4.4733286,grammar_english,A green scientist sleeps.
+0.009081981,4.6062493,grammar_english,A slow tree jumps.
+2.2689314,2.7526453,grammar_english,One blue cat flies.
+4.287464,6.165048,grammar_english,The big computer thinks.
+4.3875084,2.6001146,grammar_english,Some big car sleeps.
+6.3611555,5.3742285,grammar_english,Some blue scientist thinks.
+3.1984808,6.335699,grammar_english,One green car thinks.
+2.5092988,4.8851447,grammar_english,One quick car works.
+0.6509604,6.7386756,grammar_english,Any idea works.
+4.7621756,5.134474,grammar_english,Some happy computer jumps.
+4.1016574,2.8400404,grammar_english,The quick car sleeps.
+0.42236257,2.672848,grammar_english,A slow river thinks.
+3.7016912,2.816922,grammar_english,The quick cat sleeps.
+3.384051,7.41037,grammar_english,One quick cat thinks.
+-0.52143353,3.8255813,grammar_english,A quick river jumps.
+1.9893861,0.9970518,grammar_english,A happy book swims.
+5.0450325,3.3874943,grammar_english,A book sleeps.
+6.2744923,5.682585,grammar_english,Some scientist thinks.
+-0.06732888,3.27355,grammar_english,Some green river works.
+4.5419655,2.8923488,grammar_english,One small dog sleeps.
+2.3088706,7.529815,grammar_english,Some red idea thinks.
+2.8884864,6.589137,grammar_english,One quick book thinks.
+3.178271,6.6474156,grammar_english,One blue house thinks.
+1.4379188,6.937117,grammar_english,The blue idea flies.
+-0.5796132,5.0292006,grammar_english,The big cat jumps.
+2.9481878,6.6934814,grammar_english,One quick tree thinks.
+3.8950758,5.2177386,grammar_english,One computer works.
+4.4195967,4.575849,grammar_english,One slow computer flies.
+1.1203865,4.518193,grammar_english,The bright tree works.
+2.5330675,2.6161802,grammar_english,One bright cat runs.
+4.0657487,7.221092,grammar_english,The happy car thinks.
+6.6341143,5.8450837,grammar_english,The quick scientist works.
+-0.11699417,3.2034168,grammar_english,One river works.
+0.55775744,1.8872553,grammar_english,One big river swims.
+1.7957034,5.3919153,grammar_english,A bright book works.
+1.551546,7.473698,grammar_english,The red idea runs.
+1.050808,4.7612853,grammar_english,One tree works.
+0.3687653,7.210793,grammar_english,One big idea runs.
+-0.31064612,3.9118192,grammar_english,A blue river jumps.
+2.5174336,3.6646898,grammar_english,One happy house flies.
+3.297869,7.455292,grammar_english,Some quick cat thinks.
+0.06780132,2.4266927,grammar_english,One slow river flies.
+3.0739655,4.925381,grammar_english,A red car runs.
+0.737965,4.4591403,grammar_english,One big tree runs.
+2.9165826,6.200208,grammar_english,One green book thinks.
+5.087209,2.9948294,grammar_english,One red house sleeps.
+4.3353667,6.1093206,grammar_english,A quick computer thinks.
+2.7332358,2.1918728,grammar_english,The bright cat swims.
+3.2310257,2.7098362,grammar_english,A slow cat flies.
+2.9533298,1.4561298,grammar_english,One bright car swims.
+-0.07347904,3.277428,grammar_english,One green river works.
+4.0463214,4.9879303,grammar_english,One small computer runs.
+-0.25035942,4.8156443,grammar_english,One slow cat jumps.
+3.8175213,6.7217274,grammar_english,A slow car thinks.
+3.166839,6.449468,grammar_english,Some green dog thinks.
+0.75590587,1.7020261,grammar_english,A happy river swims.
+1.9066122,1.5337124,grammar_english,Some big house swims.
+3.9859562,1.5687468,grammar_english,The sad car runs.
+-0.042479087,5.4840584,grammar_english,The happy book jumps.
+2.8314128,1.3443942,grammar_english,A green car swims.
+4.3408136,6.131053,grammar_english,A small computer thinks.
+1.8841494,5.207046,grammar_english,A green book runs.
+-0.1623635,2.2821329,grammar_english,Any river flies.
+1.4815264,3.2403116,grammar_english,The dog flies.
+0.85262877,6.785629,grammar_english,The bright idea works.
+4.4809294,5.159347,grammar_english,A happy computer works.
+1.2304403,1.7953255,grammar_english,Any tree swims.
+0.65182817,7.7536063,grammar_english,Some sad idea swims.
+1.0027972,1.9977926,agrammar_english,Tree small swims a.
+-0.13808623,5.061018,agrammar_english,Jumps dog one bright.
+-0.60754365,5.086644,agrammar_english,Cat some jumps.
+2.91087,4.4502683,agrammar_english,Runs small car the.
+1.6326011,4.789235,agrammar_english,Blue book runs one.
+-0.622964,5.3607078,agrammar_english,Jumps car a big.
+4.8173914,3.2850993,agrammar_english,Some sleeps book small.
+1.5400357,3.2833142,agrammar_english,Some dog flies big.
+2.0346434,3.4522793,agrammar_english,Car big flies a.
+1.1698018,5.097629,agrammar_english,Thinks one small tree.
+4.2866163,2.546303,agrammar_english,Car one sleeps big.
+-0.25965598,5.4277816,agrammar_english,Book jumps big the.
+1.2855532,3.0866096,agrammar_english,A flies small dog.
+1.9508684,1.6665391,agrammar_english,Swims red house one.
+3.4898837,2.7263632,agrammar_english,Cat sleeps slow a.
+1.6827273,6.5929813,agrammar_english,One green flies idea.
+6.4341702,5.7795005,agrammar_english,Works one scientist slow.
+0.79286885,2.006926,agrammar_english,Small swims river the.
+2.8369963,7.5398827,agrammar_english,Red thinks some cat.
+4.555695,5.353123,agrammar_english,Jumps computer happy a.
+3.1288123,6.7093115,agrammar_english,The big book thinks.
+2.0022988,4.1185217,agrammar_english,One house flies green.
+0.858049,7.834422,agrammar_english,Some swims idea big.
+0.7088662,7.025155,agrammar_english,Quick runs idea a.
+3.0833154,3.9966588,agrammar_english,House the runs.
+4.456875,4.5685124,agrammar_english,The computer runs slow.
+4.502391,2.750329,agrammar_english,Big some sleeps dog.
+7.0340524,5.6990423,agrammar_english,Any scientist flies.
+2.5059803,2.0325963,agrammar_english,Cat swims one.
+6.334971,5.9460998,agrammar_english,Runs scientist sad one.
+5.9562554,5.7723737,agrammar_english,Big thinks one scientist.
+3.9878316,5.3016696,agrammar_english,Works big one computer.
+2.9598222,3.0336723,agrammar_english,The runs cat.
+2.8264441,5.0346513,agrammar_english,Car some runs green.
+0.24774726,7.5927625,agrammar_english,One jumps idea sad.
+3.700641,1.4094026,agrammar_english,A sad car swims.
+4.2966604,1.4976689,agrammar_english,Sad works the car.
+2.65498,3.7646077,agrammar_english,Slow house one flies.
+6.8752365,5.8361654,agrammar_english,Happy scientist flies the.
+0.5665217,1.8779049,agrammar_english,Small one river swims.
+3.3136773,3.9423616,agrammar_english,The house slow works.
+-0.29663214,5.4761724,agrammar_english,The book jumps.
+1.3370633,6.874317,agrammar_english,Blue works idea a.
+2.8192265,2.172968,agrammar_english,A quick swims cat.
+1.743618,4.4157295,agrammar_english,Runs house blue some.
+4.711296,4.9637136,agrammar_english,Computer some runs blue.
+5.1041026,1.6436628,agrammar_english,Sad the sleeps river.
+2.4910212,1.6240296,agrammar_english,Swims big car a.
+5.093573,1.4757615,agrammar_english,Tree sleeps a sad.
+7.000476,5.734424,agrammar_english,Scientist flies the.
+5.154385,2.1878126,agrammar_english,Sleeps the green tree.
+2.5179358,5.6281323,agrammar_english,Thinks dog red a.
+4.343667,5.83532,agrammar_english,Computer thinks a.
+2.8492284,4.078394,agrammar_english,Thinks the house quick.
+1.5409824,6.9247184,agrammar_english,Sleeps blue idea a.
+4.3706236,5.329478,agrammar_english,Small flies computer a.
+3.6398647,5.2730474,agrammar_english,Some works computer red.
+6.4671183,5.832614,agrammar_english,The scientist works slow.
+3.5714428,7.702634,agrammar_english,Thinks a cat sad.
+4.6294737,3.3725338,agrammar_english,Some sleeps quick book.
+2.014425,4.8273516,agrammar_english,Some quick dog works.
+1.9468675,4.787495,agrammar_english,Bright dog works a.
+1.3726703,3.138956,agrammar_english,Flies dog a.
+4.5019226,5.3851986,agrammar_english,Green jumps computer a.
+3.4413445,7.7337646,agrammar_english,Thinks cat one small.
+1.9433616,4.7495956,agrammar_english,Blue dog works the.
+3.2259815,4.1128335,agrammar_english,Car works slow the.
+2.941833,5.881584,agrammar_english,A house thinks green.
+-0.5695354,4.9718404,agrammar_english,Jumps a cat red.
+0.20457785,4.1195226,agrammar_english,Tree blue a jumps.
+2.0069535,5.374166,agrammar_english,Small book one works.
+2.1672664,3.449837,agrammar_english,Flies quick house the.
+-0.30950785,5.672664,agrammar_english,A jumps small scientist.
+6.36675,4.544604,agrammar_english,Bright one scientist sleeps.
+2.40365,2.0104988,agrammar_english,Cat red swims one.
+6.1707816,5.998093,agrammar_english,Happy thinks one scientist.
+1.679779,5.606047,agrammar_english,Book thinks the bright.
+2.7174602,5.217115,agrammar_english,Car some works green.
+4.311275,2.4376237,agrammar_english,Sleeps the big car.
+4.9553194,1.456717,agrammar_english,Tree works sad one.
+4.4284816,1.6270272,agrammar_english,Sad runs computer one.
+-0.3937893,4.365053,agrammar_english,Red house jumps a.
+0.4981996,7.698401,agrammar_english,One idea sad flies.
+2.7614048,1.3112731,agrammar_english,Book one swims slow.
+2.7322028,1.6344818,agrammar_english,Cat one swims green.
+4.511851,3.5068445,agrammar_english,One dog blue sleeps.
+-0.036316056,4.644237,agrammar_english,One jumps big tree.
+1.7756258,4.2510204,agrammar_english,House flies some blue.
+-0.21054888,2.8138406,agrammar_english,Works river a quick.
+5.0559597,1.5651968,agrammar_english,Sad sleeps the tree.
+5.2334437,2.6909986,agrammar_english,Red the tree sleeps.
+1.1375248,2.2303607,agrammar_english,Small swims dog the.
+0.51730555,4.6627293,agrammar_english,Runs tree one slow.
+4.091867,7.23767,agrammar_english,Car a thinks happy.
+3.2829661,5.1929336,agrammar_english,Works the car red.
+1.5025947,5.4481373,agrammar_english,Runs book bright the.
+1.5636605,1.9588894,agrammar_english,Swims any dog.
+6.650507,5.099103,agrammar_english,Runs blue the scientist.
+1.3744681,6.837045,agrammar_english,Idea blue a runs.
+1.4603368,5.6212854,agrammar_english,Book a quick runs.
+1.381068,6.7532434,agrammar_english,Idea works blue some.
+0.07272341,4.6441164,agrammar_english,Slow jumps tree one.
+1.4414603,7.5549684,agrammar_english,Swims red the idea.
+2.298729,1.7281952,agrammar_english,House swims one.
+3.288047,2.9992664,agrammar_english,Works the slow cat.
+3.0564728,1.3019737,agrammar_english,The slow car swims.
+4.6377344,1.2864186,agrammar_english,Runs sad river one.
+-0.47098172,4.0651655,agrammar_english,River red jumps the.
+4.8356686,3.7934823,agrammar_english,Slow idea sleeps one.
+-0.05934615,2.5761912,agrammar_english,Flies the quick river.
+4.410799,3.0124333,agrammar_english,Sleeps bright a dog.
+6.2528377,4.4191313,agrammar_english,Scientist a big sleeps.
+2.8668413,3.144133,agrammar_english,Runs cat any.
+1.0880171,3.4011424,agrammar_english,Flies the tree.
+5.566844,2.6337993,agrammar_english,River sleeps red the.
+0.164924,2.7155447,agrammar_english,Runs bright the river.
+0.08899724,7.2803364,agrammar_english,Quick the idea jumps.
+1.559294,3.432233,agrammar_english,Red dog flies one.
+2.2538507,1.9833305,agrammar_english,Cat swims small some.
+4.7541757,4.3946037,agrammar_english,Slow computer the sleeps.
+0.6030932,6.7530093,agrammar_english,Works some big idea.
+2.2697878,1.2401735,agrammar_english,Blue swims a book.
+4.0194206,1.5711368,agrammar_english,Flies car sad one.
+4.9677286,4.497386,agrammar_english,Sleeps computer a blue.
+0.5261046,7.597151,agrammar_english,Idea the flies sad.
+4.801127,5.0394998,agrammar_english,One jumps computer blue.
+3.2926164,7.396305,agrammar_english,Blue a cat thinks.
+5.2225847,2.864849,agrammar_english,Red sleeps a dog.
+3.0691612,3.9968343,agrammar_english,House slow the runs.
+-0.76981807,5.4618597,agrammar_english,Car jumps a small.
+3.0655057,4.9482527,agrammar_english,Runs one red car.
+2.616179,2.2202744,agrammar_english,Swims cat one bright.
+0.83767194,7.798645,agrammar_english,One idea bright swims.
+3.2595296,7.6263504,agrammar_english,Thinks cat small a.
+1.5993681,7.4502115,agrammar_english,A red idea runs.
+2.8871353,4.462531,agrammar_english,Car runs a.
+1.3694345,3.0952587,agrammar_english,Flies sad the dog.
+1.0723814,4.6239133,agrammar_english,Tree works any.
+6.677865,5.0424495,agrammar_english,The scientist red runs.
+6.469763,4.6097784,agrammar_english,Red a scientist sleeps.
+2.5349827,3.5289173,agrammar_english,Happy some car flies.
+4.1872787,1.5991393,agrammar_english,Sleeps sad the car.
+2.859888,5.8937335,agrammar_english,Green thinks tree a.
+4.2106166,5.8330765,agrammar_english,Thinks the green computer.
+1.1250366,3.877221,agrammar_english,The bright flies tree.
+1.2412449,3.0518458,agrammar_english,Flies big dog one.
+1.0707017,4.066963,agrammar_english,The bright runs tree.
+3.328123,7.604631,agrammar_english,Any thinks cat.
+1.4508364,1.801563,agrammar_english,Red one swims tree.
+2.4912398,1.2184211,agrammar_english,A book swims green.
+2.9479663,1.3998368,agrammar_english,Car one swims.
+1.370113,3.1323323,agrammar_english,Flies the small dog.
+1.9240493,5.497833,agrammar_english,Works one big book.
+2.6654968,4.709729,agrammar_english,One works car.
+2.3901224,3.3651114,agrammar_english,One book happy flies.
+1.3381606,3.4955404,agrammar_english,One flies dog bright.
+6.36097,4.535719,agrammar_english,Sleeps a scientist small.
+1.9546016,0.890403,agrammar_english,The happy swims book.
+3.7608109,5.386069,agrammar_english,Computer red works a.
+-0.34090954,2.918047,agrammar_english,Works river some big.
+3.7076294,4.6996155,agrammar_english,Red computer swims the.
+-0.100514874,2.5265195,agrammar_english,Quick a river flies.
+-0.6658021,5.5356617,agrammar_english,The jumps car.
+-0.44676906,5.523861,agrammar_english,A jumps book small.
+0.6646609,1.9310366,agrammar_english,River a small swims.
+1.6422614,5.419122,agrammar_english,Book runs the.
+2.3487105,5.3923855,agrammar_english,Dog works green a.
+1.9775095,4.051093,agrammar_english,A flies house green.
+6.285753,5.7060266,agrammar_english,Big works scientist some.
+1.385746,7.5217404,agrammar_english,Idea flies red the.
+0.16574614,7.382553,agrammar_english,One big idea jumps.
+2.7873945,4.565083,agrammar_english,One small car runs.
+5.1207476,1.4633371,agrammar_english,Tree sad the thinks.
+1.3015913,1.74334,agrammar_english,Tree some red swims.
+5.18494,1.4391764,agrammar_english,One sad sleeps tree.
+1.0782716,4.6535935,agrammar_english,Tree some works.
+0.5277342,6.928353,agrammar_english,Runs some happy idea.
+0.13166304,3.559023,agrammar_english,Works blue one river.
+4.0893197,7.254209,agrammar_english,Thinks some happy car.
+6.5331116,4.640099,agrammar_english,Sleeps scientist one red.
+2.680482,7.4888115,agrammar_english,Red some house thinks.
+4.7991085,1.7022486,agrammar_english,Book works one sad.
+1.6483383,1.5544744,agrammar_english,Some book small swims.
+4.9863567,4.5064993,agrammar_english,Happy computer one sleeps.
+-0.37459058,3.172034,agrammar_english,River one green runs.
+4.049723,7.1299686,agrammar_english,House one happy thinks.
+1.4299588,1.8640482,agrammar_english,A swims bright tree.
+2.1177828,3.0483232,agrammar_english,Green some cat flies.
+5.312244,2.9325955,agrammar_english,Book red the sleeps.
+7.0291963,5.845944,agrammar_english,Scientist one happy flies.
+3.5647397,6.8944597,agrammar_english,One dog slow thinks.
+0.44125688,3.9382615,agrammar_english,Tree a runs blue.
+5.6417656,2.573562,agrammar_english,River sleeps blue the.
+4.22563,3.258085,agrammar_english,Sleeps quick dog a.
+4.7299657,3.0447078,agrammar_english,Book one sleeps slow.
+-0.58681065,5.4252005,agrammar_english,Jumps car small one.
+1.8177769,7.1317186,agrammar_english,Sleeps red one idea.
+0.68538743,7.073294,agrammar_english,The thinks quick idea.
+6.816098,6.1887274,agrammar_english,The swims happy scientist.
+3.0902581,2.353924,agrammar_english,Cat swims slow a.
+0.75604534,6.7045264,agrammar_english,Idea works small a.
+4.26608,3.0465076,agrammar_english,Small sleeps house the.
+3.8160021,4.6071415,agrammar_english,Big computer swims one.
+0.6940108,7.004971,agrammar_english,Quick works idea the.
+4.200517,3.0989249,agrammar_english,House sleeps one.
+4.040305,5.300009,agrammar_english,Works a computer.
+5.259949,3.175317,agrammar_english,A book sleeps red.
+3.9658337,5.8778214,agrammar_english,Bright thinks one computer.
+0.32013145,3.4259677,agrammar_english,River a flies blue.
+1.7426423,1.9298581,agrammar_english,Swims dog small some.
+-0.7408095,5.4638143,agrammar_english,Small the car jumps.
+0.08463507,4.6866693,agrammar_english,Sad jumps tree the.
+-0.0115621155,7.186751,agrammar_english,Jumps small idea some.
+2.109021,3.0535848,agrammar_english,Green flies cat the.
+1.9278123,3.437396,agrammar_english,Some big flies car.
+1.8000818,7.0247316,agrammar_english,Sleeps big a idea.
+3.1329658,5.0805163,agrammar_english,Works car red some.
+6.3891773,4.534261,agrammar_english,Sleeps scientist big the.
+3.9643555,7.1927958,agrammar_english,Happy one dog thinks.
+0.070008375,7.3870025,agrammar_english,Idea happy one jumps.
+3.3761053,7.44358,agrammar_english,One cat big thinks.
+5.025336,4.303638,agrammar_english,A computer sleeps.
+4.132711,3.2835984,agrammar_english,Quick sleeps a house.
+1.8522226,7.0063634,agrammar_english,Sleeps one green idea.
+-0.5378107,3.889195,agrammar_english,A big river jumps.
+1.8944434,0.9440424,agrammar_english,Swims happy some book.
+0.636858,6.9354205,agrammar_english,Works quick one idea.
+0.2627482,2.6893864,agrammar_english,A river thinks bright.
+4.791567,1.3529274,agrammar_english,A works sad river.
+5.0011206,2.9189167,agrammar_english,Red sleeps house the.
+5.160617,4.5096893,agrammar_english,Computer green sleeps some.
+0.8622588,3.7872374,agrammar_english,Blue the tree flies.
+-0.048020918,7.405245,agrammar_english,The idea jumps.
+4.089079,3.075013,agrammar_english,House the quick sleeps.
+1.8654474,1.7968408,agrammar_english,Scientist swims small some.
+6.662674,6.0291953,agrammar_english,Happy one scientist works.
+4.56563,4.6589613,agrammar_english,The slow jumps computer.
+5.434293,2.5353343,agrammar_english,A red river sleeps.
+0.9020646,7.7902126,agrammar_english,A bright idea swims.
+0.12990189,4.756206,agrammar_english,One happy jumps tree.
+6.541622,5.0904784,agrammar_english,The thinks red scientist.
+4.350603,5.8259907,agrammar_english,Computer thinks the.
+4.8056917,5.0182705,agrammar_english,Computer some jumps blue.
+6.3469005,5.948876,agrammar_english,Works scientist a sad.
+5.4685183,2.4473827,agrammar_english,The river slow sleeps.
+2.0699928,5.356731,agrammar_english,Book green works one.
+-0.37727425,3.0959136,agrammar_english,River one works big.
+4.3401203,1.5285263,agrammar_english,Sad sleeps some car.
+6.7833447,4.9238515,agrammar_english,Red jumps the scientist.
+0.10867334,2.3881876,agrammar_english,Small a flies river.
+3.5716016,6.844286,agrammar_english,Big car one thinks.
+3.7367723,7.590972,agrammar_english,A thinks happy cat.
+1.1539937,1.692769,agrammar_english,The swims tree.
+3.0868998,4.0952034,agrammar_english,House works a small.
+2.3592825,3.758031,agrammar_english,Small house one flies.
+0.393977,6.9526124,agrammar_english,Idea some small runs.
+0.13469814,3.559001,agrammar_english,Blue river runs some.
+2.4575741,2.1164072,agrammar_english,Blue swims a cat.
+5.1378393,1.6706442,agrammar_english,Sleeps happy tree the.
+1.2266787,4.3877306,agrammar_english,One runs tree green.
+5.3908706,2.499181,agrammar_english,Some river small sleeps.
+6.2214394,4.405826,agrammar_english,Scientist a green sleeps.
+0.046718303,4.6229205,agrammar_english,Slow tree jumps a.
+2.237507,2.7617862,agrammar_english,Blue one flies cat.
+4.3886046,5.7492213,agrammar_english,Thinks computer the big.
+4.4285827,2.5802245,agrammar_english,Big car sleeps some.
+6.323211,5.349149,agrammar_english,Some scientist blue thinks.
+3.0492861,6.0530376,agrammar_english,Green thinks one car.
+2.6171038,4.7240686,agrammar_english,One quick works car.
+0.6591443,6.7187905,agrammar_english,Any idea works.
+4.6670504,5.308658,agrammar_english,Happy jumps computer some.
+4.1253667,2.7108078,agrammar_english,Quick the sleeps car.
+0.44682637,2.6508353,agrammar_english,Slow river a thinks.
+3.8118734,2.8485136,agrammar_english,Cat the sleeps quick.
+3.2008753,7.3901525,agrammar_english,Quick cat thinks one.
+-0.45502564,3.7269702,agrammar_english,A quick jumps river.
+1.9469709,0.8935446,agrammar_english,Book happy a swims.
+5.0976133,3.411866,agrammar_english,A book sleeps.
+6.257438,5.672417,agrammar_english,Some scientist thinks.
+-0.051236372,3.2712312,agrammar_english,Some green works river.
+4.6257052,2.886454,agrammar_english,Small dog one sleeps.
+2.271584,7.4953194,agrammar_english,Some red idea thinks.
+2.8383672,6.4995522,agrammar_english,Quick thinks one book.
+1.7397368,4.5273395,agrammar_english,Thinks one house blue.
+1.4742519,6.6721497,agrammar_english,Blue the flies idea.
+-0.66142756,5.071248,agrammar_english,The cat jumps big.
+1.1222458,5.0837584,agrammar_english,Thinks quick one tree.
+3.8461592,5.201526,agrammar_english,One computer works.
+4.4256063,4.5799665,agrammar_english,Flies computer slow one.
+1.1499832,4.5233855,agrammar_english,The tree bright works.
+2.4361854,2.3928235,agrammar_english,Cat bright runs one.
+4.015481,7.215058,agrammar_english,The happy car thinks.
+6.5717874,5.8650293,agrammar_english,The quick works scientist.
+-0.334415,3.15371,agrammar_english,River one works.
+0.55161726,1.8384314,agrammar_english,River big one swims.
+1.7462486,5.4806137,agrammar_english,Works a bright book.
+1.5554745,7.506314,agrammar_english,Red the idea runs.
+1.0986927,4.6789417,agrammar_english,One tree works.
+0.40763947,7.2847815,agrammar_english,Big idea one runs.
+-0.40836716,3.8404846,agrammar_english,A blue jumps river.
+2.493954,3.6470125,agrammar_english,Happy house one flies.
+3.3001149,7.5495424,agrammar_english,Quick some thinks cat.
+0.00042228535,2.3992069,agrammar_english,One flies slow river.
+2.9881482,4.882438,agrammar_english,Red car runs a.
+0.7369131,4.457165,agrammar_english,Tree one runs big.
+2.975815,6.264975,agrammar_english,Green book one thinks.
+4.847031,2.9776628,agrammar_english,House sleeps red one.
+4.3988557,6.0434546,agrammar_english,A computer thinks quick.
+2.6875443,2.2549703,agrammar_english,The swims bright cat.
+3.213187,2.7638268,agrammar_english,Cat slow a flies.
+2.9279082,1.3898836,agrammar_english,Car one swims bright.
+-0.35484326,3.118064,agrammar_english,River works one green.
+3.9645157,5.032584,agrammar_english,One computer small runs.
+-0.34872442,5.068664,agrammar_english,Jumps cat slow one.
+3.7516687,6.507557,agrammar_english,Car slow a thinks.
+3.1526034,6.415641,agrammar_english,Some dog green thinks.
+0.5797217,1.7961541,agrammar_english,A river happy swims.
+1.871862,1.5590603,agrammar_english,Swims some house big.
+4.025722,1.6730634,agrammar_english,Car sad the runs.
+-0.079984516,5.5351562,agrammar_english,Jumps book happy the.
+2.7950683,1.2982804,agrammar_english,Car a green swims.
+4.2986617,5.9930186,agrammar_english,Small computer a thinks.
+1.7341994,5.399185,agrammar_english,Runs green a book.
+-0.07275327,2.4134054,agrammar_english,Flies river any.
+1.5780777,3.2715273,agrammar_english,Dog flies the.
+0.7946781,6.6611924,agrammar_english,Bright the idea works.
+4.3450017,5.385953,agrammar_english,Works computer happy a.
+1.2189826,1.7843765,agrammar_english,Any swims tree.
+0.7751858,7.828898,agrammar_english,Swims idea sad some.

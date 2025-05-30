@@ -36,7 +36,6 @@ from src.utils.chess_utils import (
     generate_legal_chess_sequences,
     make_one_san_move_illegal_by_random_destination,
     generate_illegal_game_sequences,
-    generate_data_for_probing
 )
 
 # SONAR and fairseq2 imports
@@ -65,13 +64,20 @@ datasets = [game_sequences, illegal_game_sequences]
 labels = ["correct_chess", "incorrect_chess"]
 
 # %%
-max_moves_per_sequence = 5
+max_moves_per_sequence = 10
 num_sequences = 1000
-num_corruptions_per_sequence = 2
+num_corruptions_per_sequence = 5
 random_legal_game_sequences = generate_legal_chess_sequences(num_sequences=num_sequences, max_moves_per_sequence=max_moves_per_sequence, use_san=True)
 
 illegal_game_sequences = generate_illegal_game_sequences(random_legal_game_sequences, num_corruptions_per_sequence=num_corruptions_per_sequence)
 
+# for i in range(len(random_legal_game_sequences)):
+#     random_legal_game_sequences[i] = "This is a SAN chess game playout: " + random_legal_game_sequences[i]
+    
+# for i in range(len(illegal_game_sequences)):
+#     illegal_game_sequences[i] = "This is a SAN chess game playout: " + illegal_game_sequences[i]
+
+# Add a prefix to the sequences to indicate they are SAN chess game playouts
 # %%
 
 human_game_sequences = []
@@ -93,5 +99,5 @@ illegal_human_game_sequences = generate_illegal_game_sequences(human_game_sequen
 datasets = [random_legal_game_sequences, illegal_game_sequences]
 labels = ["random_legal_game_sequences", "illegal_game_sequences"]
 
-reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=datasets, labels=labels, n_components=2, reduction_method="UMAP", return_eigenvectors=True, enable_correctness_direction_analysis=True)
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets=datasets, labels=labels, n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_correctness_direction_analysis=True)
 # %%
