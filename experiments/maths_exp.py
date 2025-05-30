@@ -54,7 +54,7 @@ OUTPUT_DIR = "../data/"
 
 # %%
 
-with open("../data/game_sequences.txt", "r") as f:
+with open("../data/datasets/game_sequences.txt", "r") as f:
     game_sequences = [line for line in f.read().split("\n") if line.strip()]
 
 illegal_game_sequences = make_sequence_illegal(game_sequences)

@@ -36,19 +36,21 @@ import plotly.express as px
 from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
 import numpy as np
 #%%
-global DEVICE, RANDOM_STATE, MODEL_NAME, OUTPUT_DIR
+global DEVICE, RANDOM_STATE, MODEL_NAME, OUTPUT_DIR, FIGURES_DIR
 # --- Configuration ---
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 RANDOM_STATE = 42
 MODEL_NAME = "text_sonar_basic_encoder"
 
 OUTPUT_DIR = "../data/"
+FIGURES_DIR = "../figures/"
 
 def generate_pca_plots_from_datasets(
     datasets: list,
     labels: list,
     datasets_paths: list = None,
     output_dir: str = OUTPUT_DIR,
+    figures_dir: str = FIGURES_DIR,
     n_components: int = 3,
     reduction_method: str = "PCA", # Added parameter for dimensionality reduction method
     enable_correctness_direction_analysis: bool = True, # Enable or disable grammaticality direction analysis
@@ -420,7 +422,7 @@ def generate_pca_plots_from_datasets(
                     
                     # Save histogram
                     hist_filename = f"direction_scores_histogram_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.png"
-                    hist_filepath = os.path.join(output_dir, hist_filename)
+                    hist_filepath = os.path.join(figures_dir, hist_filename)
                     plt.savefig(hist_filepath, dpi=300, bbox_inches='tight')
                     print(f"Direction scores histogram saved to: {hist_filepath}")
                     plt.close()
@@ -493,6 +495,7 @@ def generate_pca_plots_from_datasets(
 
     print(f"\n--- Saving Results to {output_dir} ---")
     os.makedirs(output_dir, exist_ok=True)  # Ensure output directory exists
+    os.makedirs(figures_dir, exist_ok=True)  # Ensure output directory exists
 
     # Save reduced embeddings (using filename structure from your example)
     reduced_filename = f"reduced_embeddings_{labels[0].split('_')[1]}_{n_components}D_{reduction_method}.npy"
@@ -524,11 +527,11 @@ def generate_pca_plots_from_datasets(
         sanitized_plot_filename_base = f"{reduction_method.lower()}_{'_'.join(labels)}_{n_components}D_interactive_plot"
     plot_html_filename = f"{sanitized_plot_filename_base}.html"
 
-    fig_interactive.write_html(os.path.join(output_dir, plot_html_filename))
-    print(f"Interactive plot saved to: {os.path.join(output_dir, plot_html_filename)}")
+    fig_interactive.write_html(os.path.join(figures_dir, plot_html_filename))
+    print(f"Interactive plot saved to: {os.path.join(figures_dir, plot_html_filename)}")
 
     plot_png_filename = "static_" + plot_html_filename.replace(".html", ".png")
-    png_filepath = os.path.join(output_dir, plot_png_filename)
+    png_filepath = os.path.join(figures_dir, plot_png_filename)
 
     try:
         fig_interactive.write_image(png_filepath)
@@ -558,7 +561,7 @@ def generate_pca_plots_from_datasets(
     return reduced_embeddings, df, fig_interactive, pca_components_to_return, direction_to_return
 #%%
 
-reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets= None, datasets_paths=["../data/grammar_english.txt", "../data/grammar_german.txt", "../data/grammar_catalan.txt", "../data/agrammar_english.txt", "../data/agrammar_german.txt", "../data/agrammar_catalan.txt"], labels=["grammatical_language", "grammatical_language", "grammatical_language", "agrammatical_language", "agrammatical_language", "agrammatical_language"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_correctness_direction_analysis=True)
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets= None, datasets_paths=["../data/datasets/grammar_english.txt", "../data/datasets/grammar_german.txt", "../data/datasets/grammar_catalan.txt", "../data/datasets/agrammar_english.txt", "../data/datasets/agrammar_german.txt", "../data/datasets/agrammar_catalan.txt"], labels=["grammatical_language", "grammatical_language", "grammatical_language", "agrammatical_language", "agrammatical_language", "agrammatical_language"], n_components=2, reduction_method="PCA", return_eigenvectors=True, enable_correctness_direction_analysis=True)
 
 # %%
 import random
@@ -610,10 +613,10 @@ def create_agrammatical_sentences(input_file, output_file):
 random.seed(42)
 
 # Process the file
-create_agrammatical_sentences("../data/grammar_english.txt", "../data/agrammar_english_shuffled.txt")
+create_agrammatical_sentences("../data/datasets/grammar_english.txt", "../data/datasets/agrammar_english_shuffled.txt")
 # %%
 
 
-reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets= None, datasets_paths=["../data/grammar_english.txt", "../data/agrammar_english_shuffled.txt"], labels=["grammar_english", "agrammar_english"], n_components=2, reduction_method="UMAP", return_eigenvectors=True, enable_correctness_direction_analysis=True)
+reduced_embeddings, df, fig_interactive, eigenvectors, grammaticality_direction = generate_pca_plots_from_datasets(datasets= None, datasets_paths=["../data/datasets/grammar_english.txt", "../data/datasets/agrammar_english_shuffled.txt"], labels=["grammar_english", "agrammar_english"], n_components=2, reduction_method="UMAP", return_eigenvectors=True, enable_correctness_direction_analysis=True)
 
 # %%

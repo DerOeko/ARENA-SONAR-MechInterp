@@ -174,3 +174,6 @@ cython_debug/
 .pypirc
 samu_key
 samu_key.pub
+
+/data/dataframes/*
+/data/npy_files/*
