@@ -46,6 +46,7 @@ from fairseq2.data import Collater
 from fairseq2.typing import Device, DataType, CPU
 from fairseq2.models.sequence import SequenceModelOutput
 from typing import Optional, Tuple
+from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
 # Plotting
 import plotly.express as px
 import pandas as pd
@@ -83,118 +84,6 @@ ENG_LANG_TOKEN_IDX = dummy_tokenized_for_special_tokens[0].item()
 
 print(f"Using Language ID (eng_Latn): {ENG_LANG_TOKEN_IDX} ('{tokenizer_decoder(torch.tensor([ENG_LANG_TOKEN_IDX]))}')")
 print(f"Using PAD ID: {PAD_IDX} ('{tokenizer_decoder(torch.tensor([PAD_IDX]))}')")
-
-#%%
-class CustomTextToEmbeddingPipeline(TextToEmbeddingModelPipeline):
-    def __init__(self, encoder, 
-                 tokenizer, # TextTokenizer from fairseq2.data.text
-                 device: Device = CPU, 
-                 dtype = None):
-        super().__init__(encoder, tokenizer, device, dtype)
-        # self.model is an instance of SonarTextTransformerEncoderModel
-
-    @torch.inference_mode()
-    def predict_from_token_ids(
-        self,
-        token_id_sequences: torch.Tensor, # Expects a 2D tensor [batch_size, seq_len]
-        target_device: Optional[Device] = None,
-        steering_vector: Optional[torch.Tensor] = None,
-        target_token_indices_for_steering: Optional[torch.Tensor] = None
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, Optional[PaddingMask]]: # Return type
-
-        # Assertions for steering parameters
-        if steering_vector is not None and target_token_indices_for_steering is None:
-            raise ValueError("If steering_vector is provided, target_token_indices_for_steering must also be provided.")
-        if steering_vector is None and target_token_indices_for_steering is not None:
-            raise ValueError("If target_token_indices_for_steering is provided, steering_vector must also be provided.")
-
-        # Input validation
-        if not isinstance(token_id_sequences, torch.Tensor) or token_id_sequences.ndim > 2:
-            raise ValueError("Input token_id_sequences must be a 2D torch.Tensor [batch_size, seq_len]")
-        if token_id_sequences.ndim == 1:
-            token_id_sequences = token_id_sequences.unsqueeze(0)
-
-        token_ids_on_device = token_id_sequences.to(self.device)
-
-        # 1. Create the initial PaddingMask based on input token IDs
-        padding_mask_bool_tensor = (token_ids_on_device != self.tokenizer.vocab_info.pad_idx)
-        seq_lengths = padding_mask_bool_tensor.sum(dim=1)
-        # This is the padding_mask that corresponds to token_ids_on_device
-        current_padding_mask = PaddingMask(seq_lengths, batch_seq_len=token_ids_on_device.shape[1])
-
-        # --- Replicating SonarTextTransformerEncoderModel.forward() manually ---
-
-        # 2. Encoder Frontend call
-        # It returns: (embed_seqs_tensor, padding_mask_after_frontend)
-        initial_embeds_tensor, pm_after_frontend = self.model.encoder_frontend(
-            token_ids_on_device, current_padding_mask
-        )
-
-        # 3. Encoder call
-        # It returns: (encoded_seqs_tensor, padding_mask_after_encoder)
-        # It takes initial_embeds_tensor and its corresponding padding_mask (pm_after_frontend)
-        encoded_seqs_tensor, pm_after_encoder = self.model.encoder(
-            initial_embeds_tensor, pm_after_frontend
-        )
-
-        # This is the tensor for last_hidden_states before potential steering
-        current_last_hidden_states = encoded_seqs_tensor 
-
-        # 4. Optional LayerNorm (as in SonarTextTransformerEncoderModel.forward)
-        if self.model.layer_norm is not None:
-            current_last_hidden_states = self.model.layer_norm(current_last_hidden_states)
-            # LayerNorm does not change the padding mask structure.
-            # So, pm_after_encoder is still the valid padding mask for current_last_hidden_states.
-
-        # Make a clone only if steering is applied and you need to preserve the pre-steered version
-        # or if current_last_hidden_states comes from a part of graph that shouldn't be modified in-place.
-        # For simplicity, let's assume we operate on this tensor directly or clone if steering.
-        if steering_vector is not None:
-            current_last_hidden_states = current_last_hidden_states.clone()
-
-
-        # 5. Apply Steering (if parameters are provided)
-        if steering_vector is not None and target_token_indices_for_steering is not None:
-            steering_vector_dev = steering_vector.to(current_last_hidden_states.device)
-            target_indices_dev = target_token_indices_for_steering.to(
-                device=current_last_hidden_states.device, dtype=torch.long
-            )
-
-            if target_indices_dev.shape[0] != current_last_hidden_states.shape[0]:
-                raise ValueError(f"Batch size of target_token_indices_for_steering ({target_indices_dev.shape[0]}) must match batch size of embeddings ({current_last_hidden_states.shape[0]}).")
-            if not (steering_vector_dev.ndim == 1 and steering_vector_dev.shape[0] == current_last_hidden_states.shape[2]):
-                 raise ValueError(f"Steering vector must be 1D and match embedding dimension ({current_last_hidden_states.shape[2]}). Got shape {steering_vector_dev.shape}.")
-
-            batch_indices_for_steering = torch.arange(current_last_hidden_states.size(0), device=current_last_hidden_states.device)
-            
-            selected_tokens = current_last_hidden_states[batch_indices_for_steering, target_indices_dev]
-            steered_tokens = selected_tokens + steering_vector_dev # Add steering vector
-            current_last_hidden_states[batch_indices_for_steering, target_indices_dev] = steered_tokens
-        
-        # 6. Pool the (potentially layer_normed and steered) final hidden states
-        # The `self.model.pool` method takes `seqs`, `padding_mask`, and the `pooling` strategy enum.
-        # The `padding_mask` here should correspond to `current_last_hidden_states`.
-        # In the original `SonarTextTransformerEncoderModel.forward`, it uses the `padding_mask` returned
-        # from `self.encoder_frontend`. So, `pm_after_frontend` is the correct one to use for pooling.
-        sentence_embeddings = self.model.pool(
-            current_last_hidden_states, pm_after_frontend, self.model.pooling
-        )
-        
-        # --- Results from manual path are now used ---
-        final_target_device = target_device or self.device
-        
-        # The padding mask returned by the pipeline should be relevant to the *final* hidden states.
-        # pm_after_encoder is the most accurate for current_last_hidden_states if no seq len changes.
-        # However, SonarEncoderOutput returns padding_mask from frontend. For consistency with that,
-        # we can return pm_after_frontend. They are usually the same.
-        padding_mask_to_return = pm_after_frontend 
-        
-        return (
-            sentence_embeddings.to(final_target_device),
-            current_last_hidden_states.to(final_target_device), 
-            initial_embeds_tensor.to(final_target_device),
-            padding_mask_to_return # This is an Optional[PaddingMask] object
-        )
 
 #%%
 text2vec = CustomTextToEmbeddingPipeline(
