@@ -1,31 +1,24 @@
 #%%
-import sys
 import os
-# Add the parent directory to the system path to import modules from there
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from experiments.grammaticality_exp import generate_pca_plots_from_datasets
-
-import torch
 import random
 import sys
-import os
-import torch
-from sklearn.decomposition import PCA
-import plotly.express as px
-import pandas as pd
-import numpy as np
-import os
-import torch
-from sklearn.metrics import silhouette_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import torch
 from tqdm.auto import tqdm
 
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import silhouette_score
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from experiments.grammaticality_exp import generate_pca_plots_from_datasets
 from src.utils.pca_utils import (
+    create_plot_dataframe,
     perform_dimensionality_reduction,
-    create_plot_dataframe
 )
 from sonar.models.sonar_text import (
     load_sonar_tokenizer,

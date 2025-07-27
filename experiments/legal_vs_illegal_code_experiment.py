@@ -1,21 +1,23 @@
 # %%
-import torch
-import random
-import itertools # To help generate combinations
-import sys
+import itertools
 import os
+import random
+import sys
+from typing import Optional, Tuple
+
+import numpy as np
+import pandas as pd
+import plotly.express as px
 import torch
+from phate import PHATE
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from fairseq2.data import Collater
+from fairseq2.models.sequence import SequenceBatch, SequenceModelOutput
+from fairseq2.nn.padding import PaddingMask
 from fairseq2.typing import CPU, DataType, Device
-from src.utils.pca_utils import (
-    prepare_embeddings_for_pca,
-    perform_dimensionality_reduction,
-    create_plot_dataframe,
-    plot_dimensionality_reduction_results
-)
 
-from sonar.inference_pipelines.utils import add_progress_bar, extract_sequence_batch
+from sonar.inference_pipelines.text import TextToEmbeddingModelPipeline, extract_sequence_batch
+from sonar.inference_pipelines.utils import add_progress_bar
 from sonar.models.encoder_model import SonarEncoderModel
 from sonar.models.sonar_text import (
     load_sonar_text_decoder_model,
@@ -25,25 +27,17 @@ from sonar.models.sonar_text import (
 from sonar.models.sonar_translation import SonarEncoderDecoderModel
 from sonar.models.sonar_translation.model import DummyEncoderModel
 from sonar.nn.conditional_decoder_model import ConditionalTransformerDecoderModel
-# SONAR and fairseq2 imports
-from sonar.models.sonar_text import load_sonar_tokenizer
-from sonar.models.encoder_model import SonarEncoderModel # For type hinting
-from sonar.inference_pipelines.text import TextToEmbeddingModelPipeline, extract_sequence_batch
-from fairseq2.models.sequence import SequenceBatch
-from fairseq2.nn.padding import PaddingMask
-from fairseq2.data import Collater 
-from fairseq2.typing import Device, DataType, CPU
-from fairseq2.models.sequence import SequenceModelOutput
-from typing import Optional, Tuple
-# Plotting
-import plotly.express as px
-import pandas as pd
-from phate import PHATE
-from src.sonar_encoder_decoder import SonarEncoderDecoder
-from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
-import numpy as np
 
-from utils.generate_random_sequences import generate_random_sequences
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
+from src.sonar_encoder_decoder import SonarEncoderDecoder
+from src.utils.pca_utils import (
+    create_plot_dataframe,
+    perform_dimensionality_reduction,
+    plot_dimensionality_reduction_results,
+    prepare_embeddings_for_pca,
+)
+from src.utils.generate_random_sequences import generate_random_sequences
 #%%
 # --- Configuration ---
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -133,7 +127,6 @@ if num_sentences > 0:
     print(f"Decoded first random sequence: '{tokenizer_decoder(random_sequences_batch[0])}'")
 
 # %%
-import tqdm
 from tqdm.auto import tqdm
 all_tokenized_sentences = []
 for i in tqdm(range(0, len(grammatical_sentences), 1), desc="Tokenizing sentences"):
@@ -290,11 +283,6 @@ print(f"Shape of all illegal function embeddings: {all_illegal_functions_embeddi
 
 # %%
 from sklearn.decomposition import PCA
-import plotly.express as px
-import pandas as pd
-import numpy as np
-import os
-import torch
 
 #labels_grammatical = ['grammatical'] * all_grammatical_sentence_embeddings.shape[0]
 #labels_random = ['random'] * all_random_sentence_embeddings.shape[0]

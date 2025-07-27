@@ -1,18 +1,18 @@
 #%%
-import torch
-import random
 import itertools
-import matplotlib.pyplot as plt 
-import numpy as np
 import os
-from tqdm import tqdm
+import random
+import sys
 import warnings
 from pathlib import Path
 from typing import Iterable, List, Optional, Sequence, Union
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import matplotlib.pyplot as plt
+import numpy as np
 import torch
+from tqdm import tqdm
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fairseq2.data import Collater
 from fairseq2.data.data_pipeline import read_sequence
 from fairseq2.data.text import TextTokenizer, read_text

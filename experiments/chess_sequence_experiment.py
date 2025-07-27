@@ -1,41 +1,33 @@
 #%%
-import sys
 import os
-# Add the parent directory to the system path to import modules from there
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from experiments.grammaticality_exp import generate_pca_plots_from_datasets
-
-import torch
 import random
 import sys
-import os
-import torch
-from sklearn.decomposition import PCA
-import plotly.express as px
-import pandas as pd
-import numpy as np
-import os
-import torch
-from sklearn.metrics import silhouette_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import torch
 from tqdm.auto import tqdm
 
-from src.utils.pca_utils import (
-    perform_dimensionality_reduction,
-    create_plot_dataframe
-)
-from sonar.models.sonar_text import (
-    load_sonar_tokenizer,
-)
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import silhouette_score
+
+from sonar.models.sonar_text import load_sonar_tokenizer
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from experiments.grammaticality_exp import generate_pca_plots_from_datasets
 from src.utils.chess_utils import (
-    make_move_illegal,
-    make_sequence_illegal,
-    generate_legal_chess_sequences,
-    make_one_san_move_illegal_by_random_destination,
     generate_illegal_game_sequences,
+    generate_legal_chess_sequences,
+    make_move_illegal,
+    make_one_san_move_illegal_by_random_destination,
+    make_sequence_illegal,
+)
+from src.utils.pca_utils import (
+    create_plot_dataframe,
+    perform_dimensionality_reduction,
 )
 
 # SONAR and fairseq2 imports

@@ -1,40 +1,32 @@
 # %%
-from sklearn.metrics import classification_report, confusion_matrix
-import torch
+import os
 import random
 import sys
-import os
-import torch
-from sklearn.decomposition import PCA
-import plotly.express as px
-import pandas as pd
-import numpy as np
-import os
-import torch
-from sklearn.metrics import silhouette_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.model_selection import train_test_split
 
-from tqdm.auto import tqdm
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import torch
 import umap
 import phate
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from src.utils.pca_utils import (
-    perform_dimensionality_reduction,
-    create_plot_dataframe
-)
-from sonar.models.sonar_text import (
-    load_sonar_tokenizer,
-)
-from src.utils.generate_random_sequences import generate_random_sequences
+from tqdm.auto import tqdm
 
-# SONAR and fairseq2 imports
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix, silhouette_score
+from sklearn.model_selection import train_test_split
+
 from sonar.models.sonar_text import load_sonar_tokenizer
-# Plotting
-import plotly.express as px
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
-import numpy as np
+from src.utils.generate_random_sequences import generate_random_sequences
+from src.utils.pca_utils import (
+    create_plot_dataframe,
+    generate_pca_plots_from_datasets,
+    perform_dimensionality_reduction,
+)
 #%%
 global DEVICE, RANDOM_STATE, MODEL_NAME, OUTPUT_DIR, FIGURES_DIR
 # --- Configuration ---
