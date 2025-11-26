@@ -1,30 +1,19 @@
 #%%
-import sys
 import os
-# Add the parent directory to the system path to import modules from there
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from experiments.grammaticality_exp import generate_pca_plots_from_datasets
-
-import torch
 import random
 import sys
-import os
-import torch
+
 import numpy as np
-import os
-import torch
-from src.utils.get_embeddings_similarity import calculate_embedding_list_similarity
-from tqdm.auto import tqdm
-from sonar.models.sonar_text import (
-    load_sonar_tokenizer,
-)
-# SONAR and fairseq2 imports
-from sonar.models.sonar_text import load_sonar_tokenizer
-# Plotting
 import plotly.express as px
+import torch
+from tqdm.auto import tqdm
+
+from sonar.models.sonar_text import load_sonar_tokenizer
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from experiments.grammaticality_exp import generate_pca_plots_from_datasets
 from src.custom_sonar_pipeline import CustomTextToEmbeddingPipeline
-import numpy as np
+from src.utils.get_embeddings_similarity import calculate_embedding_list_similarity
 
 #%%
 global DEVICE, RANDOM_STATE, MODEL_NAME, OUTPUT_DIR
